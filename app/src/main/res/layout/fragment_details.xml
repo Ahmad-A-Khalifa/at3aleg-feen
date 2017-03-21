@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:orientation="vertical"
+    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.DetailsFragment"
+    tools:showIn="@layout/activity_details">
+
+    <ScrollView
+        android:id="@+id/scroll_user_form"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/app_logo" />
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Phone Number"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_phonenumber"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_specialization"
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/sp"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Specialization"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_specialization"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_appointments"
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/ap"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Appointments"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_appointments"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_closed_days"
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/cd"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Closed Days"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_closed_days"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize=".1"
+                android:clickable="true"
+
+                />
+
+            <ListView
+                android:layout_gravity="center"
+                android:id="@+id/list_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true" />
+
+            <EditText
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Your review" />
+
+            <Button
+                android:id="@+id/AddReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Review" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_info_bubble"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/info_window_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+
+            android:padding="10dp"
+            android:text="Clinic"
+
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/info_window_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:padding="10dp"
+            android:text="Mohamed Kareem Sedky"
+             />
+
+        <TextView
+            android:id="@+id/info_window_specialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:padding="10dp"
+            android:text="Cardiology"
+             />
+
+        <TextView
+            android:id="@+id/info_window_appointments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:padding="10dp"
+            android:text="10PM-12PM"
+            />
+
+        <Button
+            android:id="@+id/seeMoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="See more" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Filter by">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_hospitals"
+                    android:icon="@drawable/hospital"
+                    android:title="Hospitals" />
+                <item
+                    android:id="@+id/nav_clinics"
+                    android:icon="@drawable/clinic"
+                    android:title="Clinics" />
+                <item
+                    android:id="@+id/nav_laboratories"
+                    android:icon="@drawable/laboratory"
+                    android:title="Laboratories" />
+                <item
+                    android:id="@+id/nav_pharmacies"
+                    android:icon="@drawable/pharmacy"
+                    android:title="Pharmacies" />
+
+            </group>
+        </menu>
+    </item>
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_signin"
+                android:icon="@drawable/ic_fingerprint_black_36dp"
+                android:title="Sign in" />
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_face_black_36dp"
+                android:title="Profile" />
+            <item
+                android:id="@+id/nav_my_places"
+                android:icon="@drawable/ic_location_on_black_36dp"
+                android:title="My Places" />
+            <item
+                android:id="@+id/nav_go_premium"
+                android:icon="@drawable/ic_verified_user_black_36dp"
+                android:title="Go premium" />
+
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/ic_directions_run_black_36dp"
+                android:title="Sign out" />
+        </menu>
+    </item>
+
+</menu>

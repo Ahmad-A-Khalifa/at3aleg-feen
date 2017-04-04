@@ -195,8 +195,8 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
             /*Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);*/
         } else if (id == R.id.nav_my_places) {
-            /*Intent intent = new Intent(this, MyplacesActivity.class);
-            startActivity(intent);*/
+            Intent intent = new Intent(this, SavedPlaces.class);
+            startActivity(intent);
         } else if (id == R.id.nav_go_premium) {
             /*Intent intent = new Intent(this, PremiumActivity.class);
             startActivity(intent);*/

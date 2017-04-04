@@ -29,6 +29,19 @@
     <string name="title_activity_place_details">PlaceDetails</string>
     <string name="title_activity_details">Details</string>
     <string name="title_activity_place_detail">PlaceDetail</string>
+    <string name="title_activity_saved_places">SavedPlaces</string>
+
+    <string-array name="tabs">
+        <item>Clinics</item>
+        <item>Hospitals</item>
+        <item>Laboratories</item>
+        <item>Pharmacies</item>
+    </string-array>
+
+    <string name="Clinics">Clinics</string>
+    <string name="Hospitals"></string>
+    <string name="Labs"></string>
+    <string name="Pharmacy"></string>
 
 
 </resources>

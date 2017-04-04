@@ -52,7 +52,7 @@
         <activity
             android:name=".userInterface.activities.general.HomeScreen"
             android:label="Home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".userInterface.activities.general.SignIn"
             android:label="@string/app_name"
@@ -73,12 +73,10 @@
             android:name=".userInterface.activities.general.DoctorSignUp"
             android:label="@string/title_activity_doctor_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".userInterface.activities.general.Details"
             android:label="@string/title_activity_details"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".userInterface.activities.general.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +84,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".userInterface.activities.general.SavedPlaces"
+            android:label="My Places"
+            android:theme="@style/MyMaterialTheme"></activity>
     </application>
 
 </manifest>

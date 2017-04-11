@@ -99,6 +99,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         Intent intent = new Intent(context, HomeScreen.class);
         return intent;
     }
+// on create function 5alefa beda
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

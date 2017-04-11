@@ -1,10 +1,10 @@
 package com.example.ecss.medicalmapper.userInterface.adapters;
 
-import android.content.Context;
+
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
@@ -12,31 +12,45 @@ import com.example.ecss.medicalmapper.models.Review;
 
 import java.util.ArrayList;
 
-/**
- * Created by ecss on 26/01/2017.
- */
 
-public class ReviewsAdapter extends ArrayAdapter<Review> {
+public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHolder> {
+
     private ArrayList<Review> Reviews;
 
-    public ReviewsAdapter(final Context context, final ArrayList<Review> reviews) {
-        super(context, 0, reviews);
-        Reviews = reviews;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView reviewText = null;
+        TextView reviewerText = null;
+
+        public MyViewHolder(View convertView) {
+            super(convertView);
+            reviewText = (TextView) convertView.findViewById(R.id.review_desc);
+            reviewerText = (TextView) convertView.findViewById(R.id.reviewer);
+        }
+    }
+
+
+    public ReviewsAdapter(ArrayList<Review> Reviews) {
+        this.Reviews = Reviews;
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.list_review_item, parent, false);
-        }
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_review_item, parent, false);
 
-        final TextView reviewText = (TextView) convertView.findViewById(R.id.review_desc);
-        final TextView reviewerText = (TextView) convertView.findViewById(R.id.reviewer);
+        return new MyViewHolder(itemView);
+    }
 
-        reviewText.setText(Reviews.get(position).getReviewDescription());
-        reviewerText.setText(Reviews.get(position).getReviewer());
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        Review review = Reviews.get(position);
+        holder.reviewerText.setText(review.getReviewer());
+        holder.reviewText.setText(review.getReviewDescription());
+    }
 
-        return convertView;
+    @Override
+    public int getItemCount() {
+        return Reviews.size();
     }
 }

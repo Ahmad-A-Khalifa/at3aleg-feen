@@ -7,6 +7,9 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +36,12 @@ import static android.content.Context.MODE_PRIVATE;
  * A placeholder fragment containing a simple view.
  */
 public class DetailsFragment extends Fragment {
-    private ListView list_reviews;
+
     private ReviewsAdapter adapter;
+    private RecyclerView.LayoutManager mLayoutManager;
     private View rootView;
     private ArrayList<Review> HardCodedReviews = new ArrayList<Review>();
+    private RecyclerView list_reviews;
 
     public DetailsFragment() {
     }
@@ -67,8 +72,12 @@ public class DetailsFragment extends Fragment {
         Clinic clinic;
         Laboratory lab;
 
-        list_reviews = (ListView) rootView.findViewById(R.id.list_reviews);
-
+        list_reviews = (RecyclerView) rootView.findViewById(R.id.list_reviews);
+        adapter = new ReviewsAdapter(HardCodedReviews);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        list_reviews.setLayoutManager(mLayoutManager);
+        list_reviews.setItemAnimator(new DefaultItemAnimator());
+        list_reviews.setAdapter(adapter);
 
         if (intent.getSerializableExtra("Place") instanceof Hospital) {
 
@@ -90,14 +99,13 @@ public class DetailsFragment extends Fragment {
             address.setText(h.BuildingNumber + " " + h.Street + " " + h.AddressNotes);
             PhoneNumber.setText(h.PhoneNumber);
 
+
         } else if (intent.getSerializableExtra("Place") instanceof Pharmacy) {
 
             ph = (Pharmacy) intent.getSerializableExtra("Place");
             Log.e("Medical Place", ph.Name + " " + ph.PhoneNumber);
 
-            HardCodedReviews.add(new Review("Mohamed", "3alatol za7ma"));
-            HardCodedReviews.add(new Review("Mai", "always crowded"));
-            HardCodedReviews.add(new Review("Mena", "Awesome"));
+
             HardCodedReviews.add(new Review("Abdelrahman", "The pharmacist is so rude"));
 
             name.setText(ph.Name);
@@ -136,6 +144,7 @@ public class DetailsFragment extends Fragment {
 
             ClosedDays.setText(clinic.ClosedDays);
 
+
         } else if (intent.getSerializableExtra("Place") instanceof Laboratory) {
 
             lab = (Laboratory) intent.getSerializableExtra("Place");
@@ -166,6 +175,7 @@ public class DetailsFragment extends Fragment {
 
             ClosedDays.setText(lab.ClosedDays);
 
+
         }
 
         Button AddReview = (Button) rootView.findViewById(R.id.AddReview);
@@ -176,8 +186,8 @@ public class DetailsFragment extends Fragment {
             }
         });
 
-        adapter = new ReviewsAdapter(getActivity(), HardCodedReviews);
-        list_reviews.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
 
         /*reviews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -210,7 +220,6 @@ public class DetailsFragment extends Fragment {
 
         review.setText("");
 
-        adapter = new ReviewsAdapter(getActivity(), HardCodedReviews);
-        list_reviews.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -79,7 +79,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
-    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng mDefaultLocation = new LatLng(30.03848597645301,31.211557388305664);
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
@@ -99,7 +99,6 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         Intent intent = new Intent(context, HomeScreen.class);
         return intent;
     }
-// on create function 5alefa beda
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -30,8 +30,7 @@
             android:layout_centerInParent="true"
 
             android:padding="10dp"
-            android:text="Mohamed Kareem Sedky"
-             />
+            android:text="Mohamed Kareem Sedky" />
 
         <TextView
             android:id="@+id/info_window_specialization"
@@ -40,8 +39,7 @@
             android:layout_centerInParent="true"
 
             android:padding="10dp"
-            android:text="Cardiology"
-             />
+            android:text="Cardiology" />
 
         <TextView
             android:id="@+id/info_window_appointments"
@@ -50,8 +48,7 @@
             android:layout_centerInParent="true"
 
             android:padding="10dp"
-            android:text="10PM-12PM"
-            />
+            android:text="10PM-12PM" />
 
         <Button
             android:id="@+id/seeMoreButton"

@@ -16,16 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.models.Clinic;
-import com.example.ecss.medicalmapper.models.Hospital;
-import com.example.ecss.medicalmapper.models.Laboratory;
-import com.example.ecss.medicalmapper.models.Pharmacy;
-import com.example.ecss.medicalmapper.models.Review;
+import com.example.ecss.medicalmapper.model.Place.Clinic;
+import com.example.ecss.medicalmapper.model.Place.Hospital;
+import com.example.ecss.medicalmapper.model.Place.Laboratory;
+import com.example.ecss.medicalmapper.model.Place.Pharmacy;
+import com.example.ecss.medicalmapper.model.User.Review;
 import com.example.ecss.medicalmapper.userInterface.adapters.ReviewsAdapter;
 
 import java.util.ArrayList;
@@ -79,101 +78,101 @@ public class DetailsFragment extends Fragment {
         list_reviews.setItemAnimator(new DefaultItemAnimator());
         list_reviews.setAdapter(adapter);
 
-        if (intent.getSerializableExtra("Place") instanceof Hospital) {
+        if (intent.getParcelableExtra("Place") instanceof Hospital) {
 
-            h = (Hospital) intent.getSerializableExtra("Place");
+            h = (Hospital) intent.getParcelableExtra("Place");
 
-            Log.e("Medical Place", h.Specialization + " " + h.Doctor);
+            Log.e("Medical Place", h.getmSpecialization() + " " + h.getmDoctor());
 
             HardCodedReviews.add(new Review("Sherif", "EL mostshfa ndifa gdan"));
             HardCodedReviews.add(new Review("Hazem", "EL mostshfa was3a gdan"));
             HardCodedReviews.add(new Review("Khalifa", "Amn el mostshfa mo3mltoh we7sha"));
             HardCodedReviews.add(new Review("Samuel", "Smells very bad"));
 
-            name.setText(h.Name);
+            name.setText(h.getmName());
 
             View spec = rootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
-            specialization.setText(h.Specialization);
+            specialization.setText(h.getmSpecialization());
 
-            address.setText(h.BuildingNumber + " " + h.Street + " " + h.AddressNotes);
-            PhoneNumber.setText(h.PhoneNumber);
+            address.setText(h.getmBuildingNumber() + " " + h.getmStreet() + " " + h.getmAddressNotes());
+            PhoneNumber.setText(h.getmPhoneNumber());
 
 
-        } else if (intent.getSerializableExtra("Place") instanceof Pharmacy) {
+        } else if (intent.getParcelableExtra("Place") instanceof Pharmacy) {
 
             ph = (Pharmacy) intent.getSerializableExtra("Place");
-            Log.e("Medical Place", ph.Name + " " + ph.PhoneNumber);
+            Log.e("Medical Place", ph.getmName() + " " + ph.getmPhoneNumber());
 
 
             HardCodedReviews.add(new Review("Abdelrahman", "The pharmacist is so rude"));
 
-            name.setText(ph.Name);
+            name.setText(ph.getmName());
 
-            address.setText(ph.BuildingNumber + " " + ph.Street + " " + ph.AddressNotes);
-            PhoneNumber.setText(ph.PhoneNumber);
+            address.setText(ph.getmBuildingNumber() + " " + ph.getmStreet() + " " + ph.getmAddressNotes());
+            PhoneNumber.setText(ph.getmPhoneNumber());
 
 
-        } else if (intent.getSerializableExtra("Place") instanceof Clinic) {
+        } else if (intent.getParcelableExtra("Place") instanceof Clinic) {
 
-            clinic = (Clinic) intent.getSerializableExtra("Place");
-            Log.e("Medical Place", clinic.Doctor + " " + clinic.Appointments + " " + clinic.ClosedDays);
+            clinic = (Clinic) intent.getParcelableExtra("Place");
+            Log.e("Medical Place", clinic.getmDoctor() + " " + clinic.getmAppointments() + " " + clinic.getmClosedDays());
 
             HardCodedReviews.add(new Review("Moneer", "El momardin mo3mlthom kwyesa gdan"));
             HardCodedReviews.add(new Review("Amr", "bgd 3eyada to7fa"));
             HardCodedReviews.add(new Review("Mohey", "Very Good"));
             HardCodedReviews.add(new Review("Ahmed", "The doctor is arrogant"));
 
-            name.setText(clinic.Doctor);
+            name.setText(clinic.getmDoctor());
 
             View spec = rootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
 
-            specialization.setText(clinic.Specialization);
+            specialization.setText(clinic.getmSpecialization());
 
-            address.setText(clinic.BuildingNumber + " " + clinic.Street + " " + clinic.AddressNotes);
-            PhoneNumber.setText(clinic.PhoneNumber);
+            address.setText(clinic.getmBuildingNumber() + " " + clinic.getmStreet() + " " + clinic.getmAddressNotes());
+            PhoneNumber.setText(clinic.getmPhoneNumber());
 
             View app = rootView.findViewById(R.id.linear_appointments);
             app.setVisibility(View.VISIBLE);
 
-            appointments.setText(clinic.Appointments);
+            appointments.setText(clinic.getmAppointments());
 
             View cd = rootView.findViewById(R.id.linear_closed_days);
             cd.setVisibility(View.VISIBLE);
 
-            ClosedDays.setText(clinic.ClosedDays);
+            ClosedDays.setText(clinic.getmClosedDays());
 
 
-        } else if (intent.getSerializableExtra("Place") instanceof Laboratory) {
+        } else if (intent.getParcelableExtra("Place") instanceof Laboratory) {
 
-            lab = (Laboratory) intent.getSerializableExtra("Place");
-            Log.e("Medical Place", lab.Name + " " + lab.PhoneNumber);
+            lab = (Laboratory) intent.getParcelableExtra("Place");
+            Log.e("Medical Place", lab.getmName() + " " + lab.getmPhoneNumber());
 
             HardCodedReviews.add(new Review("Alaa", "disgusting"));
             HardCodedReviews.add(new Review("Sara", "Bad"));
             HardCodedReviews.add(new Review("Safaa", "el as3ar ghelyt 3an a5er mra yarit tera3o el nas shwya"));
             HardCodedReviews.add(new Review("Mariam", "estnit dori ktir ana fdelt wa2fa 3shan msh la2ya makan a3od fel a5er et5n2t m3 mowzft el est2bal"));
 
-            name.setText(lab.Doctor);
+            name.setText(lab.getmDoctor());
 
             View spec = rootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
 
-            specialization.setText(lab.Specialization);
+            specialization.setText(lab.getmSpecialization());
 
-            address.setText(lab.BuildingNumber + " " + lab.Street + " " + lab.AddressNotes);
-            PhoneNumber.setText(lab.PhoneNumber);
+            address.setText(lab.getmBuildingNumber() + " " + lab.getmStreet() + " " + lab.getmAddressNotes());
+            PhoneNumber.setText(lab.getmPhoneNumber());
 
             View app = rootView.findViewById(R.id.linear_appointments);
             app.setVisibility(View.VISIBLE);
 
-            appointments.setText(lab.Appointments);
+            appointments.setText(lab.getmAppointments());
 
             View cd = rootView.findViewById(R.id.linear_closed_days);
             cd.setVisibility(View.VISIBLE);
 
-            ClosedDays.setText(lab.ClosedDays);
+            ClosedDays.setText(lab.getmClosedDays());
 
 
         }

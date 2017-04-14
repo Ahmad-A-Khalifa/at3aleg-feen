@@ -1,21 +1,7 @@
 package com.example.ecss.medicalmapper.storage.databases;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.ecss.medicalmapper.models.Clinic;
-import com.example.ecss.medicalmapper.models.Hospital;
-import com.example.ecss.medicalmapper.models.Laboratory;
-import com.example.ecss.medicalmapper.models.Pharmacy;
-
-import java.util.ArrayList;
-
-
-public class DatabaseHandler extends SQLiteOpenHelper {
-
+public class DatabaseHandler {
+/*
     private final String LOG_TAG = DatabaseHandler.class.getSimpleName();
 
     private static final int DATABASE_VERSION = 1;
@@ -71,14 +57,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + BUILDING_NUMBER + " TEXT," + STREET + " TEXT," + STREET_ARABIC + " TEXT," + ADDRESS_NOTES + " TEXT,"
                 + ADDRESS_NOTES_ARABIC + " TEXT," + PHONE_NUMBER + " TEXT," + LATITUDE + " DOUBLE," + LONGITUDE + " DOUBLE,"
                 + SPECIALIZATION + " TEXT," + SPECIALIZATION_ARABIC + " TEXT," + DOCTOR + " TEXT," + DOCTOR_ARABIC + " TEXT,"
-                + CLOSED_DAYS + " TEXT,"+ APPOINTMENTS + " TEXT,"+ APPRATMENT_NUMBER + " TEXT"+ ")";
+                + CLOSED_DAYS + " TEXT," + APPOINTMENTS + " TEXT," + APPRATMENT_NUMBER + " TEXT" + ")";
 
         String CREATE_LABORATORIES_TABLE = "CREATE TABLE " + TABLE_LABORATORIES + "("
                 + ID + " INTEGER PRIMARY KEY," + NAME + " TEXT," + NAME_ARABIC + " TEXT,"
                 + BUILDING_NUMBER + " TEXT," + STREET + " TEXT," + STREET_ARABIC + " TEXT," + ADDRESS_NOTES + " TEXT,"
                 + ADDRESS_NOTES_ARABIC + " TEXT," + PHONE_NUMBER + " TEXT," + LATITUDE + " DOUBLE," + LONGITUDE + " DOUBLE,"
                 + SPECIALIZATION + " TEXT," + SPECIALIZATION_ARABIC + " TEXT," + DOCTOR + " TEXT," + DOCTOR_ARABIC + " TEXT,"
-                + CLOSED_DAYS + " TEXT,"+ APPOINTMENTS + " TEXT,"+ APPRATMENT_NUMBER + " TEXT" + ")";
+                + CLOSED_DAYS + " TEXT," + APPOINTMENTS + " TEXT," + APPRATMENT_NUMBER + " TEXT" + ")";
 
         db.execSQL(CREATE_HOSPITALS_TABLE);
         db.execSQL(CREATE_PHARMACIES_TABLE);
@@ -150,6 +136,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CLINICS, null, values);
         db.close();
     }
+
     public void addPharmacy(Pharmacy place) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -168,6 +155,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_PHARMACIES, null, values);
         db.close();
     }
+
     public void addLaboratory(Laboratory place) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -233,6 +221,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return hospitals;
     }
+
     public ArrayList<Clinic> getClinics() {
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
@@ -241,7 +230,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
 
 
         if (cursor.moveToFirst()) {
@@ -275,6 +263,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return clinics;
     }
+
     public ArrayList<Laboratory> getLaboratories() {
 
         ArrayList<Laboratory> laboratories = new ArrayList<Laboratory>();
@@ -316,6 +305,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return laboratories;
     }
+
     public ArrayList<Pharmacy> getPharmacies() {
 
         ArrayList<Pharmacy> pharmacies = new ArrayList<Pharmacy>();
@@ -348,4 +338,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return pharmacies;
     }
+    */
 }

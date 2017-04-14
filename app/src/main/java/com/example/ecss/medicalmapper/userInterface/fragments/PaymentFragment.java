@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import com.example.ecss.medicalmapper.R;
 import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreen;
-import com.example.ecss.medicalmapper.userInterface.activities.general.Payment;
 
 /**
  * A placeholder fragment containing a simple view.

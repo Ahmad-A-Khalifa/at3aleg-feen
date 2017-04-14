@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.models.Review;
+import com.example.ecss.medicalmapper.model.User.Review;
 
 import java.util.ArrayList;
 
@@ -16,18 +16,6 @@ import java.util.ArrayList;
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHolder> {
 
     private ArrayList<Review> Reviews;
-
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView reviewText = null;
-        TextView reviewerText = null;
-
-        public MyViewHolder(View convertView) {
-            super(convertView);
-            reviewText = (TextView) convertView.findViewById(R.id.review_desc);
-            reviewerText = (TextView) convertView.findViewById(R.id.reviewer);
-        }
-    }
 
 
     public ReviewsAdapter(ArrayList<Review> Reviews) {
@@ -52,5 +40,16 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return Reviews.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView reviewText = null;
+        TextView reviewerText = null;
+
+        public MyViewHolder(View convertView) {
+            super(convertView);
+            reviewText = (TextView) convertView.findViewById(R.id.review_desc);
+            reviewerText = (TextView) convertView.findViewById(R.id.reviewer);
+        }
     }
 }

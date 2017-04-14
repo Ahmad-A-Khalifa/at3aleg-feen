@@ -25,12 +25,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.models.Clinic;
-import com.example.ecss.medicalmapper.models.Hospital;
-import com.example.ecss.medicalmapper.models.Laboratory;
-import com.example.ecss.medicalmapper.models.MedicalPlace;
-import com.example.ecss.medicalmapper.models.Pharmacy;
-import com.example.ecss.medicalmapper.storage.databases.DatabaseHandler;
+import com.example.ecss.medicalmapper.model.Place.Clinic;
+import com.example.ecss.medicalmapper.model.Place.Hospital;
+import com.example.ecss.medicalmapper.model.Place.Laboratory;
+import com.example.ecss.medicalmapper.model.Place.MedicalPlace;
+import com.example.ecss.medicalmapper.model.Place.Pharmacy;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -41,7 +40,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -57,43 +55,33 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, GoogleMap.OnInfoWindowClickListener {
 
-    private boolean filterHospital = true, filterLab = true, filterClinic = true, filterPharmacy = true;
     private static final String TAG = HomeScreen.class.getSimpleName();
-
-    private GoogleMap mMap;
-    private CameraPosition mCameraPosition;
-
-    // The entry point to Google Play services, used by the Places API and Fused Location Provider.
-    private GoogleApiClient mGoogleApiClient;
-
-    // A request object to store parameters for requests to the FusedLocationProviderApi.
-    private LocationRequest mLocationRequest;
-
     // The desired interval for location updates. Inexact. Updates may be more or less frequent.
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-
     // The fastest rate for active location updates. Exact. Updates will never be more frequent
     // than this value.
     private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
             UPDATE_INTERVAL_IN_MILLISECONDS / 2;
-
-    // A default location (Sydney, Australia) and default zoom to use when location permission is
-    // not granted.
-    private final LatLng mDefaultLocation = new LatLng(30.03848597645301,31.211557388305662);
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private boolean mLocationPermissionGranted;
-
-
-    private ArrayList<MedicalPlace> places = new ArrayList();
-    private Map<String, MedicalPlace> Markers = new HashMap<String, MedicalPlace>();
-
-    // The geographical location where the device is currently located.
-    private Location mCurrentLocation;
-
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
+    // A default location (Sydney, Australia) and default zoom to use when location permission is
+    // not granted.
+    private final LatLng mDefaultLocation = new LatLng(30.03848597645301, 31.211557388305662);
+    private boolean filterHospital = true, filterLab = true, filterClinic = true, filterPharmacy = true;
+    private GoogleMap mMap;
+    private CameraPosition mCameraPosition;
+    // The entry point to Google Play services, used by the Places API and Fused Location Provider.
+    private GoogleApiClient mGoogleApiClient;
+    // A request object to store parameters for requests to the FusedLocationProviderApi.
+    private LocationRequest mLocationRequest;
+    private boolean mLocationPermissionGranted;
+    private ArrayList<MedicalPlace> places = new ArrayList();
+    private Map<String, MedicalPlace> Markers = new HashMap<String, MedicalPlace>();
+    // The geographical location where the device is currently located.
+    private Location mCurrentLocation;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeScreen.class);
@@ -491,12 +479,13 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         if (mLocationPermissionGranted) {
             // Get the businesses and other points of interest located
             // nearest to the device's current location.
-            DatabaseHandler dp = new DatabaseHandler(this);
 
-            ArrayList<Hospital> hp = dp.getHospitals();
-            ArrayList<Pharmacy> ph = dp.getPharmacies();
-            ArrayList<Laboratory> lab = dp.getLaboratories();
-            ArrayList<Clinic> clinics = dp.getClinics();
+            //DatabaseHandler dp = new DatabaseHandler(this);
+            ArrayList<Hospital> hp = new ArrayList<>();
+            ArrayList<Pharmacy> ph = new ArrayList<>();
+            ArrayList<Laboratory> lab = new ArrayList<>();
+            ArrayList<Clinic> clinics = new ArrayList<>();
+
             mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
                 public View getInfoWindow(Marker arg0) {
@@ -513,30 +502,30 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                         Hospital h = (Hospital) Markers.get(arg0.getId());
 
                         title.setText("Hospital");
-                        doctor.setText(h.Name);
-                        specialization.setText(h.Specialization);
+                        doctor.setText(h.getmName());
+                        specialization.setText(h.getmSpecialization());
 
                     } else if (Markers.get(arg0.getId()) instanceof Pharmacy) {
                         Pharmacy ph = (Pharmacy) Markers.get(arg0.getId());
 
                         title.setText("Pharmacy");
-                        doctor.setText(ph.Name);
+                        doctor.setText(ph.getmName());
 
                     } else if (Markers.get(arg0.getId()) instanceof Clinic) {
                         Clinic c = (Clinic) Markers.get(arg0.getId());
 
                         title.setText("Clinic");
-                        doctor.setText(c.Doctor);
-                        specialization.setText(c.Specialization);
-                        appointment.setText(c.Appointments);
+                        doctor.setText(c.getmDoctor());
+                        specialization.setText(c.getmSpecialization());
+                        appointment.setText(c.getmAppointments());
 
                     } else if (Markers.get(arg0.getId()) instanceof Laboratory) {
                         Laboratory l = (Laboratory) Markers.get(arg0.getId());
 
                         title.setText("Laboratory");
-                        doctor.setText(l.Doctor);
-                        specialization.setText(l.Specialization);
-                        appointment.setText(l.Appointments);
+                        doctor.setText(l.getmDoctor());
+                        specialization.setText(l.getmSpecialization());
+                        appointment.setText(l.getmAppointments());
                     }
 
                     return v;
@@ -552,12 +541,12 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 for (final Hospital h : hp) {
 
                     Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(h.Latitude, h.Longitude))
-                            .title("Hospital")
-                            .snippet(h.Name)
-                            .infoWindowAnchor(0.5f, 0.5f)
+                                    .position(new LatLng(h.getmLatitude(), h.getmLongitude()))
+                                    .title("Hospital")
+                                    .snippet(h.getmName())
+                                    .infoWindowAnchor(0.5f, 0.5f)
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.hospitalmarker))
-                             );
+                    );
                     marker.showInfoWindow();
                     Markers.put(marker.getId(), h);
                 }
@@ -566,9 +555,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 for (Clinic clinic : clinics) {
 
                     Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(clinic.Latitude, clinic.Longitude))
+                                    .position(new LatLng(clinic.getmLatitude(), clinic.getmLongitude()))
                                     .title("Clinic")
-                                    .snippet(clinic.Doctor)
+                                    .snippet(clinic.getmDoctor())
                                     .infoWindowAnchor(0.5f, 0.5f)
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.clinicmarker))
                     );
@@ -580,9 +569,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 for (Pharmacy pharmacy : ph) {
 
                     Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(pharmacy.Latitude, pharmacy.Longitude))
+                                    .position(new LatLng(pharmacy.getmLatitude(), pharmacy.getmLongitude()))
                                     .title("pharmacy")
-                                    .snippet(pharmacy.Name)
+                                    .snippet(pharmacy.getmName())
                                     .infoWindowAnchor(0.5f, 0.5f)
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.pharmacymarker))
                     );
@@ -595,9 +584,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 for (Laboratory laboratory : lab) {
 
                     Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(laboratory.Latitude, laboratory.Longitude))
+                                    .position(new LatLng(laboratory.getmLatitude(), laboratory.getmLongitude()))
                                     .title("laboratory")
-                                    .snippet(laboratory.Name)
+                                    .snippet(laboratory.getmName())
                                     .infoWindowAnchor(0.5f, 0.5f)
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.laboratorymarker))
                     );
@@ -615,7 +604,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         }
     }
 
-
+/*
     void addToDatabase() {
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
@@ -626,15 +615,15 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 
         //Hospital 1
         h = new Hospital();
-        h.Name = "El Marwa";
-        h.Doctor = "Tarek Nabil El Sadfy";
-        h.BuildingNumber = "12";
-        h.Street = "El Tahrir";
-        h.AddressNotes = "Mesaha square";
-        h.PhoneNumber = "3349327";
-        h.Latitude = 30.0342473;
-        h.Longitude = 31.208059;
-        h.Specialization = "General";
+        h.setmName("\"El Marwa\"") = ;
+        h.setmDoctor("") = "Tarek Nabil El Sadfy";
+        h.setmBuildingNumber("") = "12";
+        h.setmStreet("") = "El Tahrir";
+        h.setmAddressNotes("") = "Mesaha square";
+        h.setmPhoneNumber("") = "3349327";
+        h.setmLatitude("") = 30.0342473;
+        h.setmLongitude("") = 31.208059;
+        h.setmSpecialization("") = "General";
         places.add(h);
         databaseHandler.addHospital(h);
 
@@ -966,7 +955,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         databaseHandler.addLaboratory(l);
 
     }
-
+*/
 
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
@@ -992,7 +981,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 
         protected Void doInBackground(Void... urls) {
 
-            addToDatabase();
+            //addToDatabase();
 
             return null;
         }

@@ -38,9 +38,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class SignInFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     private static final String TAG = "SignIn";
-    private View rootView;
-
     private static final int RC_SIGN_IN = 9001;
+    private View rootView;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
 

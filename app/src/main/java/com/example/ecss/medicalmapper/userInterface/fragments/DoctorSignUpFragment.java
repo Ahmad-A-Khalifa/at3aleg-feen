@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.models.DoctorInfo;
+import com.example.ecss.medicalmapper.model.User.DoctorInfo;
 import com.example.ecss.medicalmapper.userInterface.activities.general.Payment;
 
 /**

@@ -9,6 +9,11 @@ import com.example.ecss.medicalmapper.R;
 
 public class SignUp extends AppCompatActivity {
 
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, SignUp.class);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,10 +22,5 @@ public class SignUp extends AppCompatActivity {
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
-    }
-
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, SignUp.class);
-        return intent;
     }
 }

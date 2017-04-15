@@ -17,7 +17,7 @@ import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScree
  * A placeholder fragment containing a simple view.
  */
 public class SignUpFragment extends Fragment {
-    private View rootView;
+    private View mRootView;
 
     public SignUpFragment() {
     }
@@ -25,8 +25,8 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        final Button button = (Button) rootView.findViewById(R.id.next_signup);
+        mRootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        final Button button = (Button) mRootView.findViewById(R.id.next_signup);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), HomeScreen.class);
@@ -35,13 +35,13 @@ public class SignUpFragment extends Fragment {
             }
         });
 
-        final TextView textView = (TextView) rootView.findViewById(R.id.switch_doctor);
+        final TextView textView = (TextView) mRootView.findViewById(R.id.switch_doctor);
         textView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DoctorSignUp.class);
                 startActivity(intent);
             }
         });
-        return rootView;
+        return mRootView;
     }
 }

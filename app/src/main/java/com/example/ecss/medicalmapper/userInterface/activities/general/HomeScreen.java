@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -28,7 +27,6 @@ import com.example.ecss.medicalmapper.R;
 import com.example.ecss.medicalmapper.model.Place.Clinic;
 import com.example.ecss.medicalmapper.model.Place.Hospital;
 import com.example.ecss.medicalmapper.model.Place.Laboratory;
-import com.example.ecss.medicalmapper.model.Place.MedicalPlace;
 import com.example.ecss.medicalmapper.model.Place.Pharmacy;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -56,37 +54,41 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         LocationListener, GoogleMap.OnInfoWindowClickListener {
 
     private static final String TAG = HomeScreen.class.getSimpleName();
+
     // The desired interval for location updates. Inexact. Updates may be more or less frequent.
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+
     // The fastest rate for active location updates. Exact. Updates will never be more frequent
     // than this value.
-    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
-            UPDATE_INTERVAL_IN_MILLISECONDS / 2;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
+
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
+
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(30.03848597645301, 31.211557388305662);
+
     private boolean filterHospital = true, filterLab = true, filterClinic = true, filterPharmacy = true;
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
+
     // The entry point to Google Play services, used by the Places API and Fused Location Provider.
     private GoogleApiClient mGoogleApiClient;
+
     // A request object to store parameters for requests to the FusedLocationProviderApi.
     private LocationRequest mLocationRequest;
     private boolean mLocationPermissionGranted;
-    private ArrayList<MedicalPlace> places = new ArrayList();
-    private Map<String, MedicalPlace> Markers = new HashMap<String, MedicalPlace>();
+
+    // private ArrayList<MedicalPlace> places = new ArrayList();
+    private Map<String, Object> Markers = new HashMap<String, Object>();
+
     // The geographical location where the device is currently located.
     private Location mCurrentLocation;
-
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, HomeScreen.class);
-        return intent;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +104,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        // NavigationDrawer code
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -114,37 +115,22 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
-        mapFragment.getMapAsync(this);
-
-        // Build the Play services client for use by the Fused Location Provider and the Places API.
-        buildGoogleApiClient();
-        mGoogleApiClient.connect();*/
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
 
         // Build the Play services client for use by the Fused Location Provider and the Places API.
         buildGoogleApiClient();
         mGoogleApiClient.connect();
 
-        LongTask task = new LongTask();
-        task.execute();
+        //LongTask task = new LongTask();
+        //task.execute();
     }
 
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, HomeScreen.class);
+        return intent;
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -232,13 +218,185 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_search_plus) {
-
             Intent intent = new Intent(this, AdvancedSearch.class);
             startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        if (Markers.get(marker.getId()) instanceof Hospital) {
+            Intent intent = new Intent(getApplicationContext(), Details.class);
+            intent.putExtra("Place", (Hospital) Markers.get(marker.getId()));
+            startActivity(intent);
+        }
+        if (Markers.get(marker.getId()) instanceof Pharmacy) {
+            Intent intent = new Intent(getApplicationContext(), Details.class);
+            intent.putExtra("Place", (Pharmacy) Markers.get(marker.getId()));
+            startActivity(intent);
+        }
+        if (Markers.get(marker.getId()) instanceof Clinic) {
+            Intent intent = new Intent(getApplicationContext(), Details.class);
+            intent.putExtra("Place", (Clinic) Markers.get(marker.getId()));
+            startActivity(intent);
+        }
+        if (Markers.get(marker.getId()) instanceof Laboratory) {
+            Intent intent = new Intent(getApplicationContext(), Details.class);
+            intent.putExtra("Place", (Laboratory) Markers.get(marker.getId()));
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * Adds markers for places nearby the device and turns the My Location feature on or off,
+     * provided location permission has been granted.
+     */
+
+    private void updateMarkers() {
+        if (mMap == null) {
+            return;
+        }
+
+        if (mLocationPermissionGranted) {
+            // Get the businesses and other points of interest located
+            // nearest to the device's current location.
+
+            //Fill the ArrayLists using Retrofit
+            ArrayList<Hospital> hp = new ArrayList<>();
+            ArrayList<Pharmacy> ph = new ArrayList<>();
+            ArrayList<Laboratory> lab = new ArrayList<>();
+            ArrayList<Clinic> clinics = new ArrayList<>();
+
+            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                public View getInfoWindow(Marker arg0) {
+
+                    View v = getLayoutInflater().inflate(R.layout.custom_infowindow, null);
+
+                    TextView title = (TextView) v.findViewById(R.id.info_window_title);
+                    TextView doctor = (TextView) v.findViewById(R.id.info_window_doctor);
+                    TextView specialization = (TextView) v.findViewById(R.id.info_window_specialization);
+                    TextView appointment = (TextView) v.findViewById(R.id.info_window_appointments);
+
+                    if (Markers.get(arg0.getId()) instanceof Hospital) {
+
+                        Hospital h = (Hospital) Markers.get(arg0.getId());
+
+                        title.setText("Hospital");
+                        doctor.setText(h.getmHospitalName());
+                        specialization.setText("General");
+
+                    } else if (Markers.get(arg0.getId()) instanceof Pharmacy) {
+                        Pharmacy ph = (Pharmacy) Markers.get(arg0.getId());
+
+                        title.setText("Pharmacy");
+                        doctor.setText(ph.getmPharmacyName());
+
+                    } else if (Markers.get(arg0.getId()) instanceof Clinic) {
+                        Clinic c = (Clinic) Markers.get(arg0.getId());
+
+                        title.setText("Clinic");
+                        doctor.setText(c.getmClinicName());
+                        specialization.setText(c.getmClinicSpecialization());
+                        //appointment.setText(c.get());
+
+                    } else if (Markers.get(arg0.getId()) instanceof Laboratory) {
+                        Laboratory l = (Laboratory) Markers.get(arg0.getId());
+
+                        title.setText("Laboratory");
+                        doctor.setText(l.getmLabName());
+                        specialization.setText(l.getmLabSpecialization());
+                        // appointment.setText(l.get());
+                    }
+
+                    return v;
+                }
+
+                public View getInfoContents(Marker arg0) {
+
+                    return null;
+                }
+            });
+
+            if (filterHospital) {
+                for (final Hospital h : hp) {
+                    String lat = h.getmBranches().get(h.getmHospitalId()).getmBranchLatitude();
+                    String lon = h.getmBranches().get(h.getmHospitalId()).getmBranchLongitude();
+
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lon)))
+                                    .title("Hospital")
+                                    .snippet(h.getmHospitalName())
+                                    .infoWindowAnchor(0.5f, 0.5f)
+                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.hospitalmarker))
+                    );
+                    marker.showInfoWindow();
+                    Markers.put(marker.getId(), h);
+                }
+            }
+            if (filterClinic) {
+                for (Clinic clinic : clinics) {
+
+                    String lat = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchLatitude();
+                    String lon = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchLongitude();
+
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lon)))
+                                    .title("Clinic")
+                                    .snippet(clinic.getmClinicName())
+                                    .infoWindowAnchor(0.5f, 0.5f)
+                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.clinicmarker))
+                    );
+                    marker.showInfoWindow();
+                    Markers.put(marker.getId(), clinic);
+                }
+            }
+            if (filterPharmacy) {
+                for (Pharmacy pharmacy : ph) {
+
+                    String lat = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchLatitude();
+                    String lon = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchLongitude();
+
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lon)))
+                                    .title("pharmacy")
+                                    .snippet(pharmacy.getmPharmacyName())
+                                    .infoWindowAnchor(0.5f, 0.5f)
+                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.pharmacymarker))
+                    );
+
+                    marker.showInfoWindow();
+                    Markers.put(marker.getId(), pharmacy);
+                }
+            }
+            if (filterLab) {
+                for (Laboratory laboratory : lab) {
+
+                    String lat = laboratory.getmBranches().get(laboratory.getmLabId()).getmBranchLatitude();
+                    String lon = laboratory.getmBranches().get(laboratory.getmLabId()).getmBranchLongitude();
+
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lon)))
+                                    .title("laboratory")
+                                    .snippet(laboratory.getmLabName())
+                                    .infoWindowAnchor(0.5f, 0.5f)
+                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.laboratorymarker))
+                    );
+
+                    marker.showInfoWindow();
+                    Markers.put(marker.getId(), laboratory);
+                }
+            }
+
+        } else {
+            mMap.addMarker(new MarkerOptions()
+                    .position(mDefaultLocation)
+                    .title(getString(R.string.default_info_title))
+                    .snippet(getString(R.string.default_info_snippet)));
+        }
     }
 
     /**
@@ -257,12 +415,19 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     protected void onPause() {
         super.onPause();
         if (mGoogleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(
-                    mGoogleApiClient, this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
-
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     /**
      * Saves the state of the map when the activity is paused.
@@ -284,8 +449,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     public void onConnected(Bundle connectionHint) {
         getDeviceLocation();
         // Build the map.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
     }
 
@@ -296,8 +460,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     public void onConnectionFailed(@NonNull ConnectionResult result) {
         // Refer to the reference doc for ConnectionResult to see what error codes might
         // be returned in onConnectionFailed.
-        Log.d(TAG, "Play services connection failed: ConnectionResult.getErrorCode() = "
-                + result.getErrorCode());
+        Log.d(TAG, "Play services connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
 
     /**
@@ -438,524 +601,6 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         updateLocationUI();
     }
 
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-
-
-        if (Markers.get(marker.getId()) instanceof Hospital) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", Markers.get(marker.getId()));
-            startActivity(intent);
-        }
-        if (Markers.get(marker.getId()) instanceof Pharmacy) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", Markers.get(marker.getId()));
-            startActivity(intent);
-        }
-        if (Markers.get(marker.getId()) instanceof Clinic) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", Markers.get(marker.getId()));
-            startActivity(intent);
-        }
-        if (Markers.get(marker.getId()) instanceof Laboratory) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", Markers.get(marker.getId()));
-            startActivity(intent);
-        }
-
-
-    }
-
-    /**
-     * Adds markers for places nearby the device and turns the My Location feature on or off,
-     * provided location permission has been granted.
-     */
-
-    private void updateMarkers() {
-        if (mMap == null) {
-            return;
-        }
-
-        if (mLocationPermissionGranted) {
-            // Get the businesses and other points of interest located
-            // nearest to the device's current location.
-
-            //DatabaseHandler dp = new DatabaseHandler(this);
-            ArrayList<Hospital> hp = new ArrayList<>();
-            ArrayList<Pharmacy> ph = new ArrayList<>();
-            ArrayList<Laboratory> lab = new ArrayList<>();
-            ArrayList<Clinic> clinics = new ArrayList<>();
-
-            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-                public View getInfoWindow(Marker arg0) {
-
-                    View v = getLayoutInflater().inflate(R.layout.custom_infowindow, null);
-
-                    TextView title = (TextView) v.findViewById(R.id.info_window_title);
-                    TextView doctor = (TextView) v.findViewById(R.id.info_window_doctor);
-                    TextView specialization = (TextView) v.findViewById(R.id.info_window_specialization);
-                    TextView appointment = (TextView) v.findViewById(R.id.info_window_appointments);
-
-                    if (Markers.get(arg0.getId()) instanceof Hospital) {
-
-                        Hospital h = (Hospital) Markers.get(arg0.getId());
-
-                        title.setText("Hospital");
-                        doctor.setText(h.getmName());
-                        specialization.setText(h.getmSpecialization());
-
-                    } else if (Markers.get(arg0.getId()) instanceof Pharmacy) {
-                        Pharmacy ph = (Pharmacy) Markers.get(arg0.getId());
-
-                        title.setText("Pharmacy");
-                        doctor.setText(ph.getmName());
-
-                    } else if (Markers.get(arg0.getId()) instanceof Clinic) {
-                        Clinic c = (Clinic) Markers.get(arg0.getId());
-
-                        title.setText("Clinic");
-                        doctor.setText(c.getmDoctor());
-                        specialization.setText(c.getmSpecialization());
-                        appointment.setText(c.getmAppointments());
-
-                    } else if (Markers.get(arg0.getId()) instanceof Laboratory) {
-                        Laboratory l = (Laboratory) Markers.get(arg0.getId());
-
-                        title.setText("Laboratory");
-                        doctor.setText(l.getmDoctor());
-                        specialization.setText(l.getmSpecialization());
-                        appointment.setText(l.getmAppointments());
-                    }
-
-                    return v;
-                }
-
-                public View getInfoContents(Marker arg0) {
-
-                    return null;
-                }
-            });
-
-            if (filterHospital) {
-                for (final Hospital h : hp) {
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(h.getmLatitude(), h.getmLongitude()))
-                                    .title("Hospital")
-                                    .snippet(h.getmName())
-                                    .infoWindowAnchor(0.5f, 0.5f)
-                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.hospitalmarker))
-                    );
-                    marker.showInfoWindow();
-                    Markers.put(marker.getId(), h);
-                }
-            }
-            if (filterClinic) {
-                for (Clinic clinic : clinics) {
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(clinic.getmLatitude(), clinic.getmLongitude()))
-                                    .title("Clinic")
-                                    .snippet(clinic.getmDoctor())
-                                    .infoWindowAnchor(0.5f, 0.5f)
-                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.clinicmarker))
-                    );
-                    marker.showInfoWindow();
-                    Markers.put(marker.getId(), clinic);
-                }
-            }
-            if (filterPharmacy) {
-                for (Pharmacy pharmacy : ph) {
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(pharmacy.getmLatitude(), pharmacy.getmLongitude()))
-                                    .title("pharmacy")
-                                    .snippet(pharmacy.getmName())
-                                    .infoWindowAnchor(0.5f, 0.5f)
-                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.pharmacymarker))
-                    );
-
-                    marker.showInfoWindow();
-                    Markers.put(marker.getId(), pharmacy);
-                }
-            }
-            if (filterLab) {
-                for (Laboratory laboratory : lab) {
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(laboratory.getmLatitude(), laboratory.getmLongitude()))
-                                    .title("laboratory")
-                                    .snippet(laboratory.getmName())
-                                    .infoWindowAnchor(0.5f, 0.5f)
-                            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.laboratorymarker))
-                    );
-
-                    marker.showInfoWindow();
-                    Markers.put(marker.getId(), laboratory);
-                }
-            }
-
-        } else {
-            mMap.addMarker(new MarkerOptions()
-                    .position(mDefaultLocation)
-                    .title(getString(R.string.default_info_title))
-                    .snippet(getString(R.string.default_info_snippet)));
-        }
-    }
-
-/*
-    void addToDatabase() {
-
-        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        Hospital h;
-        Pharmacy p;
-        Laboratory l;
-        Clinic c;
-
-        //Hospital 1
-        h = new Hospital();
-        h.setmName("\"El Marwa\"") = ;
-        h.setmDoctor("") = "Tarek Nabil El Sadfy";
-        h.setmBuildingNumber("") = "12";
-        h.setmStreet("") = "El Tahrir";
-        h.setmAddressNotes("") = "Mesaha square";
-        h.setmPhoneNumber("") = "3349327";
-        h.setmLatitude("") = 30.0342473;
-        h.setmLongitude("") = 31.208059;
-        h.setmSpecialization("") = "General";
-        places.add(h);
-        databaseHandler.addHospital(h);
-
-        //Hospital 2
-        h = new Hospital();
-        h.Name = "El Omam";
-        h.Doctor = "Sayed El Akhras";
-        h.BuildingNumber = "2";
-        h.Street = "El Batal Ahmad Abdel Aziz Street";
-        h.AddressNotes = "";
-        h.PhoneNumber = "37615829";
-        h.Latitude = 30.0510507;
-        h.Longitude = 31.209422;
-        h.Specialization = "Plastic surgery & laser";
-        places.add(h);
-        databaseHandler.addHospital(h);
-
-        //Pharmacy 1
-        p = new Pharmacy();
-        p.Name = "Zien";
-        p.BuildingNumber = "12";
-        p.Street = "El Tahrir";
-        p.AddressNotes = "Mesaha square";
-        p.PhoneNumber = "3349327";
-        p.Latitude = 30.0342473;
-        p.Longitude = 31.208059;
-        places.add(p);
-        databaseHandler.addPharmacy(p);
-
-        //Pharmacy 2
-        p = new Pharmacy();
-        p.Name = "Al Image";
-        p.BuildingNumber = "31";
-        p.Street = "Wezaret El Zeraa Street";
-        p.AddressNotes = "Nasyt abdel razak mohamed street";
-        p.PhoneNumber = "19770";
-        p.Latitude = 30.04436;
-        p.Longitude = 31.2119833;
-        places.add(p);
-        databaseHandler.addPharmacy(p);
-
-        //Pharmacy 3
-        p = new Pharmacy();
-        p.Name = "Al Foad";
-        p.BuildingNumber = "6";
-        p.Street = "Wezaret El Zeraa Street";
-        p.AddressNotes = "Nasyt Al Ahrar Street";
-        p.PhoneNumber = "19705";
-        p.Latitude = 30.0494056;
-        p.Longitude = 31.2102718;
-        places.add(p);
-        databaseHandler.addPharmacy(p);
-
-        //Pharmacy 4
-        p = new Pharmacy();
-        p.Name = "Roshdy";
-        p.BuildingNumber = "31";
-        p.Street = "El Batal Ahmad Abdel Aziz Street";
-        p.AddressNotes = "";
-        p.PhoneNumber = "19661";
-        p.Latitude = 30.0534819;
-        p.Longitude = 31.2058884;
-        places.add(p);
-        databaseHandler.addPharmacy(p);
-
-        //Clinic 1
-        c = new Clinic();
-        c.Doctor = "Samir Abdel Baqy";
-        c.BuildingNumber = "37";
-        c.AppartmentNumber = "0";
-        c.Street = "Wezaret El Zeraa Street";
-        c.AddressNotes = "";
-        c.PhoneNumber = "33354139";
-        c.Latitude = 30.0448024;
-        c.Longitude = 31.2123293;
-        c.Specialization = "General Surgery";
-        c.Appointments = "8:00 PM : 10:00 PM";
-        c.ClosedDays = "Friday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 2
-        c = new Clinic();
-        c.Doctor = "Mohamed Kareem Sedky";
-        c.BuildingNumber = "5";
-        c.AppartmentNumber = "0";
-        c.Street = "El Batal Ahmad Abdel Aziz Street";
-        c.AddressNotes = "";
-        c.PhoneNumber = "33462303";
-        c.Latitude = 30.0514066;
-        c.Longitude = 31.2088405;
-        c.Specialization = "Ocular Surgery";
-        c.Appointments = "8:00 PM : 10:00 PM ";
-        c.ClosedDays = "Tuesday-Thursday-Friday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 3
-        c = new Clinic();
-        c.Doctor = "Ahmad Mohamed Sherif";
-        c.BuildingNumber = "41";
-        c.AppartmentNumber = "0";
-        c.Street = "El Batal Ahmad Abdel Aziz Street";
-        c.AddressNotes = "";
-        c.PhoneNumber = "33020758";
-        c.Latitude = 30.0538666;
-        c.Longitude = 31.2053516;
-        c.Specialization = "Ocular Surgery";
-        c.Appointments = "7:00 PM : 10:00 PM ";
-        c.ClosedDays = "Tuesday-Friday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 4
-        c = new Clinic();
-        c.Doctor = "Sayed Abd El latif";
-        c.BuildingNumber = "145";
-        c.AppartmentNumber = "3";
-        c.Street = "El Tahrir";
-        c.AddressNotes = "Mesaha square";
-        c.PhoneNumber = "3349327";
-        c.Latitude = 30.0342473;
-        c.Longitude = 31.208059;
-        c.Specialization = "Dentistry";
-        c.Appointments = "4:00 PM : 11:00 PM";
-        c.ClosedDays = "Friday - Saturday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 5
-        c = new Clinic();
-        c.Doctor = "Ahmed Charkaoui";
-
-        c.BuildingNumber = "49";
-        c.AppartmentNumber = "0";
-        c.Street = "El Sudan";
-        c.AddressNotes = "Above Kheir Zaman Supermarket - Dokki";
-
-        c.PhoneNumber = "33361271";
-        c.Latitude = 30.039325;
-        c.Longitude = 31.196047;
-        c.Specialization = "Ear Nose and Throat";
-        c.Appointments = "4PM : 10PM";
-        c.ClosedDays = "Saturday - Sunday - Monday - Tuesday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 6
-        c = new Clinic();
-        c.Doctor = "Ahmed Abdel Aal Asalmaoa";
-
-        c.BuildingNumber = "9";
-        c.AppartmentNumber = "0";
-        c.Street = "El Tahrir";
-        c.AddressNotes = "El Dokki";
-
-
-        c.PhoneNumber = "33373425";
-        c.Latitude = 30.038011;
-        c.Longitude = 31.210006;
-        c.Specialization = "Ear Nose and Throat";
-        c.Appointments = "4PM : 10PM";
-        c.ClosedDays = " Wednesday - Thursday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Clinic 7
-        c = new Clinic();
-        c.Doctor = " Ahmed Khalif";
-
-        c.BuildingNumber = "98";
-        c.AppartmentNumber = "3";
-        c.Street = "El Tahrir";
-        c.AddressNotes = "El Dokki square";
-
-        c.PhoneNumber = "37620525";
-        c.Latitude = 30.044693;
-        c.Longitude = 31.238292;
-        c.Specialization = "Orthopaedic Surgery";
-        c.Appointments = "4PM : 10PM";
-        c.ClosedDays = "Sunday - Monday - Tuesday";
-
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //clinic 8
-        c = new Clinic();
-        c.Doctor = "Samir Hussein Sharmy";
-
-        c.BuildingNumber = "16";
-        c.AppartmentNumber = "15";
-        c.Street = "El Dokki";
-        c.AddressNotes = "El Dokki ";
-
-        c.PhoneNumber = "33355831";
-        c.Latitude = 30.036749;
-        c.Longitude = 31.174566;
-        c.Specialization = "Orthopaedic Surgery";
-        c.Appointments = "5pm : 8pm";
-        c.ClosedDays = "Wednesday - Thursday";
-
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //clinic 9
-        c = new Clinic();
-        c.Doctor = "Tariq Ghnome";
-
-        c.BuildingNumber = "42";
-        c.AppartmentNumber = "0";
-        c.Street = "El Dokki";
-        c.AddressNotes = "Dokki Square - TOP Sednawi - Building Misr Insurance";
-
-        c.PhoneNumber = "33375882";
-        c.Latitude = 30.037436;
-        c.Longitude = 31.211839;
-        c.Specialization = "Poise and Auricular";
-        c.Appointments = "12AM : 10PM";
-        c.ClosedDays = "Sunday - monday - tuesday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //clinic 10
-        c = new Clinic();
-        c.Doctor = "Hazem Mohammad Yassin";
-
-        c.BuildingNumber = "17";
-        c.AppartmentNumber = "0";
-        c.Street = "Shehab";
-        c.AddressNotes = "El Mohandseen";
-
-        c.PhoneNumber = "37490101";
-        c.Latitude = 30.051202;
-        c.Longitude = 31.195944;
-        c.Specialization = "Eye surgery";
-        c.Appointments = "1PM : 10PM";
-        c.ClosedDays = "Saturday - Sunday - Monday - Tuesday";
-
-        places.add(c);
-        databaseHandler.addClinic(c);
-
-        //Laboratory 1
-        l = new Laboratory();
-
-        l.Doctor = "Omaima  Gohar";
-
-        l.BuildingNumber = "16";
-        l.AppartmentNumber = "0";
-        l.Street = "Al Mesaha";
-        l.AddressNotes = "Mesaha Square - Dokki";
-
-        l.PhoneNumber = "33365464";
-        l.Latitude = 30.035552;
-        l.Longitude = 31.214102;
-        l.Specialization = "Medical tests";
-        l.Appointments = "5PM : 8PM";
-        l.ClosedDays = "Saturday - Sunday - Monday - Tuesday";
-
-        places.add(l);
-        databaseHandler.addLaboratory(l);
-
-        //Laboratory 2
-        l = new Laboratory();
-
-        l.Doctor = "Tariq Mattawa";
-
-        l.BuildingNumber = "100";
-        l.AppartmentNumber = "0";
-        l.Street = "El Tahrir";
-        l.AddressNotes = "EL Dokki";
-
-        l.PhoneNumber = "33375299";
-        l.Latitude = 30.038011;
-        l.Longitude = 31.210006;
-        l.Specialization = "Medical tests";
-        l.Appointments = "4pm : 10pm";
-        l.ClosedDays = "Saturday - Sunday - Monday";
-
-        places.add(l);
-        databaseHandler.addLaboratory(l);
-
-        //Laboratory 3
-        l = new Laboratory();
-
-        l.Doctor = "Inas Ismail Raafat";
-
-        l.BuildingNumber = "22";
-        l.AppartmentNumber = "0";
-        l.Street = "Mossadak";
-        l.AddressNotes = "EL Dokki";
-
-        l.PhoneNumber = "33364505";
-        l.Latitude = 30.039968;
-        l.Longitude = 31.208748;
-        l.Specialization = "Medical tests";
-        l.Appointments = "4PM : 10PM";
-        l.ClosedDays = "Saturday - Sunday - Thursday";
-
-        places.add(l);
-        databaseHandler.addLaboratory(l);
-
-        //Laboratory 4
-        l = new Laboratory();
-
-        l.Doctor = "Amina Abdel Wahed Alhqnkira";
-
-        l.BuildingNumber = "139";
-        l.AppartmentNumber = "0";
-        l.Street = "El Tahrir";
-        l.AddressNotes = "EL Dokki";
-
-        l.PhoneNumber = "33371819";
-        l.Latitude = 30.038011;
-        l.Longitude = 31.210006;
-        l.Specialization = "Medical tests";
-        l.Appointments = "4pm : 10pm";
-        l.ClosedDays = " Wednesday - Thursday";
-
-        places.add(l);
-        databaseHandler.addLaboratory(l);
-
-    }
-*/
 
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
@@ -973,34 +618,6 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
             mMap.setMyLocationEnabled(false);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
             mCurrentLocation = null;
-        }
-    }
-
-    private class LongTask extends AsyncTask<Void, Void, Void> {
-
-
-        protected Void doInBackground(Void... urls) {
-
-            //addToDatabase();
-
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... progress) {
-            Log.e("Async Task", "Inside onProgressUpdate");
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-
-
-            Log.e("Async Task", "Inside onPostExecute");
         }
     }
 }

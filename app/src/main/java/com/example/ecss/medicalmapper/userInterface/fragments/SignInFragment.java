@@ -39,7 +39,7 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
 
     private static final String TAG = "SignIn";
     private static final int RC_SIGN_IN = 9001;
-    private View rootView;
+    private View mRootView;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
 
@@ -100,25 +100,57 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
-        _emailText = (EditText) rootView.findViewById(R.id.input_email);
-        _passwordText = (EditText) rootView.findViewById(R.id.input_password);
+        _emailText = (EditText) mRootView.findViewById(R.id.input_email);
+        _passwordText = (EditText) mRootView.findViewById(R.id.input_password);
 
-        _loginButton = (android.support.v7.widget.AppCompatButton) rootView.findViewById(btn_login);
-        _signupLink = (TextView) rootView.findViewById(link_signup);
-        _googleButton = (com.google.android.gms.common.SignInButton) rootView.findViewById(R.id.btn_google);
-        _facebookButton = (com.facebook.login.widget.LoginButton) rootView.findViewById(R.id.btn_facebook);
+        _loginButton = (android.support.v7.widget.AppCompatButton) mRootView.findViewById(btn_login);
+        _signupLink = (TextView) mRootView.findViewById(link_signup);
+        _googleButton = (com.google.android.gms.common.SignInButton) mRootView.findViewById(R.id.btn_google);
+        _facebookButton = (com.facebook.login.widget.LoginButton) mRootView.findViewById(R.id.btn_facebook);
 
         _loginButton.setOnClickListener(this);
         _signupLink.setOnClickListener(this);
         _googleButton.setOnClickListener(this);
         _facebookButton.setOnClickListener(this);
 
-        return rootView;
+        return mRootView;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case btn_login:
+
+                if (validate()) {
+                    String email = _emailText.getText().toString();
+                    String password = _passwordText.getText().toString();
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE).edit();
+                    editor.putString("Email", email);
+                    editor.putString("password", password);
+                    editor.commit();
+                    startActivity(HomeScreen.getIntent(getApplicationContext()));
+                }
+
+                break;
+
+            case link_signup:
+                startActivity(SignUp.getIntent(getApplicationContext()));
+                break;
+
+            case btn_google:
+                signInWithGoogle();
+                startActivity(HomeScreen.getIntent(getApplicationContext()));
+                break;
+
+            case btn_facebook:
+                startActivity(HomeScreen.getIntent(getApplicationContext()));
+                break;
+        }
     }
 
     //Google
@@ -160,11 +192,11 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
     //Google
     private void updateUI(boolean signedIn) {
         if (signedIn) {
-            rootView.findViewById(R.id.btn_google).setVisibility(View.GONE);
+            mRootView.findViewById(R.id.btn_google).setVisibility(View.GONE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
 
-            rootView.findViewById(R.id.btn_google).setVisibility(View.VISIBLE);
+            mRootView.findViewById(R.id.btn_google).setVisibility(View.VISIBLE);
         }
     }
 
@@ -196,38 +228,5 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
         }
 
         return valid;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case btn_login:
-
-                if (validate()) {
-                    String email = _emailText.getText().toString();
-                    String password = _passwordText.getText().toString();
-                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE).edit();
-                    editor.putString("Email", email);
-                    editor.putString("password", password);
-                    editor.commit();
-                    startActivity(HomeScreen.getIntent(getApplicationContext()));
-                }
-
-                break;
-
-            case link_signup:
-                startActivity(SignUp.getIntent(getApplicationContext()));
-                break;
-
-            case btn_google:
-                signInWithGoogle();
-                startActivity(HomeScreen.getIntent(getApplicationContext()));
-                break;
-
-            case btn_facebook:
-                startActivity(HomeScreen.getIntent(getApplicationContext()));
-                break;
-        }
     }
 }

@@ -30,7 +30,7 @@ public class DatabaseHandler {
     private static final String DOCTOR = "Doctor";
     private static final String DOCTOR_ARABIC = "DoctorArabic";
     private static final String APPRATMENT_NUMBER = "AppartmentNumber";
-    private static final String APPOINTMENTS = "Appointments";
+    private static final String APPOINTMENTS = "Appointment";
     private static final String CLOSED_DAYS = "ClosedDays";
 
 
@@ -130,7 +130,7 @@ public class DatabaseHandler {
         values.put(DOCTOR_ARABIC, place.DoctorArabic);
 
         values.put(APPRATMENT_NUMBER, place.AppartmentNumber);
-        values.put(APPOINTMENTS, place.Appointments);
+        values.put(APPOINTMENTS, place.Appointment);
         values.put(CLOSED_DAYS, place.ClosedDays);
 
         db.insert(TABLE_CLINICS, null, values);
@@ -177,7 +177,7 @@ public class DatabaseHandler {
         values.put(DOCTOR_ARABIC, place.DoctorArabic);
 
         values.put(APPRATMENT_NUMBER, place.AppartmentNumber);
-        values.put(APPOINTMENTS, place.Appointments);
+        values.put(APPOINTMENTS, place.Appointment);
         values.put(CLOSED_DAYS, place.ClosedDays);
 
         db.insert(TABLE_LABORATORIES, null, values);
@@ -254,7 +254,7 @@ public class DatabaseHandler {
                 clinic.DoctorArabic = cursor.getString(14);
 
                 clinic.ClosedDays = cursor.getString(15);
-                clinic.Appointments = cursor.getString(16);
+                clinic.Appointment = cursor.getString(16);
                 clinic.AppartmentNumber = cursor.getString(17);
 
                 clinics.add(clinic);
@@ -296,7 +296,7 @@ public class DatabaseHandler {
                 laboratory.DoctorArabic = cursor.getString(14);
 
                 laboratory.ClosedDays = cursor.getString(15);
-                laboratory.Appointments = cursor.getString(16);
+                laboratory.Appointment = cursor.getString(16);
                 laboratory.AppartmentNumber = cursor.getString(17);
 
                 laboratories.add(laboratory);

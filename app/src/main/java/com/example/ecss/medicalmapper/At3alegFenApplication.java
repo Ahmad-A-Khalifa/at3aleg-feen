@@ -10,7 +10,7 @@ public class At3alegFenApplication extends Application {
 
     @Override
     public void onCreate() {
-
+//
         super.onCreate();
         Realm.init(this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()

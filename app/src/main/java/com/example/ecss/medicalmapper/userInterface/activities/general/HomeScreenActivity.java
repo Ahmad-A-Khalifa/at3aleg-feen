@@ -24,10 +24,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.model.Place.Clinic;
-import com.example.ecss.medicalmapper.model.Place.Hospital;
-import com.example.ecss.medicalmapper.model.Place.Laboratory;
-import com.example.ecss.medicalmapper.model.Place.Pharmacy;
+import com.example.ecss.medicalmapper.model.place.Clinic;
+import com.example.ecss.medicalmapper.model.place.Hospital;
+import com.example.ecss.medicalmapper.model.place.Laboratory;
+import com.example.ecss.medicalmapper.model.place.MedicalPlace;
+import com.example.ecss.medicalmapper.model.place.Pharmacy;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -47,13 +48,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.ecss.medicalmapper.R.id.map;
 
-public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
+
+public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, GoogleMap.OnInfoWindowClickListener {
 
-    private static final String TAG = HomeScreen.class.getSimpleName();
+    private static final String TAG = HomeScreenActivity.class.getSimpleName();
 
     // The desired interval for location updates. Inexact. Updates may be more or less frequent.
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
@@ -73,7 +78,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(30.03848597645301, 31.211557388305662);
 
-    private boolean filterHospital = true, filterLab = true, filterClinic = true, filterPharmacy = true;
+    private boolean mFilterHospital = true, mFilterLab = true, mFilterClinic = true, mFilterPharmacy = true;
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
 
@@ -84,30 +89,36 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     private LocationRequest mLocationRequest;
     private boolean mLocationPermissionGranted;
 
-    // private ArrayList<MedicalPlace> places = new ArrayList();
-    private Map<String, Object> Markers = new HashMap<String, Object>();
+    private Map<String, MedicalPlace> mMarkers = new HashMap<String, MedicalPlace>();
+    private static final String EXTRA_PLACE = "Place";
 
     // The geographical location where the device is currently located.
     private Location mCurrentLocation;
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawer;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (savedInstanceState != null) {
             mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
-
         setContentView(R.layout.activity_home_screen);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
+
+        //mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         // NavigationDrawer code
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+//        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -126,11 +137,12 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         //task.execute();
     }
 
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, HomeScreen.class);
-        return intent;
+    public static void startActivity(Context context, MedicalPlace place) {
+        if (context == null) {
+            return;
+        }
+        context.startActivity(new Intent(context, DetailsActivity.class).putExtra(EXTRA_PLACE, place));
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -139,38 +151,36 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         int id = item.getItemId();
 
         if (id == R.id.nav_hospitals) {
-            filterClinic = false;
-            filterLab = false;
-            filterPharmacy = false;
-            filterHospital = true;
+            mFilterClinic = false;
+            mFilterLab = false;
+            mFilterPharmacy = false;
+            mFilterHospital = true;
             updateMarkers();
         } else if (id == R.id.nav_clinics) {
-            filterClinic = true;
-            filterLab = false;
-            filterPharmacy = false;
-            filterHospital = false;
+            mFilterClinic = true;
+            mFilterLab = false;
+            mFilterPharmacy = false;
+            mFilterHospital = false;
             updateMarkers();
         } else if (id == R.id.nav_laboratories) {
-            filterClinic = false;
-            filterLab = true;
-            filterPharmacy = false;
-            filterHospital = false;
+            mFilterClinic = false;
+            mFilterLab = true;
+            mFilterPharmacy = false;
+            mFilterHospital = false;
             updateMarkers();
         } else if (id == R.id.nav_pharmacies) {
-            filterClinic = false;
-            filterLab = false;
-            filterPharmacy = true;
-            filterHospital = false;
+            mFilterClinic = false;
+            mFilterLab = false;
+            mFilterPharmacy = true;
+            mFilterHospital = false;
             updateMarkers();
         } else if (id == R.id.nav_signin) {
-            Intent intent = new Intent(this, SignIn.class);
-            startActivity(intent);
+            startActivity(new Intent(this, SignInActivity.class));
         } else if (id == R.id.nav_profile) {
             /*Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);*/
         } else if (id == R.id.nav_my_places) {
-            Intent intent = new Intent(this, SavedPlaces.class);
-            startActivity(intent);
+            startActivity(new Intent(this, SavedPlacesActivity.class));
         } else if (id == R.id.nav_go_premium) {
             /*Intent intent = new Intent(this, PremiumActivity.class);
             startActivity(intent);*/
@@ -179,8 +189,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
             startActivity(intent);*/
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -218,8 +227,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_search_plus) {
-            Intent intent = new Intent(this, AdvancedSearch.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AdvancedSearchActivity.class));
             return true;
         }
 
@@ -228,26 +236,20 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        if (Markers.get(marker.getId()) instanceof Hospital) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", (Hospital) Markers.get(marker.getId()));
-            startActivity(intent);
+
+        if (mMarkers != null && marker != null && mMarkers.containsKey(marker.getId()) && mMarkers.get(marker.getId()) != null) {
+            DetailsActivity.startActivity(this, (Hospital) mMarkers.get(marker.getId()));
         }
-        if (Markers.get(marker.getId()) instanceof Pharmacy) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", (Pharmacy) Markers.get(marker.getId()));
-            startActivity(intent);
+        /*if (mMarkers != null && marker != null && mMarkers.containsKey(marker.getId()) && mMarkers.get(marker.getId()) instanceof Pharmacy) {
+
+            DetailsActivity.startActivity(this, (Pharmacy) mMarkers.get(marker.getId()));
         }
-        if (Markers.get(marker.getId()) instanceof Clinic) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", (Clinic) Markers.get(marker.getId()));
-            startActivity(intent);
+        if (mMarkers != null && marker != null && mMarkers.containsKey(marker.getId()) && mMarkers.get(marker.getId()) instanceof Clinic) {
+            DetailsActivity.startActivity(this, (Clinic) mMarkers.get(marker.getId()));
         }
-        if (Markers.get(marker.getId()) instanceof Laboratory) {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
-            intent.putExtra("Place", (Laboratory) Markers.get(marker.getId()));
-            startActivity(intent);
-        }
+        if (mMarkers != null && marker != null && mMarkers.containsKey(marker.getId()) && mMarkers.get(marker.getId()) instanceof Laboratory) {
+            DetailsActivity.startActivity(this, (Laboratory) mMarkers.get(marker.getId()));
+        }*/
     }
 
     /**
@@ -281,30 +283,30 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                     TextView specialization = (TextView) v.findViewById(R.id.info_window_specialization);
                     TextView appointment = (TextView) v.findViewById(R.id.info_window_appointments);
 
-                    if (Markers.get(arg0.getId()) instanceof Hospital) {
+                    if (mMarkers.get(arg0.getId()) instanceof Hospital) {
 
-                        Hospital h = (Hospital) Markers.get(arg0.getId());
+                        Hospital h = (Hospital) mMarkers.get(arg0.getId());
 
                         title.setText("Hospital");
                         doctor.setText(h.getmHospitalName());
                         specialization.setText("General");
 
-                    } else if (Markers.get(arg0.getId()) instanceof Pharmacy) {
-                        Pharmacy ph = (Pharmacy) Markers.get(arg0.getId());
+                    } else if (mMarkers.get(arg0.getId()) instanceof Pharmacy) {
+                        Pharmacy ph = (Pharmacy) mMarkers.get(arg0.getId());
 
                         title.setText("Pharmacy");
                         doctor.setText(ph.getmPharmacyName());
 
-                    } else if (Markers.get(arg0.getId()) instanceof Clinic) {
-                        Clinic c = (Clinic) Markers.get(arg0.getId());
+                    } else if (mMarkers.get(arg0.getId()) instanceof Clinic) {
+                        Clinic c = (Clinic) mMarkers.get(arg0.getId());
 
                         title.setText("Clinic");
                         doctor.setText(c.getmClinicName());
                         specialization.setText(c.getmClinicSpecialization());
                         //appointment.setText(c.get());
 
-                    } else if (Markers.get(arg0.getId()) instanceof Laboratory) {
-                        Laboratory l = (Laboratory) Markers.get(arg0.getId());
+                    } else if (mMarkers.get(arg0.getId()) instanceof Laboratory) {
+                        Laboratory l = (Laboratory) mMarkers.get(arg0.getId());
 
                         title.setText("Laboratory");
                         doctor.setText(l.getmLabName());
@@ -321,7 +323,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 }
             });
 
-            if (filterHospital) {
+            if (mFilterHospital) {
                 for (final Hospital h : hp) {
                     String lat = h.getmBranches().get(h.getmHospitalId()).getmBranchLatitude();
                     String lon = h.getmBranches().get(h.getmHospitalId()).getmBranchLongitude();
@@ -334,10 +336,10 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.hospitalmarker))
                     );
                     marker.showInfoWindow();
-                    Markers.put(marker.getId(), h);
+                    mMarkers.put(marker.getId(), h);
                 }
             }
-            if (filterClinic) {
+            if (mFilterClinic) {
                 for (Clinic clinic : clinics) {
 
                     String lat = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchLatitude();
@@ -351,10 +353,10 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.clinicmarker))
                     );
                     marker.showInfoWindow();
-                    Markers.put(marker.getId(), clinic);
+                    mMarkers.put(marker.getId(), clinic);
                 }
             }
-            if (filterPharmacy) {
+            if (mFilterPharmacy) {
                 for (Pharmacy pharmacy : ph) {
 
                     String lat = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchLatitude();
@@ -369,10 +371,10 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                     );
 
                     marker.showInfoWindow();
-                    Markers.put(marker.getId(), pharmacy);
+                    mMarkers.put(marker.getId(), pharmacy);
                 }
             }
-            if (filterLab) {
+            if (mFilterLab) {
                 for (Laboratory laboratory : lab) {
 
                     String lat = laboratory.getmBranches().get(laboratory.getmLabId()).getmBranchLatitude();
@@ -387,7 +389,7 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                     );
 
                     marker.showInfoWindow();
-                    Markers.put(marker.getId(), laboratory);
+                    mMarkers.put(marker.getId(), laboratory);
                 }
             }
 
@@ -421,9 +423,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        //     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }

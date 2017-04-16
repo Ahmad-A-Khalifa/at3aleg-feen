@@ -1,4 +1,4 @@
-package com.example.ecss.medicalmapper.model.Place;
+package com.example.ecss.medicalmapper.model.place;
 
 import com.google.gson.annotations.SerializedName;
 

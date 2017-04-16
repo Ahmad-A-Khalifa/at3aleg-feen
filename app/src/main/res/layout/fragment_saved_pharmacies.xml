@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.SavedPharmacies">
+    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.SavedPharmaciesFragment">
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,14 +1,12 @@
-package com.example.ecss.medicalmapper.storage.databases;
+package com.example.ecss.medicalmapper;
 
 import android.app.Application;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-/**
- * Created by sheri on 4/14/2017.
- */
-public class MyApplication extends Application {
+
+public class At3alegFenApplication extends Application {
 
     @Override
     public void onCreate() {

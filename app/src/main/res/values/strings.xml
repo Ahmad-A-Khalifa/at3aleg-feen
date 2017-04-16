@@ -17,6 +17,7 @@
         <item>Cairo</item>
         <item>Giza</item>
     </string-array>
+
     <string name="title_activity_advanced_search">AdvancedSearch</string>
     <string name="signed_out">Sign out</string>
     <string name="loading">Loading</string>
@@ -30,13 +31,6 @@
     <string name="title_activity_details">Details</string>
     <string name="title_activity_place_detail">PlaceDetail</string>
     <string name="title_activity_saved_places">SavedPlaces</string>
-
-    <string-array name="tabs">
-        <item>Clinics</item>
-        <item>Hospitals</item>
-        <item>Laboratories</item>
-        <item>Pharmacies</item>
-    </string-array>
 
     <string name="Clinics">Clinics</string>
     <string name="Hospitals"></string>

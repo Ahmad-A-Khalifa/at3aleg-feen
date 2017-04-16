@@ -1,6 +1,5 @@
 package com.example.ecss.medicalmapper.userInterface.fragments;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -20,36 +19,52 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.model.Place.Clinic;
-import com.example.ecss.medicalmapper.model.Place.Hospital;
-import com.example.ecss.medicalmapper.model.Place.Laboratory;
-import com.example.ecss.medicalmapper.model.Place.Pharmacy;
-import com.example.ecss.medicalmapper.model.User.Review;
+import com.example.ecss.medicalmapper.model.place.Clinic;
+import com.example.ecss.medicalmapper.model.place.Hospital;
+import com.example.ecss.medicalmapper.model.place.Laboratory;
+import com.example.ecss.medicalmapper.model.place.MedicalPlace;
+import com.example.ecss.medicalmapper.model.place.Pharmacy;
+import com.example.ecss.medicalmapper.model.user.Review;
 import com.example.ecss.medicalmapper.userInterface.adapters.ReviewsAdapter;
 
 import java.util.ArrayList;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.ecss.medicalmapper.R.id.list_reviews;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+import static android.content.Context.MODE_PRIVATE;
+
 public class DetailsFragment extends Fragment {
 
     private ReviewsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private View mRootView;
     private ArrayList<Review> mHardCodedReviews = new ArrayList<Review>();
-    private RecyclerView mListReviews;
+
+    @BindView(R.id.list_reviews)
+    RecyclerView mListReviews;
+
+    private static final String ARGUMENT_EXTRA_PLACE = "Place";
+
+    @BindView(R.id.review)
+    EditText mReviewEditText;
+
+    @BindView(R.id.AddReview)
+    Button AddReviewButton;
+
+    @BindView(R.id.rating)
+    RatingBar mRatingBar;
 
     public DetailsFragment() {
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         mRootView = inflater.inflate(R.layout.fragment_details, container, false);
+
+        ButterKnife.bind(this, mRootView);
 
         TextView name = (TextView) mRootView.findViewById(R.id.place_name);
         TextView specialization = (TextView) mRootView.findViewById(R.id.place_specialization);
@@ -58,76 +73,73 @@ public class DetailsFragment extends Fragment {
         TextView appointments = (TextView) mRootView.findViewById(R.id.place_appointments);
         TextView ClosedDays = (TextView) mRootView.findViewById(R.id.place_closed_days);
 
-
         //Rating Bar
-        RatingBar mRatingBar = (RatingBar) mRootView.findViewById(R.id.rating);
+        // mRatingBar = (RatingBar) mRootView.findViewById(R.id.rating);
         Drawable drawable = mRatingBar.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.SRC_ATOP);
 
-        //Get Intent from HomeScreen
-        Intent intent = getActivity().getIntent();
-
-        Hospital h;
-        Pharmacy ph;
+        Hospital hospital;
+        Pharmacy pharmacy;
         Clinic clinic;
         Laboratory lab;
 
-        mListReviews = (RecyclerView) mRootView.findViewById(list_reviews);
+        //mListReviews = (RecyclerView) mRootView.findViewById(list_reviews);
         mAdapter = new ReviewsAdapter(mHardCodedReviews);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mListReviews.setLayoutManager(mLayoutManager);
         mListReviews.setItemAnimator(new DefaultItemAnimator());
         mListReviews.setAdapter(mAdapter);
 
-        if (intent.getParcelableExtra("Place") instanceof Hospital) {
 
-            h = (Hospital) intent.getParcelableExtra("Place");
+        if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Hospital) {
 
-            Log.e("Medical Place", h.getmHospitalName());
+            hospital = (Hospital) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
+
+            Log.e("Medical Place", hospital.getmHospitalName());
 
             mHardCodedReviews.add(new Review("Sherif", "EL mostshfa ndifa gdan"));
             mHardCodedReviews.add(new Review("Hazem", "EL mostshfa was3a gdan"));
             mHardCodedReviews.add(new Review("Khalifa", "Amn el mostshfa mo3mltoh we7sha"));
             mHardCodedReviews.add(new Review("Samuel", "Smells very bad"));
 
-            name.setText(h.getmHospitalName());
+            name.setText(hospital.getmHospitalName());
 
             View spec = mRootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
             specialization.setText("General");
 
 
-            String buildingNumber = h.getmBranches().get(h.getmHospitalId()).getmBranchBuildingNum();
-            String streetName = h.getmBranches().get(h.getmHospitalId()).getmBranchStreetName();
-            String addressNotes = h.getmBranches().get(h.getmHospitalId()).getmBranchAddressNotes();
-            String phoneNum = h.getmBranches().get(h.getmHospitalId()).getmBranchPhoneNum();
+            String buildingNumber = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchBuildingNum();
+            String streetName = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchStreetName();
+            String addressNotes = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchAddressNotes();
+            String phoneNum = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchPhoneNum();
 
             address.setText(buildingNumber + " " + streetName + " " + addressNotes);
             PhoneNumber.setText(phoneNum);
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Pharmacy) {
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Pharmacy) {
 
-            ph = (Pharmacy) intent.getSerializableExtra("Place");
-            Log.e("Medical Place", ph.getmPharmacyName());
+            pharmacy = (Pharmacy) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
+            Log.e("Medical Place", pharmacy.getmPharmacyName());
 
 
             mHardCodedReviews.add(new Review("Abdelrahman", "The pharmacist is so rude"));
 
-            name.setText(ph.getmPharmacyName());
+            name.setText(pharmacy.getmPharmacyName());
 
-            String buildingNumber = ph.getmBranches().get(ph.getmPharmacyId()).getmBranchBuildingNum();
-            String streetName = ph.getmBranches().get(ph.getmPharmacyId()).getmBranchStreetName();
-            String addressNotes = ph.getmBranches().get(ph.getmPharmacyId()).getmBranchAddressNotes();
-            String phoneNum = ph.getmBranches().get(ph.getmPharmacyId()).getmBranchPhoneNum();
+            String buildingNumber = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchBuildingNum();
+            String streetName = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchStreetName();
+            String addressNotes = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchAddressNotes();
+            String phoneNum = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchPhoneNum();
 
             address.setText(buildingNumber + " " + streetName + " " + addressNotes);
             PhoneNumber.setText(phoneNum);
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Clinic) {
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Clinic) {
 
-            clinic = (Clinic) intent.getParcelableExtra("Place");
+            clinic = (Clinic) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
             Log.e("Medical Place", clinic.getmClinicName());
 
             mHardCodedReviews.add(new Review("Moneer", "El momardin mo3mlthom kwyesa gdan"));
@@ -165,9 +177,9 @@ public class DetailsFragment extends Fragment {
             //ClosedDays.setText(clinic.getmClosedDays());
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Laboratory) {
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Laboratory) {
 
-            lab = (Laboratory) intent.getParcelableExtra("Place");
+            lab = (Laboratory) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
             Log.e("Medical Place", lab.getmLabName());
 
             mHardCodedReviews.add(new Review("Alaa", "disgusting"));
@@ -206,9 +218,8 @@ public class DetailsFragment extends Fragment {
 
         }
 
-        Button AddReview = (Button) mRootView.findViewById(R.id.AddReview);
 
-        AddReview.setOnClickListener(new View.OnClickListener() {
+        AddReviewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 getReview();
             }
@@ -228,11 +239,17 @@ public class DetailsFragment extends Fragment {
         return mRootView;
     }
 
+    public static DetailsFragment newInstance(MedicalPlace place) {
+        Bundle args = new Bundle();
+        args.putParcelable(ARGUMENT_EXTRA_PLACE, place);
+        DetailsFragment fragment = new DetailsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public void getReview() {
 
-        EditText review = (EditText) mRootView.findViewById(R.id.review);
-
-        String text = review.getText().toString();
+        String text = mReviewEditText.getText().toString();
         SharedPreferences prefs = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE);
 
         String email = prefs.getString("Email", "No name defined");
@@ -246,7 +263,7 @@ public class DetailsFragment extends Fragment {
         }
         mHardCodedReviews.add(new Review(userName, text));
 
-        review.setText("");
+        mReviewEditText.setText("");
 
         mAdapter.notifyDataSetChanged();
     }

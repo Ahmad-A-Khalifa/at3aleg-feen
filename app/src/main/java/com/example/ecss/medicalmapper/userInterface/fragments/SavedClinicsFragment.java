@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import com.example.ecss.medicalmapper.R;
 
 
-public class SavedPharmacies extends Fragment {
+public class SavedClinicsFragment extends Fragment {
 
-    public SavedPharmacies() {
-        // Required empty public constructor
+    public SavedClinicsFragment() {
+
     }
 
     @Override
@@ -24,8 +24,7 @@ public class SavedPharmacies extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_saved_pharmacies, container, false);
+
+        return inflater.inflate(R.layout.fragment_saved_clinics, container, false);
     }
-
-
 }

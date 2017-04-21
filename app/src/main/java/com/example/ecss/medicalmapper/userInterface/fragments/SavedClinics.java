@@ -11,11 +11,9 @@ import com.example.ecss.medicalmapper.R;
 
 public class SavedClinics extends Fragment {
 
-
     public SavedClinics() {
 
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +27,4 @@ public class SavedClinics extends Fragment {
 
         return inflater.inflate(R.layout.fragment_saved_clinics, container, false);
     }
-
-
 }

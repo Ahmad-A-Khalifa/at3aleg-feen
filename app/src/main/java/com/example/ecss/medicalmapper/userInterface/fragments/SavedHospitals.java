@@ -27,6 +27,4 @@ public class SavedHospitals extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_saved_hospitals, container, false);
     }
-
-
 }

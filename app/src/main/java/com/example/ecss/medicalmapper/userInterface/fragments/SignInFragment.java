@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreen;
-import com.example.ecss.medicalmapper.userInterface.activities.general.SignUp;
+import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreenActivity;
+import com.example.ecss.medicalmapper.userInterface.activities.general.SignUpActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -26,33 +26,41 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.ecss.medicalmapper.R.id.btn_facebook;
 import static com.example.ecss.medicalmapper.R.id.btn_google;
 import static com.example.ecss.medicalmapper.R.id.btn_login;
 import static com.example.ecss.medicalmapper.R.id.link_signup;
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 //import com.facebook.FacebookSdk;
 
 public class SignInFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
-    private static final String TAG = "SignIn";
+    private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-    private View rootView;
+    @BindView(R.id.input_email)
+    EditText mEmailEditText;
+    @BindView(R.id.input_password)
+    EditText mPasswordEditText;
+    @BindView(R.id.btn_login)
+    android.support.v7.widget.AppCompatButton mLoginButton;
+    @BindView(R.id.link_signup)
+    TextView mSignupLinkTextView;
+    @BindView(R.id.btn_google)
+    com.google.android.gms.common.SignInButton mGoogleButton;
+    @BindView(R.id.btn_facebook)
+    com.facebook.login.widget.LoginButton mFacebookButton;
+    private View mRootView;
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
 
-    private EditText _emailText;
-    private EditText _passwordText;
-
-    private android.support.v7.widget.AppCompatButton _loginButton;
-    private TextView _signupLink;
-    private com.google.android.gms.common.SignInButton _googleButton;
-    private com.facebook.login.widget.LoginButton _facebookButton;
-
 
     public SignInFragment() {
+
     }
 
     @Override
@@ -74,13 +82,13 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
 
 
         //Facebook
-        _facebookButton.setReadPermissions("email");
+        mFacebookButton.setReadPermissions("email");
 
         // If using in a fragment
-        _facebookButton.setFragment(this);
+        mFacebookButton.setFragment(this);
 
         // Callback registration
-        _facebookButton.registerCallback(CallbackManager.Factory.create(), new FacebookCallback<LoginResult>() {
+        mFacebookButton.registerCallback(CallbackManager.Factory.create(), new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
@@ -100,25 +108,62 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
-        _emailText = (EditText) rootView.findViewById(R.id.input_email);
-        _passwordText = (EditText) rootView.findViewById(R.id.input_password);
+        ButterKnife.bind(this, mRootView);
 
-        _loginButton = (android.support.v7.widget.AppCompatButton) rootView.findViewById(btn_login);
-        _signupLink = (TextView) rootView.findViewById(link_signup);
-        _googleButton = (com.google.android.gms.common.SignInButton) rootView.findViewById(R.id.btn_google);
-        _facebookButton = (com.facebook.login.widget.LoginButton) rootView.findViewById(R.id.btn_facebook);
 
-        _loginButton.setOnClickListener(this);
-        _signupLink.setOnClickListener(this);
-        _googleButton.setOnClickListener(this);
-        _facebookButton.setOnClickListener(this);
+        // EmailEditText = (EditText) mRootView.findViewById(R.id.input_email);
+        // mPasswordEditText = (EditText) mRootView.findViewById(R.id.input_password);
 
-        return rootView;
+        //mLoginButton = (android.support.v7.widget.AppCompatButton) mRootView.findViewById(btn_login);
+        //mSignupLinkTextView = (TextView) mRootView.findViewById(link_signup);
+        //mGoogleButton = (com.google.android.gms.common.SignInButton) mRootView.findViewById(R.id.btn_google);
+        //mFacebookButton = (com.facebook.login.widget.mLoginButton) mRootView.findViewById(R.id.btn_facebook);
+
+        /*mLoginButton.setOnClickListener(this);
+        mSignupLinkTextView.setOnClickListener(this);
+        mGoogleButton.setOnClickListener(this);
+        mFacebookButton.setOnClickListener(this);*/
+
+
+        return mRootView;
+    }
+
+    @OnClick({R.id.btn_login, R.id.link_signup, R.id.btn_google, R.id.btn_facebook})
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case btn_login:
+
+                if (validate()) {
+                    String email = mEmailEditText.getText().toString();
+                    String password = mPasswordEditText.getText().toString();
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE).edit();
+                    editor.putString("Email", email);
+                    editor.putString("password", password);
+                    editor.commit();
+
+                    startActivity(new Intent(getActivity(), HomeScreenActivity.class));
+                }
+
+                break;
+
+            case link_signup:
+                startActivity(new Intent(getActivity(), SignUpActivity.class));
+                break;
+
+            case btn_google:
+                signInWithGoogle();
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
+                break;
+
+            case btn_facebook:
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
+                break;
+        }
     }
 
     //Google
@@ -160,11 +205,15 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
     //Google
     private void updateUI(boolean signedIn) {
         if (signedIn) {
-            rootView.findViewById(R.id.btn_google).setVisibility(View.GONE);
+
+            //mRootView.findViewById(R.id.btn_google).setVisibility(View.GONE);
+            mGoogleButton.setVisibility(View.GONE);
+
         } else {
             mStatusTextView.setText(R.string.signed_out);
 
-            rootView.findViewById(R.id.btn_google).setVisibility(View.VISIBLE);
+            //mRootView.findViewById(R.id.btn_google).setVisibility(View.VISIBLE);
+            mGoogleButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -178,56 +227,22 @@ public class SignInFragment extends Fragment implements GoogleApiClient.OnConnec
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String email = mEmailEditText.getText().toString();
+        String password = mPasswordEditText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            mEmailEditText.setError("enter a valid email address");
             valid = false;
         } else {
-            _emailText.setError(null);
+            mEmailEditText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4) {
-            _passwordText.setError("less than 4 alphanumeric characters");
+            mPasswordEditText.setError("less than 4 alphanumeric characters");
             valid = false;
         } else {
-            _passwordText.setError(null);
+            mPasswordEditText.setError(null);
         }
-
         return valid;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case btn_login:
-
-                if (validate()) {
-                    String email = _emailText.getText().toString();
-                    String password = _passwordText.getText().toString();
-                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE).edit();
-                    editor.putString("Email", email);
-                    editor.putString("password", password);
-                    editor.commit();
-                    startActivity(HomeScreen.getIntent(getApplicationContext()));
-                }
-
-                break;
-
-            case link_signup:
-                startActivity(SignUp.getIntent(getApplicationContext()));
-                break;
-
-            case btn_google:
-                signInWithGoogle();
-                startActivity(HomeScreen.getIntent(getApplicationContext()));
-                break;
-
-            case btn_facebook:
-                startActivity(HomeScreen.getIntent(getApplicationContext()));
-                break;
-        }
     }
 }

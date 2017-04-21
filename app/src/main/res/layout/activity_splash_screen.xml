@@ -7,7 +7,7 @@
     android:background="@color/blue"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context="com.example.ecss.medicalmapper.userInterface.activities.general.SplashScreen">
+    tools:context="com.example.ecss.medicalmapper.userInterface.activities.general.SplashScreenActivity">
 
 
     <LinearLayout

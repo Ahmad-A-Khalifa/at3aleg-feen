@@ -28,7 +28,6 @@ import com.example.ecss.medicalmapper.R;
 import com.example.ecss.medicalmapper.model.Place.Clinic;
 import com.example.ecss.medicalmapper.model.Place.Hospital;
 import com.example.ecss.medicalmapper.model.Place.Laboratory;
-import com.example.ecss.medicalmapper.model.Place.MedicalPlace;
 import com.example.ecss.medicalmapper.model.Place.Pharmacy;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -46,8 +45,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.example.ecss.medicalmapper.R.id.map;
 
@@ -78,8 +75,8 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
     // A request object to store parameters for requests to the FusedLocationProviderApi.
     private LocationRequest mLocationRequest;
     private boolean mLocationPermissionGranted;
-    private ArrayList<MedicalPlace> places = new ArrayList();
-    private Map<String, MedicalPlace> Markers = new HashMap<String, MedicalPlace>();
+    // private ArrayList<MedicalPlace> places = new ArrayList();
+    //private Map<String, MedicalPlace> Markers = new HashMap<String, MedicalPlace>();
     // The geographical location where the device is currently located.
     private Location mCurrentLocation;
 
@@ -502,30 +499,30 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                         Hospital h = (Hospital) Markers.get(arg0.getId());
 
                         title.setText("Hospital");
-                        doctor.setText(h.getmName());
-                        specialization.setText(h.getmSpecialization());
+                        doctor.setText(h.getmHospitalNameEN());
+                        specialization.setText("General");
 
                     } else if (Markers.get(arg0.getId()) instanceof Pharmacy) {
                         Pharmacy ph = (Pharmacy) Markers.get(arg0.getId());
 
                         title.setText("Pharmacy");
-                        doctor.setText(ph.getmName());
+                        doctor.setText(ph.getmPharmacyNameEN());
 
                     } else if (Markers.get(arg0.getId()) instanceof Clinic) {
                         Clinic c = (Clinic) Markers.get(arg0.getId());
 
                         title.setText("Clinic");
-                        doctor.setText(c.getmDoctor());
-                        specialization.setText(c.getmSpecialization());
-                        appointment.setText(c.getmAppointments());
+                        doctor.setText(c.getmClinicNameEN());
+                        specialization.setText(c.getmClinicSpecializationEN());
+                        //appointment.setText(c.get());
 
                     } else if (Markers.get(arg0.getId()) instanceof Laboratory) {
                         Laboratory l = (Laboratory) Markers.get(arg0.getId());
 
                         title.setText("Laboratory");
-                        doctor.setText(l.getmDoctor());
-                        specialization.setText(l.getmSpecialization());
-                        appointment.setText(l.getmAppointments());
+                        doctor.setText(l.getmLabNameEN());
+                        specialization.setText(l.getmLabSpecializationEN());
+                        // appointment.setText(l.get());
                     }
 
                     return v;
@@ -555,9 +552,9 @@ public class HomeScreen extends AppCompatActivity implements OnMapReadyCallback,
                 for (Clinic clinic : clinics) {
 
                     Marker marker = mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(clinic.getmLatitude(), clinic.getmLongitude()))
+                                    .position(new LatLng(clinic.get(), clinic.getmLongitude()))
                                     .title("Clinic")
-                                    .snippet(clinic.getmDoctor())
+                                    .snippet(clinic.getmClinicNameEN())
                                     .infoWindowAnchor(0.5f, 0.5f)
                             //.icon(BitmapDescriptorFactory.fromResource(R.drawable.clinicmarker))
                     );

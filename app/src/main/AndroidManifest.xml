@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
+        android:name=".At3alegFenApplication"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
@@ -50,34 +51,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".userInterface.activities.general.HomeScreen"
+            android:name=".userInterface.activities.general.HomeScreenActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.SignIn"
+            android:name=".userInterface.activities.general.SignInActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.SignUp"
+            android:name=".userInterface.activities.general.SignUpActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.AdvancedSearch"
+            android:name=".userInterface.activities.general.AdvancedSearchActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.Payment"
+            android:name=".userInterface.activities.general.PaymentActivity"
             android:label="@string/title_activity_payment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.DoctorSignUp"
+            android:name=".userInterface.activities.general.DoctorSignUpActivity"
             android:label="@string/title_activity_doctor_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userInterface.activities.general.Details"
+            android:name=".userInterface.activities.general.DetailsActivity"
             android:label="@string/title_activity_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".userInterface.activities.general.SplashScreen">
+        <activity android:name=".userInterface.activities.general.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,7 +86,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".userInterface.activities.general.SavedPlaces"
+            android:name=".userInterface.activities.general.SavedPlacesActivity"
             android:label="My Places"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>

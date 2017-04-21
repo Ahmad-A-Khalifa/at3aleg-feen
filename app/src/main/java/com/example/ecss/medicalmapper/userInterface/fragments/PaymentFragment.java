@@ -9,13 +9,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreen;
+import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreenActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.ecss.medicalmapper.R.id.finish_btn;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class PaymentFragment extends Fragment {
-    private View rootView;
+    @BindView(finish_btn)
+    Button mFinishButton;
+    private View mRootView;
+
 
     public PaymentFragment() {
     }
@@ -23,16 +32,29 @@ public class PaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_payment, container, false);
-        final Button button = (Button) rootView.findViewById(R.id.finish_btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        mRootView = inflater.inflate(R.layout.fragment_payment, container, false);
+        ButterKnife.bind(this, mRootView);
+
+        //final Button button = (Button) mRootView.findViewById(R.id.finish_btn);
+        /*mFinishButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomeScreen.class);
-                startActivity(intent);
+
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
 
             }
 
-        });
-        return rootView;
+        });*/
+        return mRootView;
+    }
+
+    @OnClick({R.id.finish_btn})
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case finish_btn:
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
+                break;
+        }
     }
 }

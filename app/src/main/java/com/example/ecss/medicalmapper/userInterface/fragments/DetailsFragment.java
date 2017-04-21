@@ -1,6 +1,5 @@
 package com.example.ecss.medicalmapper.userInterface.fragments;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -20,173 +19,217 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.model.Place.Clinic;
-import com.example.ecss.medicalmapper.model.Place.Hospital;
-import com.example.ecss.medicalmapper.model.Place.Laboratory;
-import com.example.ecss.medicalmapper.model.Place.Pharmacy;
-import com.example.ecss.medicalmapper.model.User.Review;
+import com.example.ecss.medicalmapper.model.place.Clinic;
+import com.example.ecss.medicalmapper.model.place.Hospital;
+import com.example.ecss.medicalmapper.model.place.Laboratory;
+import com.example.ecss.medicalmapper.model.place.MedicalPlace;
+import com.example.ecss.medicalmapper.model.place.Pharmacy;
+import com.example.ecss.medicalmapper.model.user.Review;
 import com.example.ecss.medicalmapper.userInterface.adapters.ReviewsAdapter;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class DetailsFragment extends Fragment {
 
-    private ReviewsAdapter adapter;
+    private static final String ARGUMENT_EXTRA_PLACE = "Place";
+    @BindView(R.id.list_reviews)
+    RecyclerView mListReviews;
+    @BindView(R.id.review)
+    EditText mReviewEditText;
+    @BindView(R.id.AddReview)
+    Button AddReviewButton;
+    @BindView(R.id.rating)
+    RatingBar mRatingBar;
+    private ReviewsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private View rootView;
-    private ArrayList<Review> HardCodedReviews = new ArrayList<Review>();
-    private RecyclerView list_reviews;
+    private View mRootView;
+    private ArrayList<Review> mHardCodedReviews = new ArrayList<Review>();
 
     public DetailsFragment() {
+
+    }
+
+    public static DetailsFragment newInstance(MedicalPlace place) {
+        Bundle args = new Bundle();
+        args.putParcelable(ARGUMENT_EXTRA_PLACE, place);
+        DetailsFragment fragment = new DetailsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        TextView name = (TextView) rootView.findViewById(R.id.place_name);
-        TextView specialization = (TextView) rootView.findViewById(R.id.place_specialization);
-        TextView address = (TextView) rootView.findViewById(R.id.place_address);
-        TextView PhoneNumber = (TextView) rootView.findViewById(R.id.place_phonenumber);
-        TextView appointments = (TextView) rootView.findViewById(R.id.place_appointments);
-        TextView ClosedDays = (TextView) rootView.findViewById(R.id.place_closed_days);
+        mRootView = inflater.inflate(R.layout.fragment_details, container, false);
 
+        ButterKnife.bind(this, mRootView);
+
+        TextView name = (TextView) mRootView.findViewById(R.id.place_name);
+        TextView specialization = (TextView) mRootView.findViewById(R.id.place_specialization);
+        TextView address = (TextView) mRootView.findViewById(R.id.place_address);
+        TextView PhoneNumber = (TextView) mRootView.findViewById(R.id.place_phonenumber);
+        TextView appointments = (TextView) mRootView.findViewById(R.id.place_appointments);
+        TextView ClosedDays = (TextView) mRootView.findViewById(R.id.place_closed_days);
 
         //Rating Bar
-        RatingBar mRatingBar = (RatingBar) rootView.findViewById(R.id.rating);
+        // mRatingBar = (RatingBar) mRootView.findViewById(R.id.rating);
         Drawable drawable = mRatingBar.getProgressDrawable();
         drawable.setColorFilter(Color.parseColor("#FFFF00"), PorterDuff.Mode.SRC_ATOP);
 
-        //Get Intent from HomeScreen
-        Intent intent = getActivity().getIntent();
-
-        Hospital h;
-        Pharmacy ph;
+        Hospital hospital;
+        Pharmacy pharmacy;
         Clinic clinic;
         Laboratory lab;
 
-        list_reviews = (RecyclerView) rootView.findViewById(R.id.list_reviews);
-        adapter = new ReviewsAdapter(HardCodedReviews);
+        //mListReviews = (RecyclerView) mRootView.findViewById(list_reviews);
+        mAdapter = new ReviewsAdapter(mHardCodedReviews);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        list_reviews.setLayoutManager(mLayoutManager);
-        list_reviews.setItemAnimator(new DefaultItemAnimator());
-        list_reviews.setAdapter(adapter);
+        mListReviews.setLayoutManager(mLayoutManager);
+        mListReviews.setItemAnimator(new DefaultItemAnimator());
+        mListReviews.setAdapter(mAdapter);
 
-        if (intent.getParcelableExtra("Place") instanceof Hospital) {
 
-            h = (Hospital) intent.getParcelableExtra("Place");
+        if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Hospital) {
 
-            Log.e("Medical Place", h.getmSpecialization() + " " + h.getmDoctor());
+            hospital = (Hospital) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
 
-            HardCodedReviews.add(new Review("Sherif", "EL mostshfa ndifa gdan"));
-            HardCodedReviews.add(new Review("Hazem", "EL mostshfa was3a gdan"));
-            HardCodedReviews.add(new Review("Khalifa", "Amn el mostshfa mo3mltoh we7sha"));
-            HardCodedReviews.add(new Review("Samuel", "Smells very bad"));
+            Log.e("Medical Place", hospital.getmHospitalName());
 
-            name.setText(h.getmName());
+            mHardCodedReviews.add(new Review("Sherif", "EL mostshfa ndifa gdan"));
+            mHardCodedReviews.add(new Review("Hazem", "EL mostshfa was3a gdan"));
+            mHardCodedReviews.add(new Review("Khalifa", "Amn el mostshfa mo3mltoh we7sha"));
+            mHardCodedReviews.add(new Review("Samuel", "Smells very bad"));
 
-            View spec = rootView.findViewById(R.id.linear_specialization);
+            name.setText(hospital.getmHospitalName());
+
+            View spec = mRootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
-            specialization.setText(h.getmSpecialization());
-
-            address.setText(h.getmBuildingNumber() + " " + h.getmStreet() + " " + h.getmAddressNotes());
-            PhoneNumber.setText(h.getmPhoneNumber());
+            specialization.setText("General");
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Pharmacy) {
+            String buildingNumber = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchBuildingNum();
+            String streetName = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchStreetName();
+            String addressNotes = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchAddressNotes();
+            String phoneNum = hospital.getmBranches().get(hospital.getmHospitalId()).getmBranchPhoneNum();
 
-            ph = (Pharmacy) intent.getSerializableExtra("Place");
-            Log.e("Medical Place", ph.getmName() + " " + ph.getmPhoneNumber());
-
-
-            HardCodedReviews.add(new Review("Abdelrahman", "The pharmacist is so rude"));
-
-            name.setText(ph.getmName());
-
-            address.setText(ph.getmBuildingNumber() + " " + ph.getmStreet() + " " + ph.getmAddressNotes());
-            PhoneNumber.setText(ph.getmPhoneNumber());
+            address.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            PhoneNumber.setText(phoneNum);
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Clinic) {
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Pharmacy) {
 
-            clinic = (Clinic) intent.getParcelableExtra("Place");
-            Log.e("Medical Place", clinic.getmDoctor() + " " + clinic.getmAppointments() + " " + clinic.getmClosedDays());
+            pharmacy = (Pharmacy) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
+            Log.e("Medical Place", pharmacy.getmPharmacyName());
 
-            HardCodedReviews.add(new Review("Moneer", "El momardin mo3mlthom kwyesa gdan"));
-            HardCodedReviews.add(new Review("Amr", "bgd 3eyada to7fa"));
-            HardCodedReviews.add(new Review("Mohey", "Very Good"));
-            HardCodedReviews.add(new Review("Ahmed", "The doctor is arrogant"));
 
-            name.setText(clinic.getmDoctor());
+            mHardCodedReviews.add(new Review("Abdelrahman", "The pharmacist is so rude"));
 
-            View spec = rootView.findViewById(R.id.linear_specialization);
+            name.setText(pharmacy.getmPharmacyName());
+
+            String buildingNumber = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchBuildingNum();
+            String streetName = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchStreetName();
+            String addressNotes = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchAddressNotes();
+            String phoneNum = pharmacy.getmBranches().get(pharmacy.getmPharmacyId()).getmBranchPhoneNum();
+
+            address.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            PhoneNumber.setText(phoneNum);
+
+
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Clinic) {
+
+            clinic = (Clinic) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
+            Log.e("Medical Place", clinic.getmClinicName());
+
+            mHardCodedReviews.add(new Review("Moneer", "El momardin mo3mlthom kwyesa gdan"));
+            mHardCodedReviews.add(new Review("Amr", "bgd 3eyada to7fa"));
+            mHardCodedReviews.add(new Review("Mohey", "Very Good"));
+            mHardCodedReviews.add(new Review("Ahmed", "The doctor is arrogant"));
+
+            name.setText(clinic.getmClinicName());
+
+            View spec = mRootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
 
-            specialization.setText(clinic.getmSpecialization());
+            specialization.setText(clinic.getmClinicSpecialization());
 
-            address.setText(clinic.getmBuildingNumber() + " " + clinic.getmStreet() + " " + clinic.getmAddressNotes());
-            PhoneNumber.setText(clinic.getmPhoneNumber());
+            String buildingNumber = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchBuildingNum();
+            String streetName = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchStreetName();
+            String addressNotes = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchAddressNotes();
+            String phoneNum = clinic.getmBranches().get(clinic.getmClinicId()).getmBranchPhoneNum();
 
-            View app = rootView.findViewById(R.id.linear_appointments);
+            address.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            PhoneNumber.setText(phoneNum);
+
+            View app = mRootView.findViewById(R.id.linear_appointments);
             app.setVisibility(View.VISIBLE);
 
-            appointments.setText(clinic.getmAppointments());
+            String mAppointmentDay = clinic.getmBranches().get(clinic.getmClinicId()).getmAppointments().get(clinic.getmClinicId()).getmAppointmentDay();
+            Integer mAppointmentFrom = clinic.getmBranches().get(clinic.getmClinicId()).getmAppointments().get(clinic.getmClinicId()).getmAppointmentFrom();
+            Integer mAppointmentTo = clinic.getmBranches().get(clinic.getmClinicId()).getmAppointments().get(clinic.getmClinicId()).getmAppointmentTo();
 
-            View cd = rootView.findViewById(R.id.linear_closed_days);
+            appointments.setText(mAppointmentDay + " " + mAppointmentFrom + " " + mAppointmentTo);
+
+            View cd = mRootView.findViewById(R.id.linear_closed_days);
             cd.setVisibility(View.VISIBLE);
 
-            ClosedDays.setText(clinic.getmClosedDays());
+            //ClosedDays.setText(clinic.getmClosedDays());
 
 
-        } else if (intent.getParcelableExtra("Place") instanceof Laboratory) {
+        } else if (getArguments() != null && getArguments().containsKey(ARGUMENT_EXTRA_PLACE) && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) != null && getArguments().getParcelable(ARGUMENT_EXTRA_PLACE) instanceof Laboratory) {
 
-            lab = (Laboratory) intent.getParcelableExtra("Place");
-            Log.e("Medical Place", lab.getmName() + " " + lab.getmPhoneNumber());
+            lab = (Laboratory) getArguments().getParcelable(ARGUMENT_EXTRA_PLACE);
+            Log.e("Medical Place", lab.getmLabName());
 
-            HardCodedReviews.add(new Review("Alaa", "disgusting"));
-            HardCodedReviews.add(new Review("Sara", "Bad"));
-            HardCodedReviews.add(new Review("Safaa", "el as3ar ghelyt 3an a5er mra yarit tera3o el nas shwya"));
-            HardCodedReviews.add(new Review("Mariam", "estnit dori ktir ana fdelt wa2fa 3shan msh la2ya makan a3od fel a5er et5n2t m3 mowzft el est2bal"));
+            mHardCodedReviews.add(new Review("Alaa", "disgusting"));
+            mHardCodedReviews.add(new Review("Sara", "Bad"));
+            mHardCodedReviews.add(new Review("Safaa", "el as3ar ghelyt 3an a5er mra yarit tera3o el nas shwya"));
+            mHardCodedReviews.add(new Review("Mariam", "estnit dori ktir ana fdelt wa2fa 3shan msh la2ya makan a3od fel a5er et5n2t m3 mowzft el est2bal"));
 
-            name.setText(lab.getmDoctor());
+            name.setText(lab.getmLabName());
 
-            View spec = rootView.findViewById(R.id.linear_specialization);
+            View spec = mRootView.findViewById(R.id.linear_specialization);
             spec.setVisibility(View.VISIBLE);
 
-            specialization.setText(lab.getmSpecialization());
+            specialization.setText(lab.getmLabSpecialization());
 
-            address.setText(lab.getmBuildingNumber() + " " + lab.getmStreet() + " " + lab.getmAddressNotes());
-            PhoneNumber.setText(lab.getmPhoneNumber());
+            String buildingNumber = lab.getmBranches().get(lab.getmLabId()).getmBranchBuildingNum();
+            String streetName = lab.getmBranches().get(lab.getmLabId()).getmBranchStreetName();
+            String addressNotes = lab.getmBranches().get(lab.getmLabId()).getmBranchAddressNotes();
+            String phoneNum = lab.getmBranches().get(lab.getmLabId()).getmBranchPhoneNum();
 
-            View app = rootView.findViewById(R.id.linear_appointments);
+            address.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            PhoneNumber.setText(phoneNum);
+
+            View app = mRootView.findViewById(R.id.linear_appointments);
             app.setVisibility(View.VISIBLE);
 
-            appointments.setText(lab.getmAppointments());
+            String mAppointmentDay = lab.getmBranches().get(lab.getmLabId()).getmAppointments().get(lab.getmLabId()).getmAppointmentDay();
+            Integer mAppointmentFrom = lab.getmBranches().get(lab.getmLabId()).getmAppointments().get(lab.getmLabId()).getmAppointmentFrom();
+            Integer mAppointmentTo = lab.getmBranches().get(lab.getmLabId()).getmAppointments().get(lab.getmLabId()).getmAppointmentTo();
 
-            View cd = rootView.findViewById(R.id.linear_closed_days);
+            appointments.setText(mAppointmentDay + " " + mAppointmentFrom + " " + mAppointmentTo);
+
+            View cd = mRootView.findViewById(R.id.linear_closed_days);
             cd.setVisibility(View.VISIBLE);
 
-            ClosedDays.setText(lab.getmClosedDays());
-
+            //ClosedDays.setText(lab.getmClosedDays());
 
         }
 
-        Button AddReview = (Button) rootView.findViewById(R.id.AddReview);
 
-        AddReview.setOnClickListener(new View.OnClickListener() {
+        AddReviewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 getReview();
             }
         });
 
 
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
 
         /*reviews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -196,14 +239,12 @@ public class DetailsFragment extends Fragment {
             }
         });*/
 
-        return rootView;
+        return mRootView;
     }
 
     public void getReview() {
 
-        EditText review = (EditText) rootView.findViewById(R.id.review);
-
-        String text = review.getText().toString();
+        String text = mReviewEditText.getText().toString();
         SharedPreferences prefs = getActivity().getSharedPreferences("LoginUser", MODE_PRIVATE);
 
         String email = prefs.getString("Email", "No name defined");
@@ -215,10 +256,10 @@ public class DetailsFragment extends Fragment {
             }
             userName += email.charAt(i);
         }
-        HardCodedReviews.add(new Review(userName, text));
+        mHardCodedReviews.add(new Review(userName, text));
 
-        review.setText("");
+        mReviewEditText.setText("");
 
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 }

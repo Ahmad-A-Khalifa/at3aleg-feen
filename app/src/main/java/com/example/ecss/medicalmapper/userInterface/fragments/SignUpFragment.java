@@ -6,18 +6,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.userInterface.activities.general.DoctorSignUp;
-import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreen;
+import com.example.ecss.medicalmapper.userInterface.activities.general.DoctorSignUpActivity;
+import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreenActivity;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.ecss.medicalmapper.R.id.next_signup;
+import static com.example.ecss.medicalmapper.R.id.switch_doctor;
+
 public class SignUpFragment extends Fragment {
-    private View rootView;
+    @BindView(next_signup)
+    View mNextSignupView;
+    @BindView(R.id.switch_doctor)
+    TextView mSwitchDoctorTextView;
+    private View mRootView;
 
     public SignUpFragment() {
     }
@@ -25,23 +32,39 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        final Button button = (Button) rootView.findViewById(R.id.next_signup);
-        button.setOnClickListener(new View.OnClickListener() {
+        mRootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
+        ButterKnife.bind(this, mRootView);
+
+        //mNextSignupView = (Button) mRootView.findViewById(R.id.next_signup);
+        /*mNextSignupView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomeScreen.class);
-                startActivity(intent);
+
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
 
             }
-        });
+        });*/
 
-        final TextView textView = (TextView) rootView.findViewById(R.id.switch_doctor);
-        textView.setOnClickListener(new View.OnClickListener() {
+        // mSwitchDoctorTextView = (TextView) mRootView.findViewById(R.id.switch_doctor);
+        /*mSwitchDoctorTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DoctorSignUp.class);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), DoctorSignUpActivity.class));
             }
-        });
-        return rootView;
+        });*/
+        return mRootView;
+    }
+
+    @OnClick({next_signup, switch_doctor})
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case next_signup:
+                startActivity(new Intent(getActivity(), HomeScreenActivity.class));
+                break;
+
+            case switch_doctor:
+                startActivity(new Intent(getActivity(), DoctorSignUpActivity.class));
+                break;
+        }
     }
 }

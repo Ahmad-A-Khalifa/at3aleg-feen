@@ -1,26 +1,36 @@
 package com.example.ecss.medicalmapper.userInterface.fragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.example.ecss.medicalmapper.R;
-import com.example.ecss.medicalmapper.model.User.DoctorInfo;
-import com.example.ecss.medicalmapper.userInterface.activities.general.Payment;
+import com.example.ecss.medicalmapper.userInterface.activities.general.PaymentActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.ecss.medicalmapper.R.id.degree;
+import static com.example.ecss.medicalmapper.R.id.next_payment;
+import static com.example.ecss.medicalmapper.R.id.specialization;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DoctorSignUpFragment extends Fragment {
-    private View rootView;
+    @BindView(degree)
+    Button mDegreeButton;
+    @BindView(specialization)
+    Button mSpecializationButton;
+    @BindView(next_payment)
+    Button mNextPaymentButton;
+    private View mRootView;
+
 
     public DoctorSignUpFragment() {
     }
@@ -29,13 +39,41 @@ public class DoctorSignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_doctor_sign_up, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_doctor_sign_up, container, false);
 
-        final Button button1 = (Button) rootView.findViewById(R.id.degree);
-        button1.setOnClickListener(new View.OnClickListener() {
+        ButterKnife.bind(this, mRootView);
+
+        //mDegreeButton = (Button) mRootView.findViewById(R.id.degree);
+        /*mDegreeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            }
+
+        });*/
+        //mSpecializationButton = (Button) mRootView.findViewById(R.id.specialization);
+        /*mSpecializationButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });*/
+        //final Button button = (Button) mRootView.findViewById(R.id.next_payment);
+        /*mNextPaymentButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(), PaymentActivity.class));
+            }
+        });*/
+
+        return mRootView;
+    }
+
+    @OnClick({R.id.degree, R.id.specialization, R.id.next_payment})
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case degree:
+
+/*                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Doctor Degrees");
 
                 ListView modeList = new ListView(getContext());
@@ -46,14 +84,11 @@ public class DoctorSignUpFragment extends Fragment {
                 builder.setView(modeList);
                 final Dialog dialog = builder.create();
 
-                dialog.show();
-            }
+                dialog.show();*/
+                break;
 
-        });
-        final Button button2 = (Button) rootView.findViewById(R.id.specialization);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            case specialization:
+/*AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Doctor Specializations");
 
                 ListView modeList = new ListView(getContext());
@@ -64,20 +99,12 @@ public class DoctorSignUpFragment extends Fragment {
                 builder.setView(modeList);
                 final Dialog dialog = builder.create();
 
-                dialog.show();
-            }
+                dialog.show();*/
+                break;
 
-        });
-        final Button button = (Button) rootView.findViewById(R.id.next_payment);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Payment.class);
-                startActivity(intent);
-            }
-
-        });
-
-        return rootView;
-
+            case next_payment:
+                startActivity(new Intent(getActivity(), PaymentActivity.class));
+                break;
+        }
     }
 }

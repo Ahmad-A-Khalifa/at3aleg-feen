@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "884768277095",
+    "firebase_url": "https://mygraduationproject-68376.firebaseio.com",
+    "project_id": "mygraduationproject-68376",
+    "storage_bucket": "mygraduationproject-68376.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884768277095:android:39d56b5e15313a70",
+        "android_client_info": {
+          "package_name": "com.example.ecss.medicalmapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884768277095-edqkg11eirnk6duncqg8iph4g3dl026s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM5pthNDC3uiL_Fm7UzJhkA99fbQ6DpQc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

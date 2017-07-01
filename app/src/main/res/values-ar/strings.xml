@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">اتعالج فين</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">اعدادات</string>
+    <string name="action_search">بحث</string>
+    <string name="action_search_plus">بحث متقدم</string>
+
+    <string name="default_info_title">المكان الأساسي</string>
+    <string name="default_info_snippet">لا يوجد أماكن لأن الGPS مغلق</string>
+
+    <string-array name="doctor_degree">
+        <item>استاذ</item>
+        <item>استشاري</item>
+        <item>أخصائي</item>
+        <item>استاذ مساعد</item>
+        <item>مدرس</item>
+    </string-array>
+
+    <string-array name="doctor_specialization">
+        <item>الباطنة العامة</item>
+        <item>مناظير الباطنة</item>
+        <item>الباطنة العامةوغدد صماءوسكر</item>
+        <item>الباطنة العامةو كبدو جهاز هضمي</item>
+        <item>الباطنة العامةو امراض الكلي</item>
+        <item>القلب</item>
+        <item>الصدر</item>
+        <item>الاطفال</item>
+        <item>النفسية والعصبية</item>
+        <item>الجلدية و التناسلية</item>
+        <item>الجراحه العامه</item>
+        <item>جراحة مناظير</item>
+        <item>جراحة الأوعية الدموية</item>
+        <item>جراحة التجميل و الحروق</item>
+        <item>جراحة الاورام</item>
+        <item>جراحة الاطفال</item>
+        <item>جراحة المخ و الاعصاب</item>
+        <item>جراحة القلب والصدر</item>
+        <item> المسالك البولية</item>
+        <item> النساء والتوليد</item>
+        <item>جراحة العيون</item>
+        <item>جراحةالعظام</item>
+        <item>الروماتيزم والطب الطبيعي</item>
+        <item>جراحة الأنف و الأذن و الحنجرة</item>
+        <item>التخاطب و السمعيات</item>
+        <item>الفم و الأسنان</item>
+
+    </string-array>
+
+    <string name="title_activity_advanced_search">AdvancedSearch</string>
+    <string name="signed_out">تسجيل خروج</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+
+    <string name="facebook_app_id">348169818880552</string>
+    <string name="fb_login_protocol_scheme">fb348169818880552</string>
+    <string name="title_activity_payment">الدفع</string>
+    <string name="title_activity_doctor_sign_up">تسجيل طبيب</string>
+    <string name="title_activity_place_details">تفاصيل المكان</string>
+    <string name="title_activity_details">تفاصيل</string>
+    <string name="title_activity_saved_places">الاماكن المحفوظه</string>
+
+    <string name="Clinics">عيادات</string>
+    <string name="Hospitals">مستشفيات</string>
+    <string name="Labs">معامل</string>
+    <string name="Pharmacies">صيدليات</string>
+
+    <string name="clinic">عيادة</string>
+    <string name="hospital">مستشفى</string>
+    <string name="laboratory">معمل</string>
+    <string name="pharmacy">صيدلية</string>
+
+    <string name="specialization_general">عام</string>
+    <string name="see_more">المزيد</string>
+
+    <string name="error_validate_review">ادخل تعليق صحيح</string>
+    <string name="error_validate_description">ادخل وصف صحيح</string>
+    <string name="error_validate_card_number">ادخل رقم بطاقه صحيح</string>
+    <string name="error_validate_expiry_date">ادخل تاريخ صحيح</string>
+    <string name="error_validate_cvv">ادخل CVV صحيح</string>
+    <string name="error_validate_email">ادخل بريد الكتروني صحيح</string>
+    <string name="error_validate_password">اقل من 4 حروف </string>
+    <string name="error_validate_username">ادخل اسم مستخدم صحيح</string>
+
+    <string name="hint_expiry_date">تاريخ الصلاحيه</string>
+    <string name="hint_card_number">رقم البطاقه</string>
+    <string name="hint_cvv">CVV</string>
+
+
+
+    <string name="error_general_error">حدث خطأ ما، اعد المحاولة لاحقا</string>
+    <string name="error_no_network_connection">غير متصل بالانترنت</string>
+    <string name="error_reporting_medical_place">حدث خطأ ما عند التبليغ عن المكان الطبى</string>
+    <string name="no_available_anymore">المكان لم يعد متاح</string>
+    <string name="information_outdated">المعلومات عن هذا المكان تحتاج للتحديث</string>
+    <string name="place_state">حالة المكان</string>
+    <string name="your_comment">تعليقك</string>
+    <string name="report">تسجيل الملاحظة</string>
+    <string name="cancel">الغاء</string>
+    <string name="loading">جار التحميل</string>
+    <string name="done">تم</string>
+    <string name="new_report">بلاغ جديد</string>
+
+
+    <string-array name="clinic_typs">
+        <item>جراحة العظام</item>
+        <item>جراحة يد </item>
+        <item>الروماتيزم - والطب الطبيعي</item>
+        <item>الانف والاذن والحنجرة</item>
+        <item>الجراحة العامة</item>
+        <item>الجلدية و التناسلية و العقم</item>
+        <item>جراحة التجميل والحروق</item>
+        <item>جراحة المخ و الأعصاب</item>
+        <item>صدر</item>
+        <item>قلب</item>
+        <item>مناظير باطنه</item>
+        <item>باطنه و غدد الصماء و السكر</item>
+        <item>باطنه و الكبد و الجهاز الهضمي</item>
+        <item>باطنة و امراض الكلي</item>
+        <item>اطفال</item>
+        <item>جراحة القلب والصدر</item>
+        <item>نساء وتوليد</item>
+        <item>جراحة العيون</item>
+
+
+    </string-array>
+
+    <string-array name="lab_typs">
+        <item>كيميائي</item>
+        <item>باثولوجي</item>
+
+    </string-array>
+
+    <string name="no_search">لاتوجد نواتج للبحث </string>
+    <string name="commentfail">الشبكة مشغوله حاول في وقت اخر</string>
+    <string name="placeSaved">تم حفظ المكان بنجاح</string>
+    <string name="placeUnSaved">تم مسح المكان بنجاح</string>
+
+
+
+</resources>

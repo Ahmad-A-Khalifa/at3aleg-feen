@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/navigation_drawer_item_title_filter_by">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_all"
+                    android:icon="@drawable/hospital"
+                    android:title="@string/navigation_drawer_item_title_all" />
+
+                <item
+                    android:id="@+id/nav_hospitals"
+                    android:icon="@drawable/hospital"
+                    android:title="@string/navigation_drawer_item_title_hospitals" />
+                <item
+                    android:id="@+id/nav_clinics"
+                    android:icon="@drawable/clinic"
+                    android:title="@string/navigation_drawer_item_title_clinics" />
+                <item
+                    android:id="@+id/nav_laboratories"
+                    android:icon="@drawable/laboratory"
+                    android:title="@string/navigation_drawer_item_title_laboratories" />
+                <item
+                    android:id="@+id/nav_pharmacies"
+                    android:icon="@drawable/pharmacy"
+                    android:title="@string/navigation_drawer_item_title_pharmacies" />
+
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/navigation_drawer_item_title_account">
+        <menu>
+            <item
+                android:id="@+id/nav_signin"
+                android:icon="@drawable/ic_fingerprint_black_36dp"
+                android:title="@string/navigation_drawer_item_title_sign_in" />
+
+            <item
+                android:id="@+id/nav_signup"
+                android:icon="@drawable/ic_fingerprint_black_36dp"
+                android:title="@string/navigation_drawer_item_title_sign_up" />
+
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_face_black_36dp"
+                android:title="@string/navigation_drawer_item_title_profile" />
+            <item
+                android:id="@+id/nav_my_places"
+                android:icon="@drawable/ic_location_on_black_36dp"
+                android:title="@string/navigation_drawer_item_title_my_places" />
+
+            <item
+                android:id="@+id/nav_chat"
+                android:icon="@drawable/nav_drawer_item_chat"
+                android:title="@string/navigation_drawer_item_title_chat" />
+
+            <item
+                android:id="@+id/nav_go_premium"
+                android:icon="@drawable/ic_verified_user_black_36dp"
+                android:title="@string/navigation_drawer_item_title_go_premium" />
+            <item
+                android:id="@+id/nav_add_place"
+                android:icon="@drawable/ic_directions_run_black_36dp"
+                android:title="@string/navigation_drawer_item_title_add_place" />
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/ic_directions_run_black_36dp"
+                android:title="@string/navigation_drawer_item_title_sign_out" />
+        </menu>
+    </item>
+    <item android:title="@string/navigation_drawer_item_title_other">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_directions_run_black_36dp"
+                android:title="@string/navigation_drawer_item_title_settings" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_directions_run_black_36dp"
+                android:title="@string/navigation_drawer_item_title_help" />
+        </menu>
+    </item>
+</menu>

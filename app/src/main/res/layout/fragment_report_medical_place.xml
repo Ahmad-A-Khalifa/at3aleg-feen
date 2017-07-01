@@ -1,0 +1,107 @@
+<LinearLayout
+    android:id="@+id/fragment_report_medical_place"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/more_space"
+    android:orientation="vertical"
+    tools:context="com.example.ecss.medicalmapper.ui.fragment.ReportMedicalPlaceFragment">
+
+    <LinearLayout
+        android:paddingTop="@dimen/some_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/blue"
+            android:padding="@dimen/little_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/extra_small_text_size"
+            android:text="@string/place_state"/>
+
+        <RadioGroup
+            android:id="@+id/fragment_report_medical_place_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/fragment_report_medical_place_not_available_radio_button"
+                android:buttonTint="@color/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:text="@string/no_available_anymore"/>
+
+            <RadioButton
+                android:id="@+id/fragment_report_medical_place_info_outdated_radio_button"
+                android:buttonTint="@color/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:text="@string/information_outdated"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="@dimen/some_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/blue"
+            android:padding="@dimen/little_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/extra_small_text_size"
+            android:text="@string/your_comment"/>
+        <EditText
+            android:id="@+id/fragment_report_medical_place_comment_edit_text"
+            android:maxLines="5"
+            android:lines="3"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/mid_text_size"
+            android:textColor="@color/dark_grey"
+            android:padding="@dimen/some_space"
+            android:background="@drawable/round_corner_box"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/more_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/some_more_space"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/fragment_report_medical_place_cancel_button"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="match_parent"/>
+
+        <View
+            android:layout_width="@dimen/more_space"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/fragment_report_medical_place_report_button"
+            android:text="@string/report"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>

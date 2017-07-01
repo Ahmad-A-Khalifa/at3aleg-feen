@@ -1,0 +1,278 @@
+<resources>
+    <string name="app_name">At3aleg Fen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_search">Search</string>
+    <string name="action_search_plus">Advanced Search</string>
+
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No medicalPlaces found, because location permission is disabled.</string>
+
+    <string name="settings_language_default">0</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_dialog_title">Choose a language</string>
+    <string name="settings_language_key">settings_language_key</string>
+
+    <string-array name="settings_language_array_entries">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+
+    <string-array name="settings_language_array_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="doctor_degrees_array">
+        <item>Professor</item>
+        <item>Assistant Professor</item>
+        <item>Teacher</item>
+        <item>Consultant</item>
+        <item>Specialist</item>
+        <item>Doctorate</item>
+        <item>Fellowship</item>
+    </string-array>
+
+    <string-array name="doctor_specializations_array">
+        <item> General Internal medicine </item>
+        <item>Internal medicine endoscopes</item>
+        <item> Internal medicine,endocrinology and diabetes</item>
+        <item>Internal medicine ,Gastroenterology and hepatology </item>
+        <item>Internal medicine and Nephrology</item>
+        <item>Cardiology</item>
+        <item>Pulmonology</item>
+        <item>Paediatrics</item>
+        <item>Neurology and Psychiatry</item>
+        <item>Dermatology and venereology </item>
+        <item>General surgery</item>
+        <item>Endoscopic surgery</item>
+        <item>Vascular surgery</item>
+        <item>Cosmetic and burns surgery </item>
+        <item>Oncology surgery</item>
+        <item>Paediatrics surgery</item>
+        <item>Neurosurgery</item>
+        <item>Pulmonology and Cardiology surgery</item>
+        <item>Urology</item>
+        <item> Obstetrics and gynaecology</item>
+        <item>Ophthalmology surgery</item>
+        <item>Orthopedics surgery</item>
+        <item>physiotherapy and rheumatism</item>
+        <item>Otorhinolaryngology surgery</item>
+        <item>Phoniatrics and Audiology</item>
+        <item>Dentistry</item>
+
+    </string-array>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="no_account_yet">No account yet? Create one</string>
+
+    <string name="registration">Registration</string>
+    <string name="doctor_registration">Doctor registration</string>
+
+    <string name="username">Username</string>
+    <string name="finish">Finish</string>
+    <string name="upload_photo">Upload Photo</string>
+
+    <string name="specialization">Specialization</string>
+    <string name="specialization_hint">Select Specialization</string>
+
+    <string name="degree">Degree</string>
+    <string name="degree_hint">Select Degree</string>
+
+    <string name="overview">Overview</string>
+    <string name="overview_hint">Describe your self...</string>
+
+    <string name="certifications">Certifications</string>
+    <string name="certifications_hint">Enter certifications</string>
+
+
+    <string name="title_activity_advanced_search">AdvancedSearch</string>
+    <string name="signed_out">Sign out</string>
+    <string name="loading">Loading</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+
+    <string name="facebook_app_id">348169818880552</string>
+    <string name="fb_login_protocol_scheme">fb348169818880552</string>
+
+    <string name="title_activity_payment">Payment</string>
+    <string name="title_activity_doctor_sign_up">DoctorSignUp</string>
+    <string name="title_activity_place_details">PlaceDetails</string>
+    <string name="title_activity_details">Details</string>
+    <string name="title_activity_place_detail">PlaceDetail</string>
+    <string name="title_activity_saved_places">SavedPlaces</string>
+
+    <string name="navigation_drawer_item_title_clinics">Clinics</string>
+    <string name="navigation_drawer_item_title_all">All</string>
+    <string name="navigation_drawer_item_title_hospitals">Hospitals</string>
+    <string name="navigation_drawer_item_title_laboratories">Laboratories</string>
+    <string name="navigation_drawer_item_title_pharmacies">Pharmacies</string>
+    <string name="navigation_drawer_item_title_filter_by">Filter by</string>
+    <string name="navigation_drawer_item_title_account">Account</string>
+    <string name="navigation_drawer_item_title_other">Other</string>
+    <string name="navigation_drawer_item_title_settings">Settings</string>
+    <string name="navigation_drawer_item_title_help">Help</string>
+
+    <string name="clinic">Clinic</string>
+    <string name="hospital">Hospital</string>
+    <string name="laboratory">Laboratory</string>
+    <string name="pharmacy">Pharmacy</string>
+
+    <string name="specialization_general">General</string>
+    <string name="see_more">See more</string>
+
+    <string name="error_validate_review">Enter a valid review</string>
+
+    <string name="error_validate_specialization">Enter a valid specialization</string>
+    <string name="error_validate_degree">Enter a valid degree</string>
+    <string name="error_validate_description">Enter a valid overview</string>
+    <string name="error_validate_certifications">Enter valid certifications</string>
+
+    <string name="error_validate_card_number">Enter a valid card number</string>
+    <string name="error_validate_expiry_date">Enter a valid expiry date</string>
+    <string name="error_validate_cvv">Enter a valid CVV</string>
+    <string name="error_validate_email">Enter a valid email address</string>
+    <string name="error_validate_password">Enter a valid password not less than 4 alphanumeric characters</string>
+    <string name="error_validate_username">Enter a valid username</string>
+    <string name="title_specializations">Doctor Specializations</string>
+    <string name="title_degrees">Doctor Degrees</string>
+
+    <string name="hint_expiry_date">Expiry Date</string>
+    <string name="hint_card_number">Card number</string>
+    <string name="hint_cvv">CVV</string>
+
+    <string name="shared_pref_signed_in_user">SignedInUser</string>
+    <string name="shared_pref_signed_in_user_id">SignedInUserId</string>
+    <string name="shared_pref_signed_in_user_name">SignedInUserName</string>
+    <string name="shared_pref_signed_in_user_email">SignedInUserEmail</string>
+    <string name="shared_pref_signed_in_user_type">SignedInUserType</string>
+    <string name="shared_pref_signed_in_user_saved_place">SignedInUserSavedPlace</string>
+
+    <string name="shared_pref_premium_user">PremiumUser</string>
+    <string name="shared_pref_premium_user_name">PremiumUserName</string>
+    <string name="shared_pref_premium_user_specialization">PremiumUserSpecialization</string>
+    <string name="shared_pref_premium_user_degree">PremiumUserDegree</string>
+    <string name="shared_pref_premium_user_overview">PremiumUserOverview</string>
+    <string name="shared_pref_premium_user_photo">PremiumUserPhoto</string>
+    <string name="shared_pref_premium_user_certifications">PremiumUserCertifications</string>
+
+    <string name="internet_connection_problem_message">Internet connection problem</string>
+    <string name="sign_in_problem_message">You must sign in</string>
+    <string name="Your_review">Your review</string>
+    <string name="review_by">Reviewed by</string>
+    <string name="Submit">Submit</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Nothingtoshow">Nothing to show</string>
+
+    <string name="title_activity_doctor_profile">DoctorProfileActivity</string>
+
+    <string name="tap_to_update">(tap to update)</string>
+
+    <string name="doctor_name_update">Edit doctor name</string>
+    <string name="specialization_update">Edit specialization</string>
+    <string name="degree_update">Edit degree</string>
+    <string name="overview_update">Edit overview</string>
+    <string name="certifications_update">Edit certifications</string>
+
+    <string name="navigation_drawer_item_title_sign_in">Sign in</string>
+    <string name="navigation_drawer_item_title_sign_up">Sign up</string>
+    <string name="navigation_drawer_item_title_profile">Profile</string>
+    <string name="navigation_drawer_item_title_my_places">My Places</string>
+    <string name="navigation_drawer_item_title_chat">Chat</string>
+    <string name="navigation_drawer_item_title_go_premium">Go premium</string>
+    <string name="navigation_drawer_item_title_sign_out">Sign out</string>
+    <string name="navigation_drawer_item_title_add_place">Add place</string>
+    <string name="title_activity_display_search_places">DisplaySearchPlacesActivity</string>
+    <string name="title_activity_add_place">AddPlaceActivity</string>
+
+    <string name="snackbar_message_connected">Connected</string>
+    <string name="snackbar_message_disconnected">No Internet Connection</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="error_general">Something went wrong</string>
+
+    <string name="base_api_url" translatable="false">http://at3alegfeenapi-001-site1.itempurl.com/api</string>
+
+    <string name="state_closed" translatable="false">Closed</string>
+    <string name="state_outdated" translatable="false">Outdated</string>
+
+    <string name="error_general_error">Something went wrong, please try again</string>
+    <string name="error_no_network_connection">Please check your internet connection</string>
+    <string name="error_reporting_medical_place">Error reporting medical place</string>
+    <string name="no_available_anymore">This places is not available anymore</string>
+    <string name="information_outdated">Information about this place needs to be updated</string>
+    <string name="place_state">Place state</string>
+    <string name="your_comment">Your comment</string>
+    <string name="report">Report</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="new_report">New report</string>
+
+    <string name="place_name">Place name</string>
+    <string name="building_number">Building number</string>
+    <string name="street">Street</string>
+    <string name="address_notes">Address notes</string>
+    <string name="phone_number">Phone number</string>
+    <string name="add_new_place">Add new medical place</string>
+    <string name="add_new_place_success">Your place will be checked and added soon</string>
+    <string name="ok">Ok</string>
+
+    <string name="governmental">Governmental: </string>
+    <string name="delivery">Delivery: </string>
+    <string name="emergency">Emergency: </string>
+
+    <string name="request_type_shared_preference">RequestType</string>
+    <string name="request_type_shared_preference_number">RequestTypeNumber</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_log_in">Sasa chat</string>
+    <string name="title_activity_register">Register</string>
+
+
+    <!-- LogInActivity-->
+    <string name="login_error_message">Please make sure you enter a username and password!</string>
+    <string name="login_error_title">Checking</string>
+    <string name="title_activity_chat">Chat</string>
+
+    <!-- RegisterActivity-->
+    <string name="error_fields_empty">Please make sure you enter display name, email and password!</string>
+    <string name="error_incorrect_email_pass">Provide correct email and password with more than 6 characters.</string>
+    <string-array name="clinic_typs">
+        <item>Binoculars</item>
+        <item>Cardiothoracic Surgery</item>
+        <item>cardiology</item>
+        <item>Cosmetic surgery and burns</item>
+        <item>Dermatology , venereology and infertility</item>
+        <item>Ear Nose and Throat</item>
+        <item>Eye surgery</item>
+        <item>Endocrine, and sugar</item>
+        <item>General Surgery</item>
+        <item>Gynecology Obstetrics</item>
+        <item>Hand Surgery</item>
+        <item>Heart diseases</item>
+        <item>Internal and kidney diseases</item>
+        <item>Internal, liver and digestive system</item>
+        <item>Neurosurgery</item>
+        <item>Pulmonology</item>
+        <item>Orthopaedic Surgery</item>
+
+    </string-array>
+
+    <string-array name="lab_typs">
+        <item>Chemical</item>
+        <item>Pathology</item>
+
+    </string-array>
+
+    <string name="no_search">No Search Result </string>
+    <string name="commentfail">network busy, try in another time.</string>
+    <string name="placeSaved">Place Saved Sucessfully</string>
+    <string name="placeUnSaved">place Unsaved Successfully</string>
+
+
+</resources>

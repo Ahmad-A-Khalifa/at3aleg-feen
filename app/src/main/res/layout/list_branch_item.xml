@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/white"
+    card_view:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:id="@+id/logob"
+
+                />
+
+            <TextView
+                android:id="@+id/branch_type_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="end"
+                android:text="@string/clinic"
+                android:textColor="@color/dark_blue"
+                android:textSize="24sp"
+                android:layout_margin="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/place_name_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:text="samuel"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/specialization_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:text="samuel"
+            android:gravity="center"
+            />
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

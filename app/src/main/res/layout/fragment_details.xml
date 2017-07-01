@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:orientation="vertical"
+    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.DetailsFragment"
+    tools:showIn="@layout/activity_details">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_user_form"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/app_logo" />
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Address"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Phone Number"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_phonenumber"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_specialization"
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/sp"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Specialization"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_specialization"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_appointments"
+                android:layout_width="@dimen/form_element_width"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/ap"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/form_element_height"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Appointments"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/form_element_text_size" />
+
+                <LinearLayout
+                    android:layout_width="5px"
+                    android:layout_height="@dimen/form_element_height" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:background="@color/dark_blue"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/place_appointments"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="1"
+                        android:background="@color/dark_blue"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/dark_white"
+                        android:textSize="@dimen/form_element_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/favorite_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:src="@drawable/star_empty"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/UnSaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/star_filled"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/chat_image"
+                    android:layout_width="83dp"
+                    android:layout_height="76dp"
+                    android:cropToPadding="true"
+                    android:src="@drawable/chat_icon2"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize=".1" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
+
+
+            <Button
+                android:id="@+id/AddReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Review"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/report_outdated_medical_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/blue_button"
+                android:padding="16dp"
+                android:text="Report outdated medical place"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

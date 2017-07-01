@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:orientation="vertical"
+    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.SignUpFragment"
+    tools:showIn="@layout/activity_sign_up">
+
+
+    <ScrollView
+        android:id="@+id/scroll_user_form"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:gravity="center"
+                android:text="@string/registration"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:tint="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="32dp">
+
+                <LinearLayout
+                    android:layout_width="@dimen/form_element_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="3"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/username"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/form_element_text_size" />
+
+                    <LinearLayout
+                        android:layout_width="5px"
+                        android:layout_height="@dimen/form_element_height" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:background="@color/dark_blue"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/sign_up_username"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/form_element_height"
+                            android:layout_weight="1"
+                            android:background="@color/dark_blue"
+                            android:gravity="center"
+                            android:hint="@string/username"
+                            android:text=""
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/dark_white"
+                            android:textSize="@dimen/form_element_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/form_element_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="3"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/email"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/form_element_text_size" />
+
+                    <LinearLayout
+                        android:layout_width="5px"
+                        android:layout_height="@dimen/form_element_height" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:background="@color/dark_blue"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/sign_up_email"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/form_element_height"
+                            android:layout_weight="1"
+                            android:background="@color/dark_blue"
+                            android:gravity="center"
+                            android:hint="@string/email"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/dark_white"
+                            android:textSize="@dimen/form_element_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/form_element_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/form_element_height"
+                        android:layout_weight="3"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/password"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/form_element_text_size" />
+
+                    <LinearLayout
+                        android:layout_width="5px"
+                        android:layout_height="@dimen/form_element_height" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:background="@color/dark_blue"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/sign_up_password"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/form_element_height"
+                            android:layout_weight="1"
+                            android:background="@color/dark_blue"
+                            android:gravity="center"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/dark_white"
+                            android:textSize="@dimen/form_element_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/sign_up_progress_bar"
+                    style="?android:attr/progressBarStyleLargeInverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:indeterminateDrawable="@drawable/progress_bar" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/form_element_height"
+        android:layout_marginTop="16dp"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/sign_up_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:text="@string/finish"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/form_element_text_size" />
+    </LinearLayout>
+</LinearLayout>

@@ -169,32 +169,24 @@
     </string-array>
 
     <string-array name="doctor_specializations_array">
-        <item>الباطنة العامة</item>
-        <item>مناظير الباطنة</item>
-        <item>الباطنة العامةوغدد صماءوسكر</item>
-        <item>الباطنة العامةو كبدو جهاز هضمي</item>
-        <item>الباطنة العامةو امراض الكلي</item>
-        <item>القلب</item>
-        <item>الصدر</item>
-        <item>الاطفال</item>
-        <item>النفسية والعصبية</item>
-        <item>الجلدية و التناسلية</item>
-        <item>الجراحه العامه</item>
-        <item>جراحة مناظير</item>
-        <item>جراحة الأوعية الدموية</item>
-        <item>جراحة التجميل و الحروق</item>
-        <item>جراحة الاورام</item>
-        <item>جراحة الاطفال</item>
-        <item>جراحة المخ و الاعصاب</item>
-        <item>جراحة القلب والصدر</item>
-        <item> المسالك البولية</item>
-        <item> النساء والتوليد</item>
-        <item>جراحة العيون</item>
-        <item>جراحةالعظام</item>
-        <item>الروماتيزم والطب الطبيعي</item>
-        <item>جراحة الأنف و الأذن و الحنجرة</item>
-        <item>التخاطب و السمعيات</item>
-        <item>الفم و الأسنان</item>
+        <item>  جراحة العظام </item>
+        <item>  جراحة يد </item>
+        <item>  الروماتيزم - والطب الطبيعي </item>
+        <item>  الانف والاذن والحنجرة </item>
+        <item>  الجراحة العامة </item>
+        <item>  الجلدية و التناسلية و العقم </item>
+        <item>  جراحة التجميل والحروق </item>
+        <item>  جراحة المخ و الأعصاب </item>
+        <item>  صدر </item>
+        <item>  قلب </item>
+        <item>  مناظير باطنه </item>
+        <item>  باطنه و غدد الصماء و السكر </item>
+        <item>  باطنة و امراض الكلي </item>
+        <item>  اطفال </item>
+        <item>  القلب </item>
+        <item>  جراحة القلب والصدر </item>
+        <item>  نساء وتوليد </item>
+        <item>  جراحة العيون </item>
 
     </string-array>
 

@@ -64,6 +64,10 @@ public class AdvancedSearchFragment extends Fragment {
     private LinearLayout sortLinearLayout;
     private LinearLayout spatializationLinearLayout;
     private  String[] items ;
+    private  String [] ClincItems ;
+    private  String[] labItems ;
+
+
     private Spinner spatializationSpinner;
 
     private String selectedPlace="clinic" ;
@@ -94,6 +98,7 @@ public class AdvancedSearchFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_advanced_search, container, false);
 
         ButterKnife.bind(this, rootView);
+        createTwoArray ();
 
         placeType = (RadioGroup) rootView.findViewById(R.id.placeTypeRadioGroup);
         placeOrder = (RadioGroup) rootView.findViewById(R.id.searchOrderRadioGroup);
@@ -146,13 +151,20 @@ public class AdvancedSearchFragment extends Fragment {
         spatializationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedSpatialization = items[position] ;
+                if (selectedPlace.equals("lab"))
+                selectedSpatialization = labItems[position] ;
+                else
+                    selectedSpatialization = ClincItems[position] ;
+
                 sortLinearLayout.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedSpatialization = items[0] ;
+                if (selectedPlace.equals("lab"))
+                 selectedSpatialization = labItems[0] ;
+                else
+                    selectedSpatialization = ClincItems[0] ;
                 sortLinearLayout.setVisibility(View.VISIBLE);
             }
 
@@ -271,6 +283,15 @@ public class AdvancedSearchFragment extends Fragment {
         }
     }
 
+    public void createTwoArray () {
+        labItems = new String [] {"Chemical", "Pathology"};
+        ClincItems = new String [] {"Orthopaedic Surgery", "Hand Surgery", "Rheumatism - natural medicine", "Ear Nose and Throat" , "General Surgery"
+                , "Dermatology , venereology and infertility", "Cosmetic surgery and burns", "Neurosurgery" , "Pulmonology", "cardiology"
+                , "Binoculars", "Endocrine, and sugar", "Internal, liver and digestive system", "Pediatric" , "Heart diseases"
+                , "Cardiothoracic Surgery" , "Gynecology Obstetrics", "Eye surgery"
+        };
+
+    }
 
 
 }

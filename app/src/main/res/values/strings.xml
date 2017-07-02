@@ -239,23 +239,24 @@
     <string name="error_fields_empty">Please make sure you enter display name, email and password!</string>
     <string name="error_incorrect_email_pass">Provide correct email and password with more than 6 characters.</string>
     <string-array name="clinic_typs">
-        <item>Binoculars</item>
-        <item>Cardiothoracic Surgery</item>
-        <item>cardiology</item>
-        <item>Cosmetic surgery and burns</item>
-        <item>Dermatology , venereology and infertility</item>
-        <item>Ear Nose and Throat</item>
-        <item>Eye surgery</item>
-        <item>Endocrine, and sugar</item>
-        <item>General Surgery</item>
-        <item>Gynecology Obstetrics</item>
-        <item>Hand Surgery</item>
-        <item>Heart diseases</item>
-        <item>Internal and kidney diseases</item>
-        <item>Internal, liver and digestive system</item>
-        <item>Neurosurgery</item>
-        <item>Pulmonology</item>
-        <item>Orthopaedic Surgery</item>
+        <item>  Orthopaedic Surgery </item>
+        <item>  Hand Surgery </item>
+        <item>  Rheumatism - natural medicine </item>
+        <item>  Ear Nose and Throat </item>
+        <item>  General Surgery </item>
+        <item> Dermatology , venereology and infertility</item>
+        <item> Cosmetic surgery and burns </item>
+        <item> Neurosurgery </item>
+        <item> Pulmonology </item>
+        <item> cardiology </item>
+        <item> Endocrine, and sugar </item>
+        <item> Internal, liver and digestive system </item>
+        <item> Pediatric </item>
+        <item> Heart diseases </item>
+        <item> Cardiothoracic Surgery </item>
+        <item> Gynecology Obstetrics </item>
+        <item> Eye surgery </item>
+        <item> Binoculars </item>
 
     </string-array>
 

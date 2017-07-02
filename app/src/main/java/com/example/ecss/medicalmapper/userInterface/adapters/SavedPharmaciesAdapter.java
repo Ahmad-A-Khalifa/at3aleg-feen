@@ -81,7 +81,7 @@ public class SavedPharmaciesAdapter extends RecyclerView.Adapter<SavedPharmacies
             mPosition = position;
             pharmacyName.setText(pharmacy.getPharmacyName());
             if (pharmacy.getPharmacyDelivery() == true) {
-                pharmacyDelivery.setText("Supports Delivery");
+                pharmacyDelivery.setText(pharmacyDelivery.getContext().getString(R.string.delivery));
             }
             pharmacyAddress.setText(pharmacy.getBranches().get(0).getBranchStreetName() + "," + pharmacy.getBranches().get(0).getBranchAddressNotes());
         }

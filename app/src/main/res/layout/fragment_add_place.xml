@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical"
-    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.AddPlaceFragment"
-    tools:showIn="@layout/activity_add_place">
+    android:background="@color/background_light_grey"
+    android:orientation="vertical">
+    <!--tools:context="com.example.ecss.medicalmapper.userInterface.fragments.AddPlaceFragment"-->
+    <!--tools:showIn="@layout/activity_add_place"-->
+
 
 
     <ScrollView
@@ -18,6 +19,7 @@
         android:focusableInTouchMode="true">
 
         <LinearLayout
+            android:padding="@dimen/some_space"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -28,303 +30,168 @@
                 android:layout_margin="32dp"
                 android:gravity="center"
                 android:text="@string/add_new_place"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_grey"
                 android:textSize="20sp"
-                android:tint="@color/white" />
-
+                android:tint="@color/darker_grey" />
 
             <LinearLayout
+                android:paddingTop="@dimen/little_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="32dp">
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/place_name"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_place_name"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/place_name"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/specialization"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_specialization"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/specialization"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/building_number"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_building_number"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/building_number"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/street"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_street"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/street"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/address_notes"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_address_notes"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/address_notes"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/phone_number"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/add_place_phone_number"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/phone_number"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/place_name"/>
+                <EditText
+                    android:inputType="phone"
+                    android:id="@+id/add_place_place_name"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/dark_grey"
+                    android:padding="@dimen/some_space"
+                    android:background="@drawable/round_corner_box"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/little_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/specialization"/>
+                <EditText
+                    android:inputType="phone"
+                    android:id="@+id/add_place_specialization"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/dark_grey"
+                    android:padding="@dimen/some_space"
+                    android:background="@drawable/round_corner_box"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/little_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/building_number"/>
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/add_place_building_number"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/dark_grey"
+                    android:padding="@dimen/some_space"
+                    android:background="@drawable/round_corner_box"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/little_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/phone_number"/>
+                <EditText
+                    android:inputType="phone"
+                    android:id="@+id/add_place_phone_number"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/dark_grey"
+                    android:padding="@dimen/some_space"
+                    android:background="@drawable/round_corner_box"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/little_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/street"/>
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/add_place_street"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/dark_grey"
+                    android:padding="@dimen/some_space"
+                    android:background="@drawable/round_corner_box"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/little_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textColor="@color/darker_grey"
+                    android:padding="@dimen/little_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text_size"
+                    android:text="@string/address_notes"/>
+
+                <EditText
+                    android:id="@+id/add_place_address_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_box"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:padding="@dimen/some_space"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/mid_text_size" />
+            </LinearLayout>
+
+
+
+            <Button
+                android:layout_marginTop="@dimen/some_space"
+                android:layout_marginBottom="@dimen/some_space"
+                android:id="@+id/add_place_finish"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/mid_text_size"
+                android:text="@string/finish"
+                android:textAllCaps="false" />
+
+
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/form_element_height"
-        android:layout_marginTop="16dp"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/add_place_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:text="@string/finish"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_blue"
-            android:textSize="@dimen/form_element_text_size" />
-    </LinearLayout>
 </LinearLayout>

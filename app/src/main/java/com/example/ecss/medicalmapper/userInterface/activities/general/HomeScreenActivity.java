@@ -225,7 +225,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
         Button seeMoreButton = ButterKnife.findById(bottomSheet, R.id.bottom_sheet_seemore_btn);
 
-        //DetailsActivity.startActivity(this, mMarkers.get(marker.getId()));
+//DetailsActivity.startActivity(this, mMarkers.get(marker.getId()));
         final Context context = getApplicationContext();
 
         seeMoreButton.setOnClickListener(new View.OnClickListener() {
@@ -243,20 +243,36 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
             titleTextView.setText(getString(R.string.hospital));
             placeNameTextView.setText(hospital.getHospitalName());
-            threeTextView.setText(getString(R.string.governmental) + hospital.getIsGovernment());
+            if (hospital.getIsGovernment()) {
+                threeTextView.setText(getString(R.string.Governmental));
+            } else {
+                threeTextView.setText(getString(R.string.Private));
+            }
 
             fourTextView.setVisibility(View.VISIBLE);
-            fourTextView.setText(getString(R.string.emergency) + hospital.getHospitalEmergency());
+            if (hospital.getHospitalEmergency()) {
+                fourTextView.setText(getString(R.string.Emergency));
+            } else {
+                fourTextView.setText(getString(R.string.NoEmergency));
+            }
 
         } else if (mMarkers.get(marker.getId()) instanceof Pharmacy) {
             Pharmacy pharmacy = (Pharmacy) mMarkers.get(marker.getId());
 
             titleTextView.setText(getString(R.string.pharmacy));
             placeNameTextView.setText(pharmacy.getPharmacyName());
-            threeTextView.setText(pharmacy.getPharmacyHotline());
-
+            if (pharmacy.getPharmacyHotline().equals("0.0"))
+                threeTextView.setText(getString(R.string.NOHotline));
+            else {
+                threeTextView.setText(pharmacy.getPharmacyHotline());
+            }
             fourTextView.setVisibility(View.VISIBLE);
-            fourTextView.setText(getString(R.string.delivery) + pharmacy.getPharmacyDelivery());
+            if (pharmacy.getPharmacyDelivery()) {
+                fourTextView.setText(getString(R.string.delivery));
+            } else {
+                fourTextView.setText(getString(R.string.NODelivery));
+            }
+
 
         } else if (mMarkers.get(marker.getId()) instanceof Clinic) {
             Clinic clinic = (Clinic) mMarkers.get(marker.getId());
@@ -274,7 +290,10 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
             threeTextView.setText(laboratory.getLabSpecialization());
 
             fourTextView.setVisibility(View.VISIBLE);
-            fourTextView.setText(laboratory.getLabHotline());
+            if (laboratory.getLabHotline().equals("0.0")) {
+                threeTextView.setText(getString(R.string.NOHotline));
+            } else
+                fourTextView.setText(laboratory.getLabHotline());
         }
 
         return true;
@@ -452,14 +471,15 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
                             } else {
                                 if (status != null && status.getErrorStatus() != null) {
-                                    //Toast.makeText(getApplicationContext(), status.getErrorStatus(), Toast.LENGTH_LONG).show();
+
+                                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.no_search), Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
 
                         @Override
                         public void onFailure(Call<PlacesSearchResponse> call, Throwable t) {
-                            //Toast.makeText(getApplicationContext(), getString(R.string.internet_connection_problem_message), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.no_search), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

@@ -53,7 +53,6 @@ public class AdvancedSearchFragment extends Fragment {
 
     @BindView(R.id.advanced_search_results_list)
     RecyclerView mSearchResultsRecyclerView;
-
     private AdvancedSearchAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -67,11 +66,12 @@ public class AdvancedSearchFragment extends Fragment {
     private  String[] items ;
     private Spinner spatializationSpinner;
 
-    private String selectedPlace ;
+    private String selectedPlace="clinic" ;
     private String selectedSpatialization ="";
     private int  selectedOrder =0;
     private  List<AdvancedSearchBranch> mBranchesEmpty = new ArrayList<AdvancedSearchBranch>();
     private int first=0;
+    private Button searchButton;
 
 
     // private List<String> mListDataHeader;
@@ -100,7 +100,7 @@ public class AdvancedSearchFragment extends Fragment {
         sortLinearLayout = (LinearLayout) rootView.findViewById(R.id.sortLinearLayout);
         spatializationSpinner= (Spinner) rootView.findViewById(R.id.spitializationSpinner);
         spatializationLinearLayout = (LinearLayout)rootView.findViewById(R.id.spatializationLinearLayout);
-
+        searchButton = (Button) rootView.findViewById(R.id.advanced_search_button_search);
         placeType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
@@ -109,14 +109,14 @@ public class AdvancedSearchFragment extends Fragment {
                 if (checkedId == R.id.clinicRadio) {
                     //Toast.makeText(getContext(), "clinc", Toast.LENGTH_SHORT).show();
                     spatializationLinearLayout.setVisibility(View.VISIBLE);
-                    sortLinearLayout.setVisibility(View.INVISIBLE);
+                    sortLinearLayout.setVisibility(View.GONE);
                     selectedPlace="clinic";
                     items = getResources().getStringArray(R.array.clinic_typs);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
                     spatializationSpinner.setAdapter(adapter);
                 } else if (checkedId ==R.id.hospitakRadio1) {
                     //Toast.makeText(getContext(), "hospitakRadio1", Toast.LENGTH_SHORT).show();
-                    spatializationLinearLayout.setVisibility(View.INVISIBLE);
+                    spatializationLinearLayout.setVisibility(View.GONE);
                     sortLinearLayout.setVisibility(View.VISIBLE);
                     selectedPlace="hospital";
 
@@ -125,7 +125,7 @@ public class AdvancedSearchFragment extends Fragment {
                 else if (checkedId == R.id.labRadio) {
                     // Toast.makeText(getContext(), "labRadio", Toast.LENGTH_SHORT).show();
                     spatializationLinearLayout.setVisibility(View.VISIBLE);
-                    sortLinearLayout.setVisibility(View.INVISIBLE);
+                    sortLinearLayout.setVisibility(View.GONE);
                     selectedPlace="lab";
                     items = getResources().getStringArray(R.array.lab_typs);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
@@ -133,7 +133,7 @@ public class AdvancedSearchFragment extends Fragment {
                 }
                 else if (checkedId == R.id.pharmacyRadio) {
                     //Toast.makeText(getContext(), "pharmacyRadio", Toast.LENGTH_SHORT).show();
-                    spatializationLinearLayout.setVisibility(View.INVISIBLE);
+                    spatializationLinearLayout.setVisibility(View.GONE);
                     sortLinearLayout.setVisibility(View.VISIBLE);
                     selectedPlace="pharmacy";
 
@@ -171,7 +171,7 @@ public class AdvancedSearchFragment extends Fragment {
                         selectedSpatialization ="";
                     }
                     first=1;
-                    getData (selectedPlace , selectedSpatialization , selectedOrder);
+                   // getData (selectedPlace , selectedSpatialization , selectedOrder);
                  //   Toast.makeText(getContext(), selectedPlace +"  " + selectedSpatialization+"  near" , Toast.LENGTH_SHORT).show();
 
                 } else if (checkedId ==R.id.topRadio) {
@@ -180,7 +180,7 @@ public class AdvancedSearchFragment extends Fragment {
                     {
                         selectedSpatialization ="";
                     }
-                    getData (selectedPlace , selectedSpatialization , selectedOrder);
+                 //   getData (selectedPlace , selectedSpatialization , selectedOrder);
 
 
                 }
@@ -188,6 +188,13 @@ public class AdvancedSearchFragment extends Fragment {
 
             }
 
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getData (selectedPlace , selectedSpatialization , selectedOrder);
+            }
         });
 
         return rootView;
@@ -222,6 +229,7 @@ public class AdvancedSearchFragment extends Fragment {
                             mAdapter = new AdvancedSearchAdapter();
                             mLayoutManager = new LinearLayoutManager(getActivity());
                             mSearchResultsRecyclerView.setLayoutManager(mLayoutManager);
+                            mSearchResultsRecyclerView.setNestedScrollingEnabled(false);
                             mSearchResultsRecyclerView.setItemAnimator(new DefaultItemAnimator());
                             mSearchResultsRecyclerView.setAdapter(mAdapter);
                             for (int i=0 ;i<places.getBranches().size()-1 ;i++ )

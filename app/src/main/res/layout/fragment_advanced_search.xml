@@ -1,195 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_advanced_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin_16dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin_16dp"
-    android:paddingRight="@dimen/activity_horizontal_margin_16dp"
-    android:paddingTop="@dimen/activity_vertical_margin_16dp"
-    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.AdvancedSearchFragment"
-    tools:showIn="@layout/activity_advanced_search">
+    android:background="@color/background_light_grey"
+    android:orientation="vertical">
 
-
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/fab_margin_16dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
+        android:layout_height="@dimen/large_space"
+        android:background="@color/blue"
+        android:src="@drawable/app_logo"/>
 
-        >
-
+    <android.support.v4.widget.NestedScrollView
+        android:padding="@dimen/little_space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Places"
-                android:textColor="@color/white"
-                android:textSize="@dimen/form_element_text_size"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/placeTypeRadioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/connection_status_padding"
-                >
-
-                <RadioButton
-                    android:id="@+id/clinicRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/form_element_text_size"
-                    android:text="@string/clinic"
-                    android:textColor="@color/white"
-
-                    />
-
-                <RadioButton
-                    android:id="@+id/hospitakRadio1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hospital"
-                    android:textColor="@color/white"
-
-                    android:textSize="@dimen/form_element_text_size"
-                    />
-
-                <RadioButton
-                    android:id="@+id/labRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-
-                    android:textSize="@dimen/form_element_text_size"
-                    android:text="@string/laboratory" />
-                <RadioButton
-                    android:id="@+id/pharmacyRadio"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/form_element_text_size"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pharmacy" />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:id="@+id/spatializationLinearLayout"
-            android:visibility="invisible"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Spatialization"
-                android:textColor="@color/white"
-                android:textSize="@dimen/form_element_text_size"
-                android:textStyle="bold"
-
-                />
-
-            <Spinner
-                android:id="@+id/spitializationSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/white"
-                android:textSize="@dimen/form_element_text_size"
-                android:padding="@dimen/connection_status_padding"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:id="@+id/sortLinearLayout"
-            android:visibility="invisible"
-
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search order"
-                android:textColor="@color/white"
-                android:textSize="@dimen/form_element_text_size"
-                android:textStyle="bold"
-
-                />
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/fab_margin_16dp">
+                android:orientation="horizontal">
 
-                <RadioGroup
-                    android:id="@+id/searchOrderRadioGroup"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/connection_status_padding"
-                    >
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/some_space">
 
-                    <RadioButton
-                        android:id="@+id/nearstRadio"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nearst"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/form_element_text_size"/>
+                        android:padding="@dimen/little_space"
+                        android:text="@string/places"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/extra_large_text_size" />
 
-                    <RadioButton
-                        android:id="@+id/topRadio"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/placeTypeRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/clinicRadio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:text="@string/clinic"
+                            android:textSize="@dimen/mid_text_size"
+                            android:textColor="@color/dark_grey" />
+
+                        <RadioButton
+                            android:id="@+id/hospitakRadio1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:textSize="@dimen/mid_text_size"
+                            android:text="@string/hospital"
+                            android:textColor="@color/dark_grey" />
+
+                        <RadioButton
+                            android:id="@+id/labRadio"
+                            android:textSize="@dimen/mid_text_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:text="@string/laboratory"
+                            android:textColor="@color/dark_grey" />
+
+
+                        <RadioButton
+                            android:id="@+id/pharmacyRadio"
+                            android:textSize="@dimen/mid_text_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:text="@string/pharmacy"
+                            android:textColor="@color/dark_grey" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:id="@+id/sortLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/some_space">
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="Top"
-                        android:textSize="@dimen/form_element_text_size"/>
+                        android:padding="@dimen/little_space"
+                        android:text="@string/sort_by"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/extra_large_text_size" />
 
+                    <RadioGroup
+                        android:id="@+id/searchOrderRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
 
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/nearstRadio"
+                            android:textSize="@dimen/mid_text_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:text="@string/nearest"
+                            android:textColor="@color/dark_grey" />
+
+                        <RadioButton
+                            android:textSize="@dimen/mid_text_size"
+                            android:id="@+id/topRadio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/blue"
+                            android:text="@string/top_rated"
+                            android:textColor="@color/dark_grey" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/some_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/spatializationLinearLayout"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/little_space"
+                    android:text="@string/specialization"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/extra_large_text_size" />
+
+                <Spinner
+                    android:background="@drawable/round_corner_box"
+                    android:id="@+id/spitializationSpinner"
+                    android:layout_width="@dimen/screen_width"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/mid_text_size"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_marginTop="@dimen/some_space"
+                android:layout_marginBottom="@dimen/some_space"
+                android:id="@+id/advanced_search_button_search"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/mid_text_size"
+                android:text="@string/action_search"
+                android:textAllCaps="false" />
+
+            <LinearLayout
+                android:paddingTop="@dimen/some_space"
+                android:paddingBottom="@dimen/some_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:paddingTop="@dimen/some_space"
+                    android:paddingBottom="@dimen/some_space"
+                    android:paddingLeft="@dimen/little_space"
+                    android:paddingRight="@dimen/little_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/results"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/light_grey"
+                    android:gravity="center"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/advanced_search_progress_bar"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bar"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:paddingBottom="@dimen/little_space"
+                android:id="@+id/advanced_search_results_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
-
-    </LinearLayout>
-
-
-
-
-    <ProgressBar
-        android:id="@+id/advanced_search_progress_bar"
-        style="?android:attr/progressBarStyleLargeInverse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progress_bar"
-        android:visibility="gone" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="30dp"
-        android:id="@+id/advanced_search_results_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

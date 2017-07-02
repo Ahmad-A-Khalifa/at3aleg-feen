@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/background_light_grey"
 
     tools:context="com.example.ecss.medicalmapper.chattingsystem.ui.ChatActivity">
 
@@ -37,25 +37,23 @@
 
         <EditText
             android:id="@+id/edit_text_message"
-            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#555555"
+            android:textColor="@color/darker_grey"
             android:textSize="14sp"
-            android:hint="Type your message"
+            android:hint="@string/write_your_message"
             android:gravity="top"
-            android:layout_toStartOf="@+id/btn_send_message"
-            android:layout_toLeftOf="@+id/btn_send_message" />
+            android:layout_toStartOf="@+id/btn_send_message" />
+
+
         <Button
             android:id="@+id/btn_send_message"
-            android:layout_marginRight="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:layout_width="72dp"
             android:layout_height="40dp"
-            android:text="Send"
-            android:background="@color/accent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:text="@string/send"
+            android:background="@color/blue"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <ProgressBar

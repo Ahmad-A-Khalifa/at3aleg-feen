@@ -4,7 +4,7 @@
     android:id="@+id/content_payment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/background_light_grey"
     android:orientation="vertical"
     tools:context="com.example.ecss.medicalmapper.userInterface.fragments.PaymentFragment"
     tools:showIn="@layout/activity_payment">

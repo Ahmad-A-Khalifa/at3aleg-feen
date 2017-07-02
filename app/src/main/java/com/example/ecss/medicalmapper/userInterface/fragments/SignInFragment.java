@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,10 +50,10 @@ public class SignInFragment extends Fragment {
     EditText mPasswordEditText;
 
     @BindView(R.id.btn_login)
-    android.support.v7.widget.AppCompatButton mLoginButton;
+    Button mLoginButton;
 
     @BindView(R.id.link_signup)
-    TextView mSignupLinkTextView;
+    Button mSignupLinkTextView;
 
     @BindView(R.id.sign_in_progress_bar)
     ProgressBar mProgressBar;

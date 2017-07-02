@@ -1,68 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/primary"
-    tools:context="com.example.ecss.medicalmapper.chattingsystem.login.LogInActivity">
-    <TextView
-        android:id="@+id/titleChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textStyle="bold"
-        android:textColor="@color/text_color"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:layout_marginTop="@dimen/log_in_margin"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_signin"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_light_grey"
+              android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_text_email_login"
-        android:inputType="textEmailAddress"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"
-        android:layout_marginTop="40dp"
-        android:hint="email"/>
+        android:layout_height="@dimen/large_space"
+        android:background="@color/blue"
+        android:src="@drawable/app_logo"/>
 
-    <EditText
-        android:id="@+id/edit_text_password_log_in"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"
-        android:hint="password"/>
+        android:padding="@dimen/some_space"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LogIn"
-        android:background="@color/text_color"
-        android:textColor="@color/primary"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"/>
+            <TextView
+                android:id="@+id/titleChat"
+                android:layout_marginBottom="@dimen/more_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/some_space"
+                android:textColor="@color/darker_grey"
+                android:text="@string/sign_in_to_chat"
+                android:textSize="@dimen/extra_large_text_size"
+                android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="@color/primary"
-        android:background="@color/text_color"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"/>
+            <EditText
+                android:gravity="start"
+                android:id="@+id/edit_text_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/mid_text_size"
+                android:textColor="@color/dark_grey"
+                android:padding="@dimen/some_space"
+                android:hint="@string/email"
+                android:textColorHint="@color/light_grey"
+                android:background="@drawable/top_rounded_corners"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
+                android:layout_marginTop="1dp"
+                android:id="@+id/edit_text_password_log_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/mid_text_size"
+                android:padding="@dimen/some_space"
+                android:hint="@string/password"
+                android:textColorHint="@color/light_grey"
+                android:textColor="@color/dark_grey"
+                android:background="@drawable/bottom_rounded_corners"
+                android:inputType="textPassword"
+                android:gravity="start"/>
+
+            <Button
+                android:layout_marginTop="@dimen/some_space"
+                android:layout_marginBottom="@dimen/some_space"
+                android:id="@+id/btn_login"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/mid_text_size"
+                android:text="@string/navigation_drawer_item_title_sign_in"
+                android:textAllCaps="false" />
+
+
+            <LinearLayout
+                android:paddingTop="@dimen/some_space"
+                android:paddingBottom="@dimen/some_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:paddingTop="@dimen/some_space"
+                    android:paddingBottom="@dimen/some_space"
+                    android:paddingLeft="@dimen/little_space"
+                    android:paddingRight="@dimen/little_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_user"
+                    android:textSize="@dimen/mid_text_size"
+                    android:textColor="@color/light_grey"
+                    android:gravity="center"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_button"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/mid_text_size"
+                android:text="@string/navigation_drawer_item_title_sign_up"
+                android:textAllCaps="false" />
+
+            <ProgressBar
+                android:layout_margin="@dimen/some_space"
+                android:id="@+id/sign_in_progress_bar"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bar"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

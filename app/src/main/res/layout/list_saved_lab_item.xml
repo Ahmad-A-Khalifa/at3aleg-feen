@@ -1,53 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/little_space"
+    android:layout_marginLeft="@dimen/little_space"
+    android:layout_marginRight="@dimen/little_space"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:orientation="vertical">
+    android:id="@+id/lab_card_view"
+    card_view:cardCornerRadius="4dp"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/lab_card_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="4dp">
+        android:orientation="horizontal">
+        <RelativeLayout android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:src="@drawable/labitem"
+                android:id="@+id/logob"
+                android:scaleType="centerInside"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/item_image_gradient"/>
+
+        </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
+            android:background="@color/white"
+            android:paddingStart="@dimen/some_space"
+            android:paddingEnd="@dimen/little_space"
+            android:paddingTop="@dimen/some_space"
+            android:paddingBottom="@dimen/some_space"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lab_name_card"
+                android:id="@+id/lab_specialization_card"
+                android:gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
+                android:textSize="@dimen/small_text_size"
+                android:textColor="@color/blue"/>
 
             <TextView
-                android:id="@+id/lab_specialization_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/large_text_size"
+                android:paddingTop="@dimen/little_space"
+                android:id="@+id/lab_name_card"
+                android:gravity="start"
+                android:textColor="@color/darker_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_marginTop="@dimen/little_space"
                 android:id="@+id/lab_address_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/small_text_size"
+                android:textColor="@color/light_grey"/>
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
 
-</LinearLayout>
+
+
+
+
+</android.support.v7.widget.CardView>

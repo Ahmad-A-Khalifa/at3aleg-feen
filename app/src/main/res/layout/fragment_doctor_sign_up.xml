@@ -4,33 +4,41 @@
     android:id="@+id/content_doctor_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical"
-    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.DoctorSignUpFragment"
-    tools:showIn="@layout/activity_doctor_sign_up">
+    android:background="@color/background_light_grey"
+    android:orientation="vertical">
+    <!--tools:context="com.example.ecss.medicalmapper.userInterface.fragments.DoctorSignUpFragment"-->
+    <!--tools:showIn="@layout/activity_doctor_sign_up">-->
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_space"
+        android:background="@color/background_light_grey"
+        android:src="@drawable/app_logo"/>
 
     <ScrollView
-        android:id="@+id/scroll_user_form"
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-
+        android:padding="@dimen/some_space"
+        android:layout_height="match_parent">
         <LinearLayout
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
             <TextView
+                android:layout_marginBottom="@dimen/more_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="32dp"
-                android:gravity="center"
+                android:padding="@dimen/some_space"
+                android:textColor="@color/darker_grey"
                 android:text="@string/doctor_registration"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:tint="@color/white" />
+                android:textSize="@dimen/extra_large_text_size"
+                android:gravity="center"/>
+
 
             <ImageView
                 android:id="@+id/doctor_signup_photo"
@@ -39,270 +47,178 @@
                 android:layout_gravity="center"
                 android:src="@drawable/app_logo_48px" />
 
-            <TextView
-                android:id="@+id/doctor_signup_upload_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/form_element_height"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:gravity="center"
-                android:text="@string/upload_photo"
-                android:textColor="@color/dark_blue"
-                android:textSize="@dimen/form_element_text_size" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="32dp">
+                android:paddingTop="@dimen/some_space">
 
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
+                    android:padding="@dimen/little_space"
+                    android:text="@string/photo"
+                    android:textColor="@color/darker_grey"
+                    android:textSize="@dimen/extra_small_text_size" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/specialization"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/doctor_signup_specialization"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/specialization_hint"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
+                <TextView
+                    android:padding="@dimen/some_space"
+                    android:id="@+id/doctor_signup_upload_photo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/form_element_height"
-                        android:layout_weight="3"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="@string/degree"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="@dimen/form_element_text_size" />
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/doctor_signup_degree"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="center"
-                            android:hint="@string/degree_hint"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:background="@color/white"
-                            android:gravity="center"
-                            android:text="@string/overview"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/form_element_text_size" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/doctor_signup_overview"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="start"
-                            android:hint="@string/overview_hint"
-                            android:padding="8dp"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/form_element_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:background="@color/white"
-                            android:gravity="center"
-                            android:text="@string/certifications"
-                            android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/form_element_text_size" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:visibility="invisible" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="5px"
-                        android:layout_height="@dimen/form_element_height" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="7"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/doctor_signup_certifications"
-                            android:layout_width="fill_parent"
-                            android:layout_height="@dimen/form_element_height"
-                            android:layout_weight="1"
-                            android:background="@color/dark_blue"
-                            android:gravity="start"
-                            android:hint="@string/certifications_hint"
-                            android:padding="8dp"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/dark_white"
-                            android:textSize="@dimen/form_element_text_size" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:background="@drawable/blue_button"
+                    android:gravity="center"
+                    android:text="@string/upload_photo"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/form_element_text_size" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/some_space">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/little_space"
+                    android:text="@string/specialization"
+                    android:textColor="@color/darker_grey"
+                    android:textSize="@dimen/extra_small_text_size" />
+
+                <TextView
+                    android:id="@+id/doctor_signup_specialization"
+                    android:padding="@dimen/some_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_button"
+                    android:gravity="center"
+                    android:hint="@string/specialization_hint"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/form_element_text_size" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/some_space">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/little_space"
+                    android:text="@string/degree"
+                    android:textColor="@color/darker_grey"
+                    android:textSize="@dimen/extra_small_text_size" />
+
+                <TextView
+                    android:id="@+id/doctor_signup_degree"
+                    android:padding="@dimen/some_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_button"
+                    android:gravity="center"
+                    android:hint="@string/degree_hint"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/form_element_text_size" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/some_space">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/little_space"
+                    android:text="@string/overview"
+                    android:textColor="@color/darker_grey"
+                    android:textSize="@dimen/extra_small_text_size" />
+
+                <EditText
+                    android:id="@+id/doctor_signup_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_box"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:padding="@dimen/some_space"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/mid_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/some_space">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/little_space"
+                    android:text="@string/certifications"
+                    android:textColor="@color/darker_grey"
+                    android:textSize="@dimen/extra_small_text_size" />
+
+                <EditText
+                    android:id="@+id/doctor_signup_certifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_corner_box"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:padding="@dimen/some_space"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/mid_text_size" />
+            </LinearLayout>
+
+
+            <ProgressBar
+                android:layout_margin="@dimen/some_space"
+                android:visibility="gone"
+                android:id="@+id/sign_up_progress_bar"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bar" />
+
+            <Button
+                android:layout_marginTop="@dimen/some_space"
+                android:layout_marginBottom="@dimen/some_space"
+                android:id="@+id/doctor_signup_finish"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/mid_text_size"
+                android:text="@string/finish"
+                android:textAllCaps="false" />
+
         </LinearLayout>
+
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/form_element_height"
-        android:layout_marginTop="16dp"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/doctor_signup_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:text="@string/finish"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_blue"
-            android:textSize="@dimen/form_element_text_size" />
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,82 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/primary"
-
-    tools:context="com.example.ecss.medicalmapper.chattingsystem.register.RegisterActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/content_sign_up"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_light_grey"
+              android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:id="@+id/titleChat"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_color"
-        android:layout_marginTop="@dimen/log_in_margin"/>
-
-    <EditText
-        android:id="@+id/edit_text_display_name"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:hint="display name"/>
+        android:layout_height="@dimen/large_space"
+        android:background="@color/blue"
+        android:src="@drawable/app_logo"/>
 
-    <EditText
-        android:id="@+id/edit_text_email_register"
-        android:inputType="textEmailAddress"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:hint="email"/>
+        android:padding="@dimen/some_space"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_text_password_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:hint="password"/>
 
-    <Button
-        android:id="@+id/btn_register_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@color/text_color"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:textColor="@color/primary"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="@dimen/log_in_margin"/>
+            <TextView
+                android:layout_marginBottom="@dimen/more_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/some_space"
+                android:textColor="@color/darker_grey"
+                android:text="@string/sign_up_to_chat"
+                android:textSize="@dimen/extra_large_text_size"
+                android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btn_cancel_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:textColor="@color/primary"
-        android:background="@color/text_color"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="@dimen/log_in_margin"
-        android:layout_marginRight="@dimen/log_in_margin"/>
+            <EditText
+                android:gravity="start"
+                android:id="@+id/edit_text_display_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/mid_text_size"
+                android:textColor="@color/dark_grey"
+                android:padding="@dimen/some_space"
+                android:hint="@string/username"
+                android:textColorHint="@color/light_grey"
+                android:background="@drawable/top_rounded_corners"
+                android:inputType="textEmailAddress"/>
 
+            <EditText
+                android:layout_marginTop="1dp"
+                android:gravity="start"
+                android:id="@+id/edit_text_email_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/mid_text_size"
+                android:textColor="@color/dark_grey"
+                android:padding="@dimen/some_space"
+                android:hint="@string/email"
+                android:textColorHint="@color/light_grey"
+                android:background="@color/white"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
+                android:layout_marginTop="1dp"
+                android:id="@+id/edit_text_password_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/mid_text_size"
+                android:padding="@dimen/some_space"
+                android:hint="@string/password"
+                android:textColorHint="@color/light_grey"
+                android:textColor="@color/dark_grey"
+                android:background="@drawable/bottom_rounded_corners"
+                android:inputType="textPassword"
+                android:gravity="start"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_marginTop="@dimen/some_space"
+                    android:layout_marginBottom="@dimen/some_space"
+                    android:id="@+id/btn_cancel_register"
+                    android:layout_gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_button"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false" />
+
+
+                <View
+                    android:layout_width="@dimen/some_space"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:layout_marginTop="@dimen/some_space"
+                    android:layout_marginBottom="@dimen/some_space"
+                    android:id="@+id/btn_register_user"
+                    android:layout_gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_button"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/mid_text_size"
+                    android:text="@string/register"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+
+
+
+            <ProgressBar
+                android:layout_margin="@dimen/some_space"
+                android:visibility="gone"
+                android:id="@+id/sign_up_progress_bar"
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bar" />
+        </LinearLayout>
+
+
+
+    </ScrollView>
 
 </LinearLayout>

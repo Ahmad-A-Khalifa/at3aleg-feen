@@ -84,14 +84,14 @@ public class SavedHospitalsAdapter extends RecyclerView.Adapter<SavedHospitalsAd
             mPosition = position;
             hospitalName.setText(hospital.getHospitalName());
             if (hospital.getIsGovernment() == true) {
-                hospitalGov.setText("Governmental");
+                hospitalGov.setText(hospitalGov.getContext().getString(R.string.Governmental));
             } else {
-                hospitalGov.setText("Private");
+                hospitalGov.setText(hospitalGov.getContext().getString(R.string.Private));
             }
             if (hospital.getHospitalEmergency() == true) {
-                hospitalEmerg.setText("Has Emergency");
+                hospitalEmerg.setText(hospitalEmerg.getContext().getString(R.string.Emergency));
             } else {
-                hospitalEmerg.setText("No Emergency");
+                hospitalEmerg.setText(hospitalEmerg.getContext().getString(R.string.NoEmergency));
             }
             hospitalAdderss.setText(hospital.getBranches().get(0).getBranchStreetName() + "," + hospital.getBranches().get(0).getBranchAddressNotes());
 

@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">اتعالج فين</string>
 
 
@@ -134,10 +135,202 @@
     </string-array>
 
     <string name="no_search">لاتوجد نواتج للبحث </string>
+    <string name="error_general">حدث خطأ ما</string>
+
+
+    <string name="report_outdated_medical_place">التبليغ عن المكان</string>
+
+    <string name="language">اللغة</string>
+
+    <string name="current_language">ar</string>
+
+    <string name="settings">الاعدادات</string>
+
+    <string name="general">عام</string>
+    <string name="are_you_a_doctor">هل انت طبيب؟</string>
+
+
+
+    <string name="new_user">مستخدم جديد</string>
+    <string name="places">الاماكن</string>
+    <string name="sort_by">رتب بواسطة</string>
+    <string name="nearest">الاقرب</string>
+    <string name="top_rated">الافضل</string>
+    <string name="results">النتائج</string>
+
+
+
+    <string-array name="doctor_degrees_array">
+        <item>استاذ</item>
+        <item>استشاري</item>
+        <item>أخصائي</item>
+        <item>استاذ مساعد</item>
+        <item>مدرس</item>
+    </string-array>
+
+    <string-array name="doctor_specializations_array">
+        <item>الباطنة العامة</item>
+        <item>مناظير الباطنة</item>
+        <item>الباطنة العامةوغدد صماءوسكر</item>
+        <item>الباطنة العامةو كبدو جهاز هضمي</item>
+        <item>الباطنة العامةو امراض الكلي</item>
+        <item>القلب</item>
+        <item>الصدر</item>
+        <item>الاطفال</item>
+        <item>النفسية والعصبية</item>
+        <item>الجلدية و التناسلية</item>
+        <item>الجراحه العامه</item>
+        <item>جراحة مناظير</item>
+        <item>جراحة الأوعية الدموية</item>
+        <item>جراحة التجميل و الحروق</item>
+        <item>جراحة الاورام</item>
+        <item>جراحة الاطفال</item>
+        <item>جراحة المخ و الاعصاب</item>
+        <item>جراحة القلب والصدر</item>
+        <item> المسالك البولية</item>
+        <item> النساء والتوليد</item>
+        <item>جراحة العيون</item>
+        <item>جراحةالعظام</item>
+        <item>الروماتيزم والطب الطبيعي</item>
+        <item>جراحة الأنف و الأذن و الحنجرة</item>
+        <item>التخاطب و السمعيات</item>
+        <item>الفم و الأسنان</item>
+
+    </string-array>
+
+    <string name="error_validate_specialization">ادخل تخصص صحيح</string>
+    <string name="error_validate_degree">ادخل درجة علمية صحيحة</string>
+    <string name="error_validate_certifications">ادخل شهادات صحيحة</string>
+
+    <string name="email">بريد الكتروني</string>
+    <string name="password">كلمة السر</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="no_account_yet">ليس لديك حساب؟ انشيء حساب</string>
+
+    <string name="registration">تسجيل</string>
+    <string name="doctor_registration">تسجيل الدكتور</string>
+
+    <string name="username">اسم مستخدم</string>
+    <string name="finish">تسجيل</string>
+    <string name="upload_photo">ارفع صورة</string>
+
+    <string name="specialization">تخصص</string>
+    <string name="specialization_hint">اختار تخصص</string>
+
+    <string name="degree">درجة علمية</string>
+    <string name="degree_hint">ادخل الدرجة العلمية</string>
+
+    <string name="overview">نبذة</string>
+    <string name="overview_hint">اوصف نفسك</string>
+
+    <string name="certifications">شهادات</string>
+    <string name="certifications_hint">ادخل الشهادات</string>
+
+    <string name="navigation_drawer_item_title_clinics">عيادات</string>
+    <string name="navigation_drawer_item_title_all">الكل</string>
+    <string name="navigation_drawer_item_title_hospitals">مستشفيات</string>
+    <string name="navigation_drawer_item_title_laboratories">معامل</string>
+    <string name="navigation_drawer_item_title_pharmacies">صيدليات</string>
+    <string name="navigation_drawer_item_title_filter_by">صنف على</string>
+    <string name="navigation_drawer_item_title_account">حساب</string>
+    <string name="navigation_drawer_item_title_other">اخر</string>
+    <string name="navigation_drawer_item_title_settings">اعدادات</string>
+    <string name="navigation_drawer_item_title_help">مساعدة</string>
+
+    <string name="title_specializations">شهادات الدكتور</string>
+    <string name="title_degrees">الدرجات العلمية للدكتور</string>
+
+    <string name="internet_connection_problem_message">مشكلة في الانترنت</string>
+    <string name="sign_in_problem_message">لابدان تسجل الدخول</string>
+    <string name="Your_review">تعليقك</string>
+    <string name="review_by">تم التعليق بواسطة</string>
+    <string name="Submit">سلم</string>
+    <string name="Cancel">الغي</string>
+    <string name="Nothingtoshow">لا شيء للعرض</string>
+
+    <string name="tap_to_update">(اضغط للتحديث)</string>
+    <string name="doctor_name_update">عدل اسم الدكتور</string>
+    <string name="specialization_update">عدل التخصص</string>
+    <string name="degree_update"> عدل الدرجة العلمية</string>
+    <string name="overview_update">عدل النبذة</string>
+    <string name="certifications_update">عدل الشهادات</string>
+
+
+    <string name="navigation_drawer_item_title_sign_in">تسجيل دخول</string>
+    <string name="navigation_drawer_item_title_sign_up">انشاء حساب</string>
+    <string name="navigation_drawer_item_title_profile">الملف الشخصي</string>
+    <string name="navigation_drawer_item_title_my_places">اماكني</string>
+    <string name="navigation_drawer_item_title_chat">شات</string>
+    <string name="navigation_drawer_item_title_go_premium">كن بريميام</string>
+    <string name="navigation_drawer_item_title_sign_out">تسجيل خروج</string>
+    <string name="navigation_drawer_item_title_add_place">اضف مكان</string>
+
+    <string name="doctor_profile">الملف الشخصي للدكتور</string>
+    <string name="name">الاسم</string>
+    <string name="save">حفظ</string>
+
+
+    <string name="title_activity_doctor_profile">DoctorProfileActivity</string>
+    <string name="title_activity_display_search_places">DisplaySearchPlacesActivity</string>
+    <string name="title_activity_add_place">AddPlaceActivity</string>
+
+    <string name="snackbar_message_connected">متصل</string>
+    <string name="snackbar_message_disconnected">لا يوجد اتصال بالانترنت</string>
+    <string name="title_activity_settings">اعدادات</string>
+
+
+    <string name="base_api_url" translatable="false">http://at3alegfeenapi-001-site1.itempurl.com/api</string>
+
+    <string name="state_closed" translatable="false">مغلق</string>
+    <string name="state_outdated" translatable="false">قديم</string>
+
+
+    <string name="place_name">اسم المكان</string>
+    <string name="building_number">رقم العمارة</string>
+    <string name="street">الشارع</string>
+    <string name="address_notes">العنوان</string>
+    <string name="phone_number">رقم التليفون</string>
+    <string name="add_new_place">ادخل مكان طبي جديد</string>
+    <string name="add_new_place_success">سوف يتم التحقق و اضافة مكانك لاحقا</string>
+    <string name="ok">تم</string>
+
+    <string name="governmental">حكومي: </string>
+    <string name="emergency">طواريء: </string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+
+    <!-- LogInActivity-->
+    <string name="login_error_message">من فضلك ناكد من ادخال اسم مستخدم و رقم سر </string>
+    <string name="login_error_title">جار التحقق</string>
+    <string name="title_activity_chat">شات</string>
+
+    <!-- RegisterActivity-->
+    <string name="error_fields_empty">من فضلك تاكد من ادخال اسم للعرض و بريد الكتروني و رقم سري</string>
+    <string name="error_incorrect_email_pass">قم بادخال بريد الكتروني صحيح و كلمة سر صحيحة اكثر من 6 حروف</string>
+    <string name="write_your_message">اكتب رسالتك…</string>
+    <string name="send">ارسال</string>
+    <string name="sign_in_to_chat">تسجيل الدخول للشات</string>
+    <string name="register">تسجيل</string>
+    <string name="sign_up_to_chat">اشترك في الشات</string>
+    <string name="home">الرئيسية</string>
+
+
+
+
+
+
     <string name="commentfail">الشبكة مشغوله حاول في وقت اخر</string>
     <string name="placeSaved">تم حفظ المكان بنجاح</string>
     <string name="placeUnSaved">تم مسح المكان بنجاح</string>
 
-
+    <string name="Governmental">حكومي</string>
+    <string name="Private">خاص</string>
+    <string name="Emergency">يوجد طوارئ</string>
+    <string name="NoEmergency"> لا يوجد طوارئ</string>
+    <string name="delivery"> يوجد توصيل</string>
+    <string name="NODelivery">لا يوجد توصيل</string>
+    <string name="NOHotline">لا يوجد خط ساخن</string>
 
 </resources>

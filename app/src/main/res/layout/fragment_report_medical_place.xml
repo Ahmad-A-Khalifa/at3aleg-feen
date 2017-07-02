@@ -1,25 +1,25 @@
-<LinearLayout
-    android:id="@+id/fragment_report_medical_place"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_report_medical_place"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="@dimen/more_space"
     android:orientation="vertical"
-    tools:context="com.example.ecss.medicalmapper.ui.fragment.ReportMedicalPlaceFragment">
+    android:padding="@dimen/more_space"
+    tools:context="com.example.ecss.medicalmapper.userInterface.fragments.ReportMedicalPlaceFragment">
 
     <LinearLayout
-        android:paddingTop="@dimen/some_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/some_space">
+
         <TextView
-            android:textColor="@color/blue"
-            android:padding="@dimen/little_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/extra_small_text_size"
-            android:text="@string/place_state"/>
+            android:padding="@dimen/little_space"
+            android:text="@string/place_state"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/extra_small_text_size" />
 
         <RadioGroup
             android:id="@+id/fragment_report_medical_place_radio_group"
@@ -28,79 +28,81 @@
 
             <RadioButton
                 android:id="@+id/fragment_report_medical_place_not_available_radio_button"
-                android:buttonTint="@color/blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_grey"
-                android:text="@string/no_available_anymore"/>
+                android:buttonTint="@color/blue"
+                android:text="@string/no_available_anymore"
+                android:textColor="@color/dark_grey" />
 
             <RadioButton
                 android:id="@+id/fragment_report_medical_place_info_outdated_radio_button"
-                android:buttonTint="@color/blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_grey"
-                android:text="@string/information_outdated"/>
+                android:buttonTint="@color/blue"
+                android:text="@string/information_outdated"
+                android:textColor="@color/dark_grey" />
 
         </RadioGroup>
 
     </LinearLayout>
 
     <LinearLayout
-        android:paddingTop="@dimen/some_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/some_space">
+
         <TextView
-            android:textColor="@color/blue"
-            android:padding="@dimen/little_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/extra_small_text_size"
-            android:text="@string/your_comment"/>
+            android:padding="@dimen/little_space"
+            android:text="@string/your_comment"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/extra_small_text_size" />
+
         <EditText
             android:id="@+id/fragment_report_medical_place_comment_edit_text"
-            android:maxLines="5"
-            android:lines="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_box"
             android:gravity="top|start"
             android:inputType="textMultiLine"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/mid_text_size"
-            android:textColor="@color/dark_grey"
+            android:lines="3"
+            android:maxLines="5"
             android:padding="@dimen/some_space"
-            android:background="@drawable/round_corner_box"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/mid_text_size" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/more_space"
         android:layout_width="match_parent"
         android:layout_height="@dimen/some_more_space"
+        android:layout_marginTop="@dimen/more_space"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/fragment_report_medical_place_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/blue_button"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@drawable/blue_button"
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="match_parent"/>
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="@dimen/more_space"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/fragment_report_medical_place_report_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/blue_button"
             android:text="@string/report"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@drawable/blue_button"
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="match_parent"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

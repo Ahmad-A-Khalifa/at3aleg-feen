@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdvancedSearchAdapter extends RecyclerView.Adapter<AdvancedSearchAdapter.MyViewHolder> {
+public class  AdvancedSearchAdapter extends RecyclerView.Adapter<AdvancedSearchAdapter.MyViewHolder> {
 
     private List<AdvancedSearchBranch> mBranches ;
 

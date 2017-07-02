@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
+import com.example.ecss.medicalmapper.chattingsystem.adapter.MessageChatAdapter;
+import com.example.ecss.medicalmapper.chattingsystem.model.ChatMessage;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class ChatBotActivity extends AppCompatActivity {
 
+    RecyclerView mChatRecyclerView ;
+    ChatBotAdapter chatBotAdapter ;
     public static void startActivity(Context context) {
         if (context == null) {
             return;
@@ -29,7 +36,11 @@ public class ChatBotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
-        final TextView text = (TextView) findViewById(R.id.textview);
+        mChatRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_chatbot) ;
+        mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        chatBotAdapter = new ChatBotAdapter();
+        mChatRecyclerView.setAdapter(chatBotAdapter);
+       // final TextView text = (TextView) findViewById(R.id.textview);
         final EditText edit = (EditText) findViewById(R.id.textSend);
         Button button = (Button) findViewById(R.id.button);
 
@@ -56,7 +67,11 @@ public class ChatBotActivity extends AppCompatActivity {
                         Gson gson1 = new Gson();
                         Output out = gson1.fromJson(s, Output.class);
                         Log.d("Rest Api", s);
-                        text.setText(out.output.text.get(0));
+                       // text.setText(out.output.text.get(0));
+                        String botans = out.output.text.get(0);
+                        String seend =edit.getText().toString() ;
+                        MasaageHolder masaageHolder = new MasaageHolder( seend,botans);
+                        chatBotAdapter.addNewMass(masaageHolder);
                         edit.setText("");
 
                     } catch (InterruptedException e) {

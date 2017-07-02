@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ecss.medicalmapper.R;
+import com.example.ecss.medicalmapper.chatbot.ChatBotAdapter;
 import com.example.ecss.medicalmapper.chattingsystem.model.ChatMessage;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class MessageChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<ChatMessage> mChatList;
     public static final int SENDER = 0;
     public static final int RECIPIENT = 1;
+
 
     public MessageChatAdapter(List<ChatMessage> listOfFireChats) {
         mChatList = listOfFireChats;

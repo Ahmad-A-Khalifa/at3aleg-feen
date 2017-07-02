@@ -100,18 +100,18 @@ public class DetailsFragment extends Fragment {
     @BindView(R.id.report_outdated_medical_place)
     Button mReportOutdatedPlaceButton;
 
-    Integer hospitalBranchId;
-    String hospitalBranchType;
-    Integer clinicBranchId;
-    String clinicBranchType;
+    static int hospitalBranchId;
+    static String hospitalBranchType;
+    static int clinicBranchId;
+    static String clinicBranchType;
     String clinicEmail;
     String hospitalEmail;
     String pharmacyEmail;
     String labEmail;
-    Integer pharmacyBranchId;
-    String pharmacyBranchType;
-    Integer labBranchId;
-    String labBranchType;
+    static int pharmacyBranchId;
+    static String pharmacyBranchType;
+    static int labBranchId;
+    static String labBranchType;
     int isHospital;
     int isClinic;
     int isLab;
@@ -182,11 +182,13 @@ public class DetailsFragment extends Fragment {
 
 
             String buildingNumber = hospital.getBranches().get(0).getBranchBuildingNum();
+            Double b = Double.parseDouble(buildingNumber);
+            int building = b.intValue();
             String streetName = hospital.getBranches().get(0).getBranchStreetName();
             String addressNotes = hospital.getBranches().get(0).getBranchAddressNotes();
             String phoneNum = hospital.getBranches().get(0).getBranchPhoneNum();
 
-            mAddress.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            mAddress.setText(building + " " + streetName + " " + addressNotes);
             mPhoneNumber.setText(phoneNum);
 
             mRatingBar.setRating(Float.parseFloat(hospital.getBranches().get(0).getBranchRate()));
@@ -210,11 +212,13 @@ public class DetailsFragment extends Fragment {
             mName.setText(pharmacy.getPharmacyName());
 
             String buildingNumber = pharmacy.getBranches().get(0).getBranchBuildingNum();
+            Double b = Double.parseDouble(buildingNumber);
+            int building = b.intValue();
             String streetName = pharmacy.getBranches().get(0).getBranchStreetName();
             String addressNotes = pharmacy.getBranches().get(0).getBranchAddressNotes();
             String phoneNum = pharmacy.getBranches().get(0).getBranchPhoneNum();
 
-            mAddress.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            mAddress.setText(building + " " + streetName + " " + addressNotes);
             mPhoneNumber.setText(phoneNum);
 
             mRatingBar.setRating(Float.parseFloat(pharmacy.getBranches().get(0).getBranchRate()));
@@ -240,11 +244,15 @@ public class DetailsFragment extends Fragment {
             mSpecialization.setText(clinic.getClinicSpecialization());
 
             String buildingNumber = clinic.getBranches().get(0).getBranchBuildingNum();
+            Double b = Double.parseDouble(buildingNumber);
+            int building = b.intValue();
+
+
             String streetName = clinic.getBranches().get(0).getBranchStreetName();
             String addressNotes = clinic.getBranches().get(0).getBranchAddressNotes();
             String phoneNum = clinic.getBranches().get(0).getBranchPhoneNum();
 
-            mAddress.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            mAddress.setText(building + " " + streetName + " " + addressNotes);
             mPhoneNumber.setText(phoneNum);
 
 
@@ -278,11 +286,13 @@ public class DetailsFragment extends Fragment {
             mSpecialization.setText(laboratory.getLabSpecialization());
 
             String buildingNumber = laboratory.getBranches().get(0).getBranchBuildingNum();
+            Double b = Double.parseDouble(buildingNumber);
+            int building = b.intValue();
             String streetName = laboratory.getBranches().get(0).getBranchStreetName();
             String addressNotes = laboratory.getBranches().get(0).getBranchAddressNotes();
             String phoneNum = laboratory.getBranches().get(0).getBranchPhoneNum();
 
-            mAddress.setText(buildingNumber + " " + streetName + " " + addressNotes);
+            mAddress.setText(building + " " + streetName + " " + addressNotes);
             mPhoneNumber.setText(phoneNum);
 
 
@@ -322,82 +332,167 @@ public class DetailsFragment extends Fragment {
                         if (apiCallStatus != null && places != null && apiCallStatus.getIsSuccessful()) {
 
                             if (getRequestTypeFromSharedPreference() == 0) {
-                                for (Hospital hospitalLocal : places.getHospitals()) {
-                                    if (hospitalLocal.getBranches().get(0) != null) {
-                                        if (hospitalLocal.getBranches().get(0).getBranchId() == hospitalBranchId) {
-                                            mSavePlaceButton.setVisibility(View.GONE);
-                                            mUnSavebutton.setVisibility(View.VISIBLE);
-                                            break;
+
+                                if(places.getHospitals() != null && places.getHospitals().size()>0) {
+
+                                    int isExist=0;
+                                    for (Hospital hospitalLocal : places.getHospitals()) {
+                                        if (hospitalLocal.getBranches().get(0) != null) {
+                                            if (hospitalLocal.getBranches().get(0).getBranchId() == hospitalBranchId) {
+                                                isExist=1;
+
+                                                break;
+                                            }
+
                                         }
+                                    }
+
+                                    if(isExist==1)
+                                    {
+                                        mSavePlaceButton.setVisibility(View.GONE);
+                                        mUnSavebutton.setVisibility(View.VISIBLE);
+                                    }
+
+                                    else
+                                    {
+                                        mSavePlaceButton.setVisibility(View.VISIBLE);
 
                                     }
+
+
+
                                 }
-                                mSavePlaceButton.setVisibility(View.VISIBLE);
+
+                                else
+                                {
+                                    mSavePlaceButton.setVisibility(View.VISIBLE);
+                                    mUnSavebutton.setVisibility(View.GONE);
+                                }
+
+                            }
 
 
-                            } else if (getRequestTypeFromSharedPreference() == 2) {
-                                for (Pharmacy pharmacyLocal : places.getPharmacies()) {
-                                    if (pharmacyLocal.getBranches().get(0) != null) {
-                                        if (pharmacyLocal.getBranches().get(0).getBranchId() == pharmacyBranchId) {
-                                            mSavePlaceButton.setVisibility(View.GONE);
-                                            mUnSavebutton.setVisibility(View.VISIBLE);
-                                            Log.i("zzzzzz","unsave");
-                                            Log.i("pharmacyBranchId : " + pharmacyBranchId, "=" + pharmacyLocal.getBranches().get(0).getBranchId());
-                                            break;
+                            else if (getRequestTypeFromSharedPreference() == 2) {
+
+                                if(places.getPharmacies()!= null && places.getPharmacies().size()>0) {
+                                    int isExist=0;
+
+
+                                    for (Pharmacy pharmacyLocal : places.getPharmacies()) {
+                                        if (pharmacyLocal.getBranches().get(0) != null) {
+                                            if (pharmacyLocal.getBranches().get(0).getBranchId() == pharmacyBranchId) {
+                                                isExist=1;
+                                                Log.i("zzzzzz", "unsave");
+                                                Log.i("pharmacyBranchId : " + pharmacyBranchId, "=" + pharmacyLocal.getBranches().get(0).getBranchId());
+                                                break;
+                                            }
+
                                         }
 
+
                                     }
+
+                                    if(isExist==1)
+                                    {
+                                        mSavePlaceButton.setVisibility(View.GONE);
+                                        mUnSavebutton.setVisibility(View.VISIBLE);
+                                    }
+
+                                    else
+                                    {
+                                        mSavePlaceButton.setVisibility(View.VISIBLE);
+
+                                    }
+
                                 }
-                                mSavePlaceButton.setVisibility(View.VISIBLE);
+
+                                else
+                                {
+                                    mSavePlaceButton.setVisibility(View.VISIBLE);
+                                    mUnSavebutton.setVisibility(View.GONE);
+                                }
 
                             } else if (getRequestTypeFromSharedPreference() == 3) {
-                                for (Laboratory labLocal : places.getLaboratories()) {
-                                    if (labLocal.getBranches().get(0) != null) {
-                                        if (labLocal.getBranches().get(0).getBranchId() == labBranchId) {
-                                            mSavePlaceButton.setVisibility(View.GONE);
-                                            mUnSavebutton.setVisibility(View.VISIBLE);
-                                            break;
-                                        }
-                                    }
-                                }
-                                mSavePlaceButton.setVisibility(View.VISIBLE);
 
-                            } else if (getRequestTypeFromSharedPreference() == 1) {
-                                for (Clinic clinicLocal : places.getClinics()) {
-                                    if (clinicLocal.getBranches().get(0) != null) {
-                                        if (clinicLocal.getBranches().get(0).getBranchId() == clinicBranchId) {
-                                            mSavePlaceButton.setVisibility(View.GONE);
-                                            Log.e("yala ba2a :", "visible");
-                                            mUnSavebutton.setVisibility(View.VISIBLE);
-                                            break;
+                                if(places.getLaboratories()==null &&places.getLaboratories().size()>0) {
+                                    int isExist=0;
+
+                                    for (Laboratory labLocal : places.getLaboratories()) {
+                                        if (labLocal.getBranches().get(0) != null) {
+                                            if (labLocal.getBranches().get(0).getBranchId() == labBranchId) {
+                                                isExist=1;
+
+                                                break;
+                                            }
                                         }
                                     }
+                                    if(isExist==1)
+                                    {
+                                        mSavePlaceButton.setVisibility(View.GONE);
+                                        mUnSavebutton.setVisibility(View.VISIBLE);
+                                    }
+
+                                    else
+                                    {
+                                        mSavePlaceButton.setVisibility(View.VISIBLE);
+
+                                    }
                                 }
+                                else {
+                                    mSavePlaceButton.setVisibility(View.VISIBLE);
+                                    mUnSavebutton.setVisibility(View.GONE);
+                                }
+
                             }
+                            else if (getRequestTypeFromSharedPreference() == 1) {
+
+                                if( places.getClinics()!=null &&  places.getClinics().size() >0 ) {
+                                    int isExit=0;
+                                    for (Clinic clinicLocal : places.getClinics()) {
+                                        if (clinicLocal.getBranches().get(0) != null) {
+                                            if (clinicLocal.getBranches().get(0).getBranchId() == clinicBranchId) {
+                                                isExit=1;
+                                                break;
+                                            }
+                                        }
+
+                                        if(isExit==1)
+                                        {
+                                            mSavePlaceButton.setVisibility(View.GONE);
+                                            mUnSavebutton.setVisibility(View.VISIBLE);
+                                        }
+
+                                        else
+                                        {
+                                            mSavePlaceButton.setVisibility(View.VISIBLE);
+
+                                        }
+                                    }
+                                }
+
+                                else {
+                                    mSavePlaceButton.setVisibility(View.VISIBLE);
+                                    mUnSavebutton.setVisibility(View.GONE);
+                                }
+
+                            }
+                            else {
+                                mSavePlaceButton.setVisibility(View.VISIBLE);
+                                mUnSavebutton.setVisibility(View.GONE);
+                            }
+                        } else if (apiCallStatus != null && places == null && apiCallStatus.getIsSuccessful() == false) {
+                            mUnSavebutton.setVisibility(View.GONE);
                             mSavePlaceButton.setVisibility(View.VISIBLE);
                         }
-
-                        else {
-                            mSavePlaceButton.setVisibility(View.VISIBLE);
-
-                        }
-
                     }
-
                     @Override
                     public void onFailure(Call<PlacesResponse> call, Throwable t) {
                     }
                 });
-
             }
-
         }
-
-
         return rootView;
     }
-
-
     private Review getTmpReview() {
         return new Review("", "");
     }
@@ -431,7 +526,6 @@ public class DetailsFragment extends Fragment {
 
                 } else if (getRequestTypeFromSharedPreference() == 3) {
                     savePlaceToApi(getUserFromSharedPreferences(getContext()).getUserId(), labBranchId, labBranchType);
-
                 } else if (getRequestTypeFromSharedPreference() == 1) {
                     savePlaceToApi(getUserFromSharedPreferences(getContext()).getUserId(), clinicBranchId, clinicBranchType);
                 }
@@ -442,13 +536,10 @@ public class DetailsFragment extends Fragment {
                     removePlaceFromApi(getUserFromSharedPreferences(getContext()).getUserId(), hospitalBranchId, hospitalBranchType);
                 } else if (getRequestTypeFromSharedPreference() == 2) {
                     removePlaceFromApi(getUserFromSharedPreferences(getContext()).getUserId(), pharmacyBranchId, pharmacyBranchType);
-
                 } else if (getRequestTypeFromSharedPreference() == 3) {
                     removePlaceFromApi(getUserFromSharedPreferences(getContext()).getUserId(), labBranchId, labBranchType);
-
                 } else if (getRequestTypeFromSharedPreference() == 1) {
                     removePlaceFromApi(getUserFromSharedPreferences(getContext()).getUserId(), clinicBranchId, clinicBranchType);
-
                 }
 
                 break;
@@ -512,12 +603,12 @@ public class DetailsFragment extends Fragment {
                     }
 
                     if (apiCallStatus != null && apiCallStatus.getIsSuccessful()) {
-                        Toast.makeText(getContext(), getActivity().getResources().getString(R.string.placeSaved), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), getActivity().getResources().getString(R.string.placeUnSaved), Toast.LENGTH_LONG).show();
 
 
                     } else {
                         if (apiCallStatus != null && apiCallStatus.getErrorStatus() != null)
-                            Toast.makeText(getContext(), getActivity().getResources().getString(R.string.placeUnSaved), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), apiCallStatus.getErrorStatus(), Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -526,9 +617,6 @@ public class DetailsFragment extends Fragment {
 
                 }
             });
-
-
-        } else {
 
 
         }
@@ -550,7 +638,7 @@ public class DetailsFragment extends Fragment {
                     }
 
                     if (apiCallStatus != null && apiCallStatus.getIsSuccessful()) {
-                        Toast.makeText(getContext(), apiCallStatus.getErrorStatus(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), getActivity().getResources().getString(R.string.placeSaved), Toast.LENGTH_LONG).show();
 
 
                     } else {

@@ -147,7 +147,7 @@ public class Branch implements Parcelable/*extends RealmObject*/ {
         this.mBranchLanguage = mBranchLanguage;
     }
 
-    public Integer getBranchId() {
+    public int getBranchId() {
         return mBranchId;
     }
 

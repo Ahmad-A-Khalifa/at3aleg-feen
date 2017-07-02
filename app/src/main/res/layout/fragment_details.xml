@@ -271,6 +271,7 @@
                     android:id="@+id/UnSaveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/blue"
                     android:src="@drawable/star_filled"
                     android:visibility="gone" />
 
@@ -320,7 +321,6 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:visibility="gone" />
-
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

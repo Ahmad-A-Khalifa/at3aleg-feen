@@ -9,13 +9,16 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
-public class SettingsActivity extends PreferenceActivity {
+import com.example.ecss.medicalmapper.userInterface.activities.general.HomeScreenActivity;
+import com.example.ecss.medicalmapper.userInterface.fragments.SettingsFragment;
+import com.example.ecss.medicalmapper.utility.LanguageManager;
+
+public class SettingsActivity extends PreferenceActivity implements SettingsFragment.OnSharedPreferenceChangeListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, SettingsFragment.newInstance()).commit();
     }
 
     public static void startActivity(Context context) {
@@ -23,6 +26,17 @@ public class SettingsActivity extends PreferenceActivity {
             return;
         }
         context.startActivity(new Intent(context, SettingsActivity.class));
+    }
+
+    @Override
+    public void onLanguageChanged(String newLanguage) {
+        LanguageManager.setLanguage(this, newLanguage);
+    }
+
+    @Override
+    public void onBackPressed() {
+        HomeScreenActivity.startActivity(this);
+        finish();
     }
 
     public static class MyPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {

@@ -333,5 +333,6 @@
     <string name="register">Register</string>
     <string name="sign_up_to_chat">Sign up to chat</string>
     <string name="home">Home</string>
+    <string name="unSaved">Un Saved</string>
 
 </resources>

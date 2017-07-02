@@ -92,10 +92,10 @@ public class DetailsFragment extends Fragment {
     View mAppointmentView;
 
     @BindView(R.id.favorite_button)
-    ImageButton mSavePlaceButton;
+    Button mSavePlaceButton;
 
     @BindView(R.id.UnSaveButton)
-    ImageButton mUnSavebutton;
+    Button mUnSavebutton;
 
     @BindView(R.id.report_outdated_medical_place)
     Button mReportOutdatedPlaceButton;

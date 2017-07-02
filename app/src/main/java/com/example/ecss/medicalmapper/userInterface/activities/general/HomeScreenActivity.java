@@ -50,6 +50,7 @@ import com.example.ecss.medicalmapper.network.retrofit.ApiClient;
 import com.example.ecss.medicalmapper.network.retrofit.ApiInterface;
 import com.example.ecss.medicalmapper.network.showNearbyPlacesApiCall.CardinalPoints;
 import com.example.ecss.medicalmapper.network.showNearbyPlacesApiCall.ShowNearbyPlacesRequest;
+import com.example.ecss.medicalmapper.utility.FragmentsManager;
 import com.example.ecss.medicalmapper.utility.Utility;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -166,6 +167,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
         }
         setContentView(R.layout.activity_home_screen);
 
+        setTitle(getString(R.string.home));
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
@@ -363,18 +365,23 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
         if (id == R.id.nav_all) {
             saveRequestTypeToSharedPreference(ALL_API_CALL_NUMBER);
+            mMap.clear();
             updateMarkers();
         } else if (id == R.id.nav_hospitals) {
             saveRequestTypeToSharedPreference(HOSPITALS_API_CALL_NUMBER);
+            mMap.clear();
             updateMarkers();
         } else if (id == R.id.nav_clinics) {
             saveRequestTypeToSharedPreference(CLINICS_API_CALL_NUMBER);
+            mMap.clear();
             updateMarkers();
         } else if (id == R.id.nav_laboratories) {
             saveRequestTypeToSharedPreference(LABORATORIES_API_CALL_NUMBER);
+            mMap.clear();
             updateMarkers();
         } else if (id == R.id.nav_pharmacies) {
             saveRequestTypeToSharedPreference(PHARMACIES_API_CALL_NUMBER);
+            mMap.clear();
             updateMarkers();
         } else if (id == nav_signin) {
             SignInActivity.startActivity(this);
@@ -423,6 +430,7 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
         }
         else if (id == R.id.nav_settings) {
             SettingsActivity.startActivity(this);
+            finish();
         } else if (id == R.id.nav_help) {
             ChatBotActivity.startActivity(this);
         }
@@ -524,7 +532,6 @@ public class HomeScreenActivity extends AppCompatActivity implements OnMapReadyC
 
             // Get the businesses and other points of interest located
             // nearest to the device's current location.
-            mMap.clear();
             getMedicalPlacesFromApi(getRequestTypeFromSharedPreference());
 
         } else {

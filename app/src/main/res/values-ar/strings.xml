@@ -318,9 +318,6 @@
 
 
 
-
-
-
     <string name="commentfail">الشبكة مشغوله حاول في وقت اخر</string>
     <string name="placeSaved">تم حفظ المكان بنجاح</string>
     <string name="placeUnSaved">تم مسح المكان بنجاح</string>
@@ -332,5 +329,6 @@
     <string name="delivery"> يوجد توصيل</string>
     <string name="NODelivery">لا يوجد توصيل</string>
     <string name="NOHotline">لا يوجد خط ساخن</string>
+    <string name="unSaved">مسح</string>
 
 </resources>

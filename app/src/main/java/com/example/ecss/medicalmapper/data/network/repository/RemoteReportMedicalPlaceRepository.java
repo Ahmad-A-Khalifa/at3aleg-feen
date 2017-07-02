@@ -37,16 +37,8 @@ public class RemoteReportMedicalPlaceRepository implements BaseRemoteReportMedic
         RestClient restClient = new RestClient(url, requestBodyPayload);
         restClient.execute(RestClient.MethodType.POST);
         if (restClient.getResponseCode() == HTTPResponseCode.OK) {
-            StatusResponsePayload.Status responseStatus = new Gson()
-                    .fromJson(restClient.getResponse(), StatusResponsePayload.class)
-                    .getStatus();
-            if (responseStatus.isSuccessful()) {
+            return true;
 
-                return true;
-            }
-            else {
-                throw new Exception(responseStatus.getErrorMessage());
-            }
         }
         else {
             String message;

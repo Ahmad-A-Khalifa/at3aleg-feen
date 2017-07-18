@@ -31,7 +31,12 @@
     <color name="text_color">#FFFFFF</color>
     <color name="text_color_icon">#212121</color>
 
-
+    <color name="alert_dialog_button_green1">#b4099930</color>
+    <color name="alert_dialog_button_green2">#b4099930</color>
+    <color name="alert_dialog_button_green_focused1">#96099930</color>
+    <color name="alert_dialog_button_green_focused2">#96099930</color>
+    <color name="alert_dialog_button_green_pressed1">#96099930</color>
+    <color name="alert_dialog_button_green_pressed2">#96099930</color>
     <color name="background_light_grey">#dddddd</color>
 
 

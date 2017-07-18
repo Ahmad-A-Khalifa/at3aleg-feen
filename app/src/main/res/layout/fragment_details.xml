@@ -30,9 +30,8 @@
                 android:layout_height="@dimen/large_space"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:src="@drawable/app_logo"
                 android:background="@color/blue"
-                />
+                android:src="@drawable/app_logo" />
 
             <LinearLayout
                 android:layout_width="@dimen/form_element_width"
@@ -47,7 +46,7 @@
                     android:layout_weight="3"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/form_element_text_size" />
 
@@ -91,7 +90,7 @@
                     android:layout_weight="3"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Address"
+                    android:text="@string/address_notes"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/form_element_text_size" />
 
@@ -134,7 +133,7 @@
                     android:layout_weight="3"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Phone Number"
+                    android:text="@string/phone_number"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/form_element_text_size" />
 
@@ -180,7 +179,7 @@
                     android:layout_weight="3"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Specialization"
+                    android:text="@string/specialization"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/form_element_text_size" />
 
@@ -225,7 +224,7 @@
                     android:layout_weight="3"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Appointments"
+                    android:text="@string/appoint"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/form_element_text_size" />
 
@@ -265,20 +264,19 @@
                     android:id="@+id/favorite_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue"
-                    android:visibility="gone"
+                    android:background="@drawable/blue_button"
                     android:text="@string/save"
-
-                    />
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/UnSaveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue"
-                    android:visibility="gone"
+                    android:background="@drawable/blue_button"
                     android:text="@string/unSaved"
-                    />
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
 
 
                 <ImageView
@@ -313,7 +311,7 @@
                 android:id="@+id/AddReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Review"
+                android:text="@string/AddReview"
                 android:visibility="gone" />
 
             <Button
@@ -323,7 +321,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/blue_button"
                 android:padding="16dp"
-                android:text="Report outdated medical place"
+                android:text="@string/report_outdated_medical_place"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:visibility="gone" />

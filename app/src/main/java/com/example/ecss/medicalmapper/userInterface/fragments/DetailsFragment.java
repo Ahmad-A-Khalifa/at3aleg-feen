@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -333,13 +333,13 @@ public class DetailsFragment extends Fragment {
 
                             if (getRequestTypeFromSharedPreference() == 0) {
 
-                                if(places.getHospitals() != null && places.getHospitals().size()>0) {
+                                if (places.getHospitals() != null && places.getHospitals().size() > 0) {
 
-                                    int isExist=0;
+                                    int isExist = 0;
                                     for (Hospital hospitalLocal : places.getHospitals()) {
                                         if (hospitalLocal.getBranches().get(0) != null) {
                                             if (hospitalLocal.getBranches().get(0).getBranchId() == hospitalBranchId) {
-                                                isExist=1;
+                                                isExist = 1;
 
                                                 break;
                                             }
@@ -347,41 +347,30 @@ public class DetailsFragment extends Fragment {
                                         }
                                     }
 
-                                    if(isExist==1)
-                                    {
+                                    if (isExist == 1) {
                                         mSavePlaceButton.setVisibility(View.GONE);
                                         mUnSavebutton.setVisibility(View.VISIBLE);
-                                    }
-
-                                    else
-                                    {
+                                    } else {
                                         mSavePlaceButton.setVisibility(View.VISIBLE);
 
                                     }
 
 
-
-                                }
-
-                                else
-                                {
+                                } else {
                                     mSavePlaceButton.setVisibility(View.VISIBLE);
                                     mUnSavebutton.setVisibility(View.GONE);
                                 }
 
-                            }
+                            } else if (getRequestTypeFromSharedPreference() == 2) {
 
-
-                            else if (getRequestTypeFromSharedPreference() == 2) {
-
-                                if(places.getPharmacies()!= null && places.getPharmacies().size()>0) {
-                                    int isExist=0;
+                                if (places.getPharmacies() != null && places.getPharmacies().size() > 0) {
+                                    int isExist = 0;
 
 
                                     for (Pharmacy pharmacyLocal : places.getPharmacies()) {
                                         if (pharmacyLocal.getBranches().get(0) != null) {
                                             if (pharmacyLocal.getBranches().get(0).getBranchId() == pharmacyBranchId) {
-                                                isExist=1;
+                                                isExist = 1;
                                                 Log.i("zzzzzz", "unsave");
                                                 Log.i("pharmacyBranchId : " + pharmacyBranchId, "=" + pharmacyLocal.getBranches().get(0).getBranchId());
                                                 break;
@@ -392,91 +381,71 @@ public class DetailsFragment extends Fragment {
 
                                     }
 
-                                    if(isExist==1)
-                                    {
+                                    if (isExist == 1) {
                                         mSavePlaceButton.setVisibility(View.GONE);
                                         mUnSavebutton.setVisibility(View.VISIBLE);
-                                    }
-
-                                    else
-                                    {
+                                    } else {
                                         mSavePlaceButton.setVisibility(View.VISIBLE);
 
                                     }
 
-                                }
-
-                                else
-                                {
+                                } else {
                                     mSavePlaceButton.setVisibility(View.VISIBLE);
                                     mUnSavebutton.setVisibility(View.GONE);
                                 }
 
                             } else if (getRequestTypeFromSharedPreference() == 3) {
 
-                                if(places.getLaboratories()==null &&places.getLaboratories().size()>0) {
-                                    int isExist=0;
+                                if (places.getLaboratories() == null && places.getLaboratories().size() > 0) {
+                                    int isExist = 0;
 
                                     for (Laboratory labLocal : places.getLaboratories()) {
                                         if (labLocal.getBranches().get(0) != null) {
                                             if (labLocal.getBranches().get(0).getBranchId() == labBranchId) {
-                                                isExist=1;
+                                                isExist = 1;
 
                                                 break;
                                             }
                                         }
                                     }
-                                    if(isExist==1)
-                                    {
+                                    if (isExist == 1) {
                                         mSavePlaceButton.setVisibility(View.GONE);
                                         mUnSavebutton.setVisibility(View.VISIBLE);
-                                    }
-
-                                    else
-                                    {
+                                    } else {
                                         mSavePlaceButton.setVisibility(View.VISIBLE);
 
                                     }
-                                }
-                                else {
+                                } else {
                                     mSavePlaceButton.setVisibility(View.VISIBLE);
                                     mUnSavebutton.setVisibility(View.GONE);
                                 }
 
-                            }
-                            else if (getRequestTypeFromSharedPreference() == 1) {
+                            } else if (getRequestTypeFromSharedPreference() == 1) {
 
-                                if( places.getClinics()!=null &&  places.getClinics().size() >0 ) {
-                                    int isExit=0;
+                                if (places.getClinics() != null && places.getClinics().size() > 0) {
+                                    int isExit = 0;
                                     for (Clinic clinicLocal : places.getClinics()) {
                                         if (clinicLocal.getBranches().get(0) != null) {
                                             if (clinicLocal.getBranches().get(0).getBranchId() == clinicBranchId) {
-                                                isExit=1;
+                                                isExit = 1;
                                                 break;
                                             }
                                         }
 
-                                        if(isExit==1)
-                                        {
+                                        if (isExit == 1) {
                                             mSavePlaceButton.setVisibility(View.GONE);
                                             mUnSavebutton.setVisibility(View.VISIBLE);
-                                        }
-
-                                        else
-                                        {
+                                        } else {
                                             mSavePlaceButton.setVisibility(View.VISIBLE);
 
                                         }
                                     }
-                                }
-
-                                else {
+                                } else {
                                     mSavePlaceButton.setVisibility(View.VISIBLE);
                                     mUnSavebutton.setVisibility(View.GONE);
                                 }
 
-                            }
-                            else {
+                            } else {
                                 mSavePlaceButton.setVisibility(View.VISIBLE);
                                 mUnSavebutton.setVisibility(View.GONE);
                             }
@@ -485,6 +454,7 @@ public class DetailsFragment extends Fragment {
                             mSavePlaceButton.setVisibility(View.VISIBLE);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<PlacesResponse> call, Throwable t) {
                     }
@@ -493,6 +463,7 @@ public class DetailsFragment extends Fragment {
         }
         return rootView;
     }
+
     private Review getTmpReview() {
         return new Review("", "");
     }
@@ -778,8 +749,15 @@ public class DetailsFragment extends Fragment {
                 Toast.makeText(getContext(), "failed", Toast.LENGTH_LONG).show();
             }
         });
-        AlertDialog b = dialogBuilder.create();
-        b.show();
+        AlertDialog dialog = dialogBuilder.create();
+
+
+        dialog.show();
+        Button buttonPositive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        buttonPositive.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+        Button buttonNegative = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        buttonNegative.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+
     }
 
     // validate reviews

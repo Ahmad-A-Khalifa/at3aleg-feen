@@ -17,7 +17,6 @@ import com.example.ecss.medicalmapper.model.place.Pharmacy;
 import com.example.ecss.medicalmapper.network.ApiCallStatus;
 import com.example.ecss.medicalmapper.network.retrofit.ApiClient;
 import com.example.ecss.medicalmapper.network.retrofit.ApiInterface;
-import com.example.ecss.medicalmapper.userInterface.adapters.SavedLabsAdapter;
 import com.example.ecss.medicalmapper.userInterface.adapters.SavedPharmaciesAdapter;
 
 import java.util.ArrayList;
@@ -83,45 +82,45 @@ public class SavedPharmaciesFragment extends Fragment {
     }
 
     private void callSavedPlacesFromApi() {
-            if (checkInternetConnection()) {
-                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                if (getUserFromSharedPreferences(getContext()).getUserId() != -1) {
-                    Call<PlacesResponse> call = apiService.GetSavedPlaces(getUserFromSharedPreferences(getContext()).getUserId());
-                    call.enqueue(new Callback<PlacesResponse>() {
-                        @Override
-                        public void onResponse(Call<PlacesResponse> call, Response<PlacesResponse> response) {
+        if (checkInternetConnection()) {
+            ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+            if (getUserFromSharedPreferences(getContext()).getUserId() != -1) {
+                Call<PlacesResponse> call = apiService.GetSavedPlaces(getUserFromSharedPreferences(getContext()).getUserId());
+                call.enqueue(new Callback<PlacesResponse>() {
+                    @Override
+                    public void onResponse(Call<PlacesResponse> call, Response<PlacesResponse> response) {
 
-                            MedicalPlaces places = null;
-                            ApiCallStatus apiCallStatus = null;
+                        MedicalPlaces places = null;
+                        ApiCallStatus apiCallStatus = null;
 
-                            if (response.body() != null) {
-                                places = response.body().getMedicalPlaces();
-                                apiCallStatus = response.body().getApiCallStatus();
-                            }
-
-                            if (apiCallStatus != null && places != null && apiCallStatus.getIsSuccessful()) {
-                                mAdapter = new SavedPharmaciesAdapter();
-                                mLayoutManager = new LinearLayoutManager(getActivity());
-                                mList.setLayoutManager(mLayoutManager);
-                                mList.setItemAnimator(new DefaultItemAnimator());
-                                mList.setAdapter(mAdapter);
-                                if (places.getPharmacies() != null)
-                                    mAdapter.updateAdapter(places.getPharmacies());
-
-                            } else {
-                                if (apiCallStatus != null && apiCallStatus.getErrorStatus() != null)
-                                    Toast.makeText(getContext(), apiCallStatus.getErrorStatus(), Toast.LENGTH_LONG).show();
-                            }
+                        if (response.body() != null) {
+                            places = response.body().getMedicalPlaces();
+                            apiCallStatus = response.body().getApiCallStatus();
                         }
 
-                        @Override
-                        public void onFailure(Call<PlacesResponse> call, Throwable t) {
+                        if (apiCallStatus != null && places != null && apiCallStatus.getIsSuccessful()) {
+                            mAdapter = new SavedPharmaciesAdapter();
+                            mLayoutManager = new LinearLayoutManager(getActivity());
+                            mList.setLayoutManager(mLayoutManager);
+                            mList.setItemAnimator(new DefaultItemAnimator());
+                            mList.setAdapter(mAdapter);
+                            if (places.getPharmacies() != null)
+                                mAdapter.updateAdapter(places.getPharmacies());
+
+                        } else {
+                            if (apiCallStatus != null && apiCallStatus.getErrorStatus() != null)
+                                Toast.makeText(getContext(), getString(R.string.Nothingtoshow), Toast.LENGTH_LONG).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(getActivity(), getString(R.string.sign_in_problem_message), Toast.LENGTH_LONG).show();
-                }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PlacesResponse> call, Throwable t) {
+                    }
+                });
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.sign_in_problem_message), Toast.LENGTH_LONG).show();
             }
         }
     }
+}
 

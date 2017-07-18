@@ -106,7 +106,7 @@ public class SavedClinicsFragment extends Fragment {
 
                         } else {
                             if (apiCallStatus != null && apiCallStatus.getErrorStatus() != null)
-                                Toast.makeText(getContext(), apiCallStatus.getErrorStatus(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), getString(R.string.Nothingtoshow), Toast.LENGTH_LONG).show();
                         }
                     }
 

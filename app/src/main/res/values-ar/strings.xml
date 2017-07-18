@@ -13,43 +13,7 @@
     <string name="default_info_title">المكان الأساسي</string>
     <string name="default_info_snippet">لا يوجد أماكن لأن الGPS مغلق</string>
 
-    <string-array name="doctor_degree">
-        <item>استاذ</item>
-        <item>استشاري</item>
-        <item>أخصائي</item>
-        <item>استاذ مساعد</item>
-        <item>مدرس</item>
-    </string-array>
 
-    <string-array name="doctor_specialization">
-        <item>الباطنة العامة</item>
-        <item>مناظير الباطنة</item>
-        <item>الباطنة العامةوغدد صماءوسكر</item>
-        <item>الباطنة العامةو كبدو جهاز هضمي</item>
-        <item>الباطنة العامةو امراض الكلي</item>
-        <item>القلب</item>
-        <item>الصدر</item>
-        <item>الاطفال</item>
-        <item>النفسية والعصبية</item>
-        <item>الجلدية و التناسلية</item>
-        <item>الجراحه العامه</item>
-        <item>جراحة مناظير</item>
-        <item>جراحة الأوعية الدموية</item>
-        <item>جراحة التجميل و الحروق</item>
-        <item>جراحة الاورام</item>
-        <item>جراحة الاطفال</item>
-        <item>جراحة المخ و الاعصاب</item>
-        <item>جراحة القلب والصدر</item>
-        <item> المسالك البولية</item>
-        <item> النساء والتوليد</item>
-        <item>جراحة العيون</item>
-        <item>جراحةالعظام</item>
-        <item>الروماتيزم والطب الطبيعي</item>
-        <item>جراحة الأنف و الأذن و الحنجرة</item>
-        <item>التخاطب و السمعيات</item>
-        <item>الفم و الأسنان</item>
-
-    </string-array>
 
     <string name="title_activity_advanced_search">AdvancedSearch</string>
     <string name="signed_out">تسجيل خروج</string>
@@ -88,8 +52,6 @@
     <string name="hint_expiry_date">تاريخ الصلاحيه</string>
     <string name="hint_card_number">رقم البطاقه</string>
     <string name="hint_cvv">CVV</string>
-
-
 
     <string name="error_general_error">حدث خطأ ما، اعد المحاولة لاحقا</string>
     <string name="error_no_network_connection">غير متصل بالانترنت</string>
@@ -150,14 +112,12 @@
     <string name="are_you_a_doctor">هل انت طبيب؟</string>
 
 
-
     <string name="new_user">مستخدم جديد</string>
     <string name="places">الاماكن</string>
     <string name="sort_by">رتب بواسطة</string>
     <string name="nearest">الاقرب</string>
     <string name="top_rated">الافضل</string>
     <string name="results">النتائج</string>
-
 
 
     <string-array name="doctor_degrees_array">
@@ -260,7 +220,8 @@
     <string name="doctor_profile">الملف الشخصي للدكتور</string>
     <string name="name">الاسم</string>
     <string name="save">حفظ</string>
-
+    <string name="address">العنوان</string>
+    <string name="appoint">مواعيد</string>
 
     <string name="title_activity_doctor_profile">DoctorProfileActivity</string>
     <string name="title_activity_display_search_places">DisplaySearchPlacesActivity</string>
@@ -271,10 +232,10 @@
     <string name="title_activity_settings">اعدادات</string>
 
 
-    <string name="base_api_url" translatable="false">http://at3alegfeenapi-001-site1.itempurl.com/api</string>
+    <string name="base_api_url">http://at3alegfeenapi-001-site1.itempurl.com/api</string>
 
-    <string name="state_closed" translatable="false">مغلق</string>
-    <string name="state_outdated" translatable="false">قديم</string>
+    <string name="state_closed">مغلق</string>
+    <string name="state_outdated">قديم</string>
 
 
     <string name="place_name">اسم المكان</string>
@@ -309,7 +270,6 @@
     <string name="home">الرئيسية</string>
 
 
-
     <string name="commentfail">الشبكة مشغوله حاول في وقت اخر</string>
     <string name="placeSaved">تم حفظ المكان بنجاح</string>
     <string name="placeUnSaved">تم مسح المكان بنجاح</string>
@@ -322,5 +282,6 @@
     <string name="NODelivery">لا يوجد توصيل</string>
     <string name="NOHotline">لا يوجد خط ساخن</string>
     <string name="unSaved">مسح</string>
+    <string name="AddReview">أضافة تعليق</string>
 
 </resources>
